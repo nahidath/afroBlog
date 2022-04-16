@@ -1,29 +1,23 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 import './App.css';
-import Navbar from './components/navbar';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/index';
-import About from './pages/about';
-import Events from './pages/events';
-import AnnualReport from './pages/annual';
-import Teams from './pages/teams';
-import Blogs from './pages/blogs';
-import SignUp from './pages/signup';
+
+import Home   from './pages/home/Home';
+import SignUp from './pages/signup/SignUp';
+import NavBar from './components/navbar/NavBar';
 
 function App() {
   return (
-      <Router>
-        <Navbar />
-        <Routes>
+    <div id="app">
+      <Router forceRefresh={false}>
+        <NavBar />
+        <Switch>
           <Route path='/' exact component={Home} />
-          <Route path='/about' component={About} />
-          <Route path='/events' component={Events} />
-          <Route path='/annual' component={AnnualReport} />
-          <Route path='/team' component={Teams} />
-          <Route path='/blogs' component={Blogs} />
           <Route path='/sign-up' component={SignUp} />
-        </Routes>
+        </Switch>
       </Router>
+    </div>
   );
 }
 
