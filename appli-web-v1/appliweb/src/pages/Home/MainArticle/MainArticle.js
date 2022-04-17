@@ -1,9 +1,16 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import './MainArticle.css';
 
 
 export default function MainArticle (props) {
+
+    const history = useHistory();
+
+    const handleGoArticle = () => {
+        history.push({ pathname:'/article/' + props.article.id});
+    }
 
     return (
         <div id='mainArticle'>
@@ -19,7 +26,7 @@ export default function MainArticle (props) {
                 <p>
                     {props.article.description}
                 </p>
-                <h5>Lire la suite</h5>
+                <h5 onClick={handleGoArticle}>Lire la suite</h5>
             </div>
             
         </div>
