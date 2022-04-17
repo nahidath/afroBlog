@@ -1,14 +1,14 @@
 import React from 'react';
 
-import './MainArticle.css';
+import './SubArticle.css';
 
 
-export default function MainArticle (props) {
+export default function SubArticle (props) {
     return (
-        <div id='mainArticle'>
+        <div id='subArticle'>
             <img 
                 src={props.article.image} 
-                alt="mainArticle"  
+                alt="subArticle"  
                 className="mainArticleImg" 
             />
             <div className="mainArticleText">
