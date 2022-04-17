@@ -1,6 +1,7 @@
 // Import modules
 import React            from 'react';
-import {Navbar, Nav, NavDropdown, Container, Form, FormControl, Button}    from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown, Container, Form, FormControl, Button }    from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 
 // Import style
 import "./NavBar.css";
@@ -9,11 +10,21 @@ import "./NavBar.css";
 
 export default function NavBar (props) {
 
+    const history = useHistory();
+
+    const handleHome = () => {
+        history.push({ pathname:'/'});
+    }
+
+    const handleSignUp = () => {
+        history.push({ pathname:'/sign-up'});
+    }
+
     return (
         <div id='navBar'>
             <Navbar bg="light" expand="lg">
                 <Container fluid>
-                    <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+                    <Navbar.Brand onClick={handleHome}>Afro Blog</Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                     <Nav
@@ -31,8 +42,8 @@ export default function NavBar (props) {
                             Something else here
                         </NavDropdown.Item>
                         </NavDropdown>
-                        <Nav.Link href="#" disabled>
-                        Link
+                        <Nav.Link onClick={handleSignUp}>
+                            Sign up
                         </Nav.Link>
                     </Nav>
                     <Nav className='rightPart'>

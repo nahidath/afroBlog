@@ -1,3 +1,7 @@
+#navBar .navbar-brand {
+    cursor: pointer;
+}
+
 #navBar .rightPart {
     margin-left: auto;
 }
