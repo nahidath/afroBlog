@@ -9,9 +9,9 @@ export default function SubArticle (props) {
             <img 
                 src={props.article.image} 
                 alt="subArticle"  
-                className="mainArticleImg" 
+                className="articleImg" 
             />
-            <div className="mainArticleText">
+            <div className="articleText">
                 <h2>
                     {props.article.title}
                 </h2>

@@ -6,12 +6,12 @@
     margin-left: 5%;
 }
 
-#subArticle .mainArticleImg {
+#subArticle .articleImg {
     width: 100%;
     aspect-ratio: 16/10;
 }
 
-#subArticle .mainArticleText {
+#subArticle .articleText {
     width: 100%;
     text-align: justify;
 }
@@ -25,7 +25,10 @@
     cursor: pointer;
 }
 
-@media screen and (max-width: 1000px) { 
-    #subArticle .mainArticleImg {width: 100%}
-    #subArticle .mainArticleText {width: 100%}
+@media screen and (max-width: 850px) { 
+    #subArticle {width: calc(85% / 2)}
+}
+
+@media screen and (max-width: 580px) { 
+    #subArticle {width: 90%}
 }
