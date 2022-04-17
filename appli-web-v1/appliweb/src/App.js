@@ -6,18 +6,23 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Home   from './pages/Home/Home';
 import SignUp from './pages/Signup/SignUp';
+import Article from './pages/Article/Article';
 import NavBar from './components/NavBar/NavBar';
 
 function App() {
   return (
     <div id="app">
       <Router forceRefresh={false}>
-        <NavBar />
-        <Switch>
-          <Route path='/' exact component={Home} />
-          <Route path='/sign-up' component={SignUp} />
-        </Switch>
-      </Router>
+          <NavBar />
+          <div className='section-central'>
+            <Switch>
+              <Route path="/article/:id" exact 
+                render={(props) => <Article {...props}/>} />
+              <Route path='/' exact component={Home} />
+              <Route path='/sign-up' component={SignUp} />
+            </Switch>
+          </div>
+        </Router>
     </div>
   );
 }

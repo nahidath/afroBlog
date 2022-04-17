@@ -1,14 +1,13 @@
 import React from 'react';
-
+import MainArticle from './MainArticle/MainArticle'
 import './Home.css';
 
 
-const Home = () => {
+export default function Home() {
     return (
         <div id='home'>
-            Welcome to GeeksforGeeks
+            <MainArticle />
+            <MainArticle />
         </div>
     );
 };
-
-export default Home;

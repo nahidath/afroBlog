@@ -1,0 +1,18 @@
+#mainArticle {
+    width: 90%;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+}
+
+#mainArticle .mainArticleImg {
+    width: 55%;
+    aspect-ratio: 16/10;
+    float: left;
+    margin-right: 5%;
+}
+
+#mainArticle .mainArticleText {
+    width: 40%;
+    float: left;
+    text-align: justify;
+}
