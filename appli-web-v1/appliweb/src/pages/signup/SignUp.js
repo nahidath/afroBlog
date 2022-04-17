@@ -5,7 +5,7 @@ import './SignUp.css';
 const SignUp = () => {
     return (
         <div id="signup">
-            <h1>Sign Up</h1>
+            Sign Up
         </div>
     );
 };

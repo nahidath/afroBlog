@@ -3,15 +3,15 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import './App.css';
 
-import Home   from './pages/home/Home';
-import SignUp from './pages/signup/SignUp';
-import NavBar from './components/navbar/NavBar';
+import Home   from './pages/Home/Home';
+import SignUp from './pages/Signup/SignUp';
+// import NavBar from './components/navbar/NavBar';
 
 function App() {
   return (
     <div id="app">
       <Router forceRefresh={false}>
-        <NavBar />
+        {/* <NavBar /> */}
         <Switch>
           <Route path='/' exact component={Home} />
           <Route path='/sign-up' component={SignUp} />
