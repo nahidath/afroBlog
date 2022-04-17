@@ -2,16 +2,17 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Home   from './pages/Home/Home';
 import SignUp from './pages/Signup/SignUp';
-// import NavBar from './components/navbar/NavBar';
+import NavBar from './components/NavBar/NavBar';
 
 function App() {
   return (
     <div id="app">
       <Router forceRefresh={false}>
-        {/* <NavBar /> */}
+        <NavBar />
         <Switch>
           <Route path='/' exact component={Home} />
           <Route path='/sign-up' component={SignUp} />
