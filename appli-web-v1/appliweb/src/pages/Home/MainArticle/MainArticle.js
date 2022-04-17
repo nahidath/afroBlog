@@ -4,10 +4,11 @@ import './MainArticle.css';
 
 
 export default function MainArticle (props) {
+
     return (
         <div id='mainArticle'>
             <img 
-                src={props.article.image} 
+                src={['./articles', props.article.id, props.article.image].join('/')}
                 alt="mainArticle"  
                 className="mainArticleImg" 
             />

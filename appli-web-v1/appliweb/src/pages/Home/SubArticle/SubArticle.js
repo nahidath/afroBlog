@@ -7,7 +7,7 @@ export default function SubArticle (props) {
     return (
         <div id='subArticle'>
             <img 
-                src={props.article.image} 
+                src={['./articles', props.article.id, props.article.image].join('/')}
                 alt="subArticle"  
                 className="articleImg" 
             />
