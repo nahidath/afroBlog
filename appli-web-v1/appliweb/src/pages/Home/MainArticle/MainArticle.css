@@ -11,8 +11,25 @@
     margin-right: 5%;
 }
 
+
+
+
 #mainArticle .mainArticleText {
     width: 40%;
     float: left;
     text-align: justify;
+}
+
+#mainArticle h2 {
+    margin-top: 5px;
+}
+
+#mainArticle h5 {
+    float: right;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1000px) { 
+    #mainArticle .mainArticleImg {width: 100%}
+    #mainArticle .mainArticleText {width: 100%}
 }
