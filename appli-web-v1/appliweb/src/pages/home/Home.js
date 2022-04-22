@@ -5,21 +5,20 @@ import './Home.css';
 
 // Import articles
 import {
-    article1,
-    article2
-} from '../../articles';
+    getArticle
+  } from '../../articles';
 
 
 export default function Home() {
     return (
         <div id='home'>
-            <MainArticle article={article1}/>
-            <SubArticle article={article2}/>
-            <SubArticle article={article2}/>
-            <SubArticle article={article2}/>
-            <SubArticle article={article2}/>
-            <SubArticle article={article2}/>
-            {/* <MainArticle article={article2}/> */}
+            <MainArticle article={getArticle(0)}/>
+            <SubArticle article={getArticle(1)}/>
+            <SubArticle article={getArticle(1)}/>
+            <SubArticle article={getArticle(1)}/>
+            <SubArticle article={getArticle(1)}/>
+            <SubArticle article={getArticle(1)}/>
+            {/* <MainArticle article={getArticle(1)}/> */}
         </div>
     );
 };
