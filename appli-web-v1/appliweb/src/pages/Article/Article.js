@@ -7,17 +7,21 @@ import {
 
 export default function Article (props) {
     
-    getArticle(1);
+    const article = getArticle(props.match.params.id);
+    console.log(article)
+    console.log(['./articles', article.id, article.image].join('/'))
 
     return (
         <div id='article'>
-            Article n°{props.match.params.id}
-            {/* <img 
-                // src={['./articles', props.article.id, props.article.image].join('/')}
-                src = {props.article.image}
-                alt="subArticle"  
-                className="articleImg" 
-            /> */}
+            <div className='articleDate'>{article.date}</div>
+            <div className='articleTitle'>{article.title}</div>
+            <img 
+                src={['/articles', article.id, article.image].join('/')}
+                alt="articleImage" 
+                className='articleImage'/>
+            <div className='articleImageDesc'>{article.image_desc}</div>
+            <div className='articleContent'>{article.content}</div>
+            <div className='articleAuthor'>{article.author}</div>
         </div>
     );
 };
