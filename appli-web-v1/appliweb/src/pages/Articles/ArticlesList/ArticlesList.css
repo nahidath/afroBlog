@@ -1,0 +1,38 @@
+#articlesList {
+    width: 100%;
+    height: 600px;
+    margin-top: 10px;
+}
+
+#articlesList h2 {
+    margin-left: 2%;
+}
+
+#articlesList .article {
+    display: flex;
+    flex-direction: row;
+}
+
+#articlesList .articleImg {
+    width: 36%;
+    aspect-ratio: 16/10;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 10px;
+    float: left;
+    margin-bottom: 15px;
+}
+
+#articlesList .articleText {
+    width: 58%;
+    text-align: justify;
+    float: left;
+}
+
+
+
+@media screen and (max-width: 700px) { 
+    #articlesList .article {flex-direction: column; align-items: center}
+    #articlesList .articleImg {width: 60%;}
+    #articlesList .articleText {width: 80%;}
+}

@@ -8,9 +8,7 @@ import {
 export default function Article (props) {
     
     const article = getArticle(props.match.params.id);
-    console.log(article)
-    console.log(['./articles', article.id, article.image].join('/'))
-
+    
     return (
         <div id='article'>
             <div className='articleDate'>{article.date}</div>

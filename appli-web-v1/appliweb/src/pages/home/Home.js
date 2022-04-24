@@ -6,7 +6,7 @@ import './Home.css';
 // Import articles
 import {
     getArticle
-  } from '../../articles';
+} from '../../articles';
 
 
 export default function Home() {

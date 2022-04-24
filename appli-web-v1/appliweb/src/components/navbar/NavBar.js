@@ -24,14 +24,17 @@ export default function NavBar (props) {
     const handleSignUp = () => {
         history.push({ pathname:'/sign-up'});
     }
-    
+
+    const handleSetFilter = (pFilter) => {
+        history.push({ pathname: '/articles/' + pFilter});
+    }
 
     return (
         <div id='navBar'>
             <Navbar bg="light" expand="lg">
                 <Container fluid>
                     <Navbar.Brand onClick={handleHome}>
-                        <img src="./logo2.png" alt= "Afro Blog" />
+                        <img src="/logo2.png" alt= "Afro Blog" />
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
@@ -40,9 +43,9 @@ export default function NavBar (props) {
                         style={{ maxHeight: '200px' }}
                         navbarScroll
                     >
-                        <Nav.Link href="#action1">Cheveux</Nav.Link>
-                        <Nav.Link href="#action2">Maquillage</Nav.Link>
-                        <Nav.Link href="#action2">Peau</Nav.Link>
+                        <Nav.Link onClick={() => handleSetFilter('cheveux')}>Cheveux</Nav.Link>
+                        <Nav.Link onClick={() => handleSetFilter('maquillage')}>Maquillage</Nav.Link>
+                        <Nav.Link onClick={() => handleSetFilter('peau')}>Peau</Nav.Link>
                         {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
                         <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
                         <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
@@ -67,7 +70,7 @@ export default function NavBar (props) {
                             /> 
                             {/* <Button variant="outline-success">Search</Button> */}
                             <img 
-                                src='./research.png'
+                                src='/research.png'
                                 className="bs-search"
                                 onClick={() => setResearchDisplay(!isResearchDisplay)}
                             />
