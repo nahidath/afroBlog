@@ -1,8 +1,5 @@
 import React from 'react';
 import './Articles.css';
-import {
-  getArticle
-} from '../../articles';
 
 import Filters from './Filters/Filters';
 import ArticlesList from './ArticlesList/ArticlesList';
