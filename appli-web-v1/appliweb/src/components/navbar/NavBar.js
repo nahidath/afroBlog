@@ -13,6 +13,10 @@ export default function NavBar (props) {
 
     const history = useHistory();
 
+    const [isResearchDisplay, setResearchDisplay] = useState(false);
+    const researchRef = useRef();
+
+
     const handleHome = () => {
         history.push({ pathname:'/'});
     }
@@ -20,19 +24,6 @@ export default function NavBar (props) {
     const handleSignUp = () => {
         history.push({ pathname:'/sign-up'});
     }
-
-    
-    const targetRef = useRef(null);
-    const [isHovered, setIsHovered] = useState(false);
-    const [isFocused, setIsFocused] = useState(false);
-    const showSearchInput = isHovered || isFocused;
-
-    useEffect(() => {
-        targetRef.current.value = "";
-    }, [showSearchInput]);
-
-    const [isDisplay, setDisplay] = useState(false);
-    
     
 
     return (
@@ -40,13 +31,13 @@ export default function NavBar (props) {
             <Navbar bg="light" expand="lg">
                 <Container fluid>
                     <Navbar.Brand onClick={handleHome}>
-                        <img src="./logo.jpg" alt= "Afro Blog" />
+                        <img src="./logo2.png" alt= "Afro Blog" />
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                     <Nav
                         className="me-auto my-2 my-lg-0"
-                        style={{ maxHeight: '100px' }}
+                        style={{ maxHeight: '200px' }}
                         navbarScroll
                     >
                         <Nav.Link href="#action1">Cheveux</Nav.Link>
@@ -69,19 +60,16 @@ export default function NavBar (props) {
                             <FormControl
                                 type="search"
                                 placeholder="Search"
-                                className="me-2"
+                                className="me-2 mr-2"
                                 aria-label="Search"
-                                ref={targetRef} 
-                                showSearchInput={showSearchInput}
-                                style={{ display: isDisplay ? "block" : "none" }}
+                                ref={researchRef} 
+                                style={{ display: isResearchDisplay ? "block" : "none" }}
                             /> 
                             {/* <Button variant="outline-success">Search</Button> */}
-                            < BsSearch className="bs-search"
-                                size={20} 
-                                onFocus={() => setIsFocused(true)}
-                                onBlur={() => setIsFocused(false)}
-                                hover={showSearchInput} 
-                                onClick={() => setDisplay((d) => !d)}
+                            <img 
+                                src='./research.png'
+                                className="bs-search"
+                                onClick={() => setResearchDisplay(!isResearchDisplay)}
                             />
                         </Form>
                     </Nav>
