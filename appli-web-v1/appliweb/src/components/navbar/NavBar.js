@@ -54,9 +54,6 @@ export default function NavBar (props) {
                             Something else here
                         </NavDropdown.Item>
                         </NavDropdown> */}
-                        <Nav.Link onClick={handleSignUp}>
-                            Sign up
-                        </Nav.Link>
                     </Nav>
                     <Nav className='rightPart'>
                         <Form className="d-flex">
@@ -75,6 +72,9 @@ export default function NavBar (props) {
                                 onClick={() => setResearchDisplay(!isResearchDisplay)}
                             />
                         </Form>
+                        <Nav.Link className="signupLink" onClick={handleSignUp}>
+                            Sign In
+                        </Nav.Link>
                     </Nav>
                     </Navbar.Collapse>
                 </Container>
