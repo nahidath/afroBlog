@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
+import axios from 'axios';
 
 import './SignIn.css';
 import {Button, Form} from "react-bootstrap";
+
 
 export default function  SignIn() {
 
@@ -40,6 +42,17 @@ export default function  SignIn() {
         //     // Username not found
         //     setErrorMessages({ name: "uname", message: errors.email });
         // }
+
+        axios.post('http://localhost:5000/user/signup', { 
+            withCredentials: true,
+            data: {
+                email: email,
+                password: password
+            }
+        }).then((res) =>{
+            console.log('grosse tête')
+        });
+        
     };
 
     // const renderErrorMessage = (name) =>

@@ -21,8 +21,8 @@ export default function NavBar (props) {
         history.push({ pathname:'/'});
     }
 
-    const handleSignUp = () => {
-        history.push({ pathname:'/sign-up'});
+    const handleSignIn = () => {
+        history.push({ pathname:'/sign-in'});
     }
 
     const handleSetFilter = (pFilter) => {
@@ -72,7 +72,7 @@ export default function NavBar (props) {
                                 onClick={() => setResearchDisplay(!isResearchDisplay)}
                             />
                         </Form>
-                        <Nav.Link className="signupLink" onClick={handleSignUp}>
+                        <Nav.Link className="signupLink" onClick={handleSignIn}>
                             Sign In
                         </Nav.Link>
                     </Nav>
