@@ -50,8 +50,10 @@ export default function  SignIn() {
                 password: password
             }
         }).then((res) =>{
-            console.log('grosse tête')
-        });
+            console.log(res)
+        }).catch((err) => {
+            console.log(err); 
+        })
         
     };
 

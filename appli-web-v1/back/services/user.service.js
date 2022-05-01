@@ -1,23 +1,27 @@
-const userModel = require('../models/user.model');
+const userModel = require('./../models/user.model');
 
 exports.signup = async function (user) {
-    console.log(user)
 
-    // const userInsertion = await userModel.insertOne({ 
-    //         username: user.name,
-    //         password: password.name
-    // })
-    // .catch(err => {return json.fail(err)});
+    const userInsertion = await userModel.create({ 
+            email: user.email,
+            password: user.password
+    })
+    .catch(err => {
+        return {
+            "status" : "fail",
+            "message" : err
+        }
+    });
 
-    // if (!userInsertion) {
-    //     return {
-    //         "status" : "fail",
-    //         "message" : "Erreur lors de l'insertion"
-    //     }
-    // }
+    if (!userInsertion) {
+        return {
+            "status" : "fail",
+            "message" : "Erreur lors de l'insertion"
+        }
+    }
 
-    // return {
-    //     "status" : "success",
-    //     "data" : userInsertion
-    // }
+    return {
+        "status" : "success",
+        "data" : userInsertion
+    }
 };
