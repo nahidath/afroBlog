@@ -25,25 +25,8 @@ export default function  SignIn() {
     const handleSubmit = (event) => {
         // Prevent page reload
         event.preventDefault();
-        // var { email, pass } = document.forms[0];
-        //
-        // // Find user login info
-        // const userData = database.find((user) => user.username === email.value);
-        //
-        // // Compare user info
-        // if (userData) {
-        //     if (userData.password !== pass.value) {
-        //         // Invalid password
-        //         setErrorMessages({ name: "pass", message: errors.pass });
-        //     } else {
-        //         setIsSubmitted(true);
-        //     }
-        // } else {
-        //     // Username not found
-        //     setErrorMessages({ name: "uname", message: errors.email });
-        // }
 
-        axios.post('http://localhost:5000/user/signup', { 
+        axios.post('http://localhost:5000/user/signin', {
             withCredentials: true,
             data: {
                 email: email,
@@ -51,16 +34,24 @@ export default function  SignIn() {
             }
         }).then((res) =>{
             console.log(res)
+            if(res.data["status"]=="fail"){
+                alert(res.data["message"])
+            }else{
+                window.location = "/"
+            }
+            // const status = res.status;
+            // //redirect logic
+            // if (res.status == 200) {
+            //     window.location = "/"
+            // }
+
         }).catch((err) => {
-            console.log(err); 
+            console.log(err);
         })
         
     };
 
-    // const renderErrorMessage = (name) =>
-    //     name === errorMessages.name && (
-    //         <div className="error">{errorMessages.message}</div>
-    //     );
+
     return (
         <div className="login-wrapper">
             <Form onSubmit={handleSubmit}>
@@ -70,6 +61,7 @@ export default function  SignIn() {
                         autoFocus
                         type="email"
                         value={email}
+                        name="email"
                         onChange={(e) => setEmail(e.target.value)}
                     />
                 </Form.Group>
@@ -78,6 +70,7 @@ export default function  SignIn() {
                     <Form.Control
                         type="password"
                         value={password}
+                        name="password"
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </Form.Group>
