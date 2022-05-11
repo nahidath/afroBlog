@@ -78,6 +78,7 @@ export default function  SignIn() {
                     Login
                 </Button>
             </Form>
+            Pas de compte ? <a href="SignUp.js">Incris-toi!</a>
         </div>
     );
 
