@@ -2,39 +2,31 @@ import React, {useState} from 'react';
 import axios from 'axios';
 
 import './SignUp.css';
-import {Button, Form} from "react-bootstrap";
+import {Button, Col, Form} from "react-bootstrap";
 
 
 export default function  SignUp() {
 
-    // const [email, setEmail] = useState("");
-    // const [password, setPassword] = useState("");
-    // // const [isAuthenticated, userHasAuthenticated] = useState(false);
-    //
-    const validateForm = () => {
-        // return email.length > 0 && password.length > 0;
-
-    }
-    }
-    // const [errorMessages, setErrorMessages] = useState({});
-    // const [isSubmitted, setIsSubmitted] = useState(false);
-    //
-    // const errors = {
-    //     email: "invalid email",
-    //     pass: "invalid password"
-    // };
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [name,setName] = useState("");
+    const [firstName,setFirstName] = useState("");
+    const [confPwd, setConfPwd] = useState("");
 
     const handleSubmit = (event) => {
         // Prevent page reload
         event.preventDefault();
 
-        if(password != confPwd){
-            alert("Les mots de passe ne correspondent pas")
+        if(password !== confPwd){
+            event.stopPropagation();
+            alert("Les mots de passe ne correspondent pas");
         }
 
-        axios.post('http://localhost:5000/user/signin', {
+        axios.post('http://localhost:5000/user/signup', {
             withCredentials: true,
             data: {
+                name: name,
+                firstName: firstName,
                 email: email,
                 password: password
             }
@@ -43,7 +35,7 @@ export default function  SignUp() {
             if(res.data["status"]=="fail"){
                 alert(res.data["message"])
             }else{
-                window.location = "/"
+                window.location = "/sign-in"
             }
             // const status = res.status;
             // //redirect logic
@@ -55,15 +47,14 @@ export default function  SignUp() {
             console.log(err);
         })
 
-    // };
+    };
 
 
     return (
-        <div className="login-wrapper">
+        <div className="signup-wrapper">
             <Form horizontal onSubmit={handleSubmit}>
                 <Form.Group controlId="name">
-                    {/*<Form.Label>Nom</Form.Label>*/}
-                    <Col componentClass={ControlLabel} sm={2}>
+                    <Col componentClass={Form.Label} sm={2}>
                         Nom
                     </Col>
                     <Col sm={10}>
@@ -71,13 +62,12 @@ export default function  SignUp() {
                             autoFocus
                             type="text"
                             name="name"
-                            // onChange={(e) => setEmail(e.target.value)}
+                            onChange={(e) => setName(e.target.value)}
                         />
                     </Col>
                 </Form.Group>
                 <Form.Group controlId="firstName">
-                    {/*<Form.Label>Prénom</Form.Label>*/}
-                    <Col componentClass={ControlLabel} sm={2}>
+                    <Col componentClass={Form.Label} sm={2}>
                         Prénom
                     </Col>
                     <Col sm={10}>
@@ -85,13 +75,12 @@ export default function  SignUp() {
                             autoFocus
                             type="text"
                             name="firstName"
-                            // onChange={(e) => setEmail(e.target.value)}
+                            onChange={(e) => setFirstName(e.target.value)}
                         />
                     </Col>
                 </Form.Group>
                 <Form.Group controlId="email">
-                    {/*<Form.Label>Email</Form.Label>*/}
-                    <Col componentClass={ControlLabel} sm={2}>
+                    <Col componentClass={Form.Label} sm={2}>
                         Email
                     </Col>
                     <Col sm={10}>
@@ -99,33 +88,31 @@ export default function  SignUp() {
                             autoFocus
                             type="email"
                             name="email"
-                            // onChange={(e) => setEmail(e.target.value)}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                     </Col>
                 </Form.Group>
                 <Form.Group controlId="password">
-                    {/*<Form.Label>Mot de passe</Form.Label>*/}
-                    <Col componentClass={ControlLabel} sm={2}>
+                    <Col componentClass={Form.Label} sm={2}>
                         Mot de passe
                     </Col>
                     <Col sm={10}>
                         <Form.Control
                             type="password"
                             name="password"
-                            // onChange={(e) => setPassword(e.target.value)}
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                     </Col>
                 </Form.Group>
                 <Form.Group  controlId="confPwd">
-                    {/*<Form.Label>Confirmez votre mot de passe</Form.Label>*/}
-                    <Col componentClass={ControlLabel} sm={2}>
+                    <Col componentClass={Form.Label} sm={2}>
                         Confirmez votre mot de passe
                     </Col>
                     <Col sm={10}>
                         <Form.Control
                             type="password"
                             name="confPwd"
-                            // onChange={(e) => setPassword(e.target.value)}
+                            onChange={(e) => setConfPwd(e.target.value)}
                         />
                     </Col>
                 </Form.Group>
@@ -134,7 +121,6 @@ export default function  SignUp() {
                         <Button block size="lg" type="submit" >Sign Up</Button>
                     </Col>
                 </Form.Group>
-
             </Form>
         </div>
     );

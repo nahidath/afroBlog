@@ -2,9 +2,11 @@ const userModel = require('./../models/user.model');
 
 exports.signup = async function (user) {
 
-    const userInsertion = await userModel.create({ 
+    const userInsertion = await userModel.create({
+            nom: user.nom,
+            prenom: user.prenom,
             email: user.email,
-            username: user.username,
+            // username: user.username,
             password: user.password
     })
     .catch(err => {

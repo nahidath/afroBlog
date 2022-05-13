@@ -7,6 +7,10 @@ import {Button, Form} from "react-bootstrap";
 
 export default function  SignIn() {
 
+    // const handleSignUp = () => {
+    //     history.push({ pathname:'/signup'});
+    // }
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     // const [isAuthenticated, userHasAuthenticated] = useState(false);
@@ -78,7 +82,7 @@ export default function  SignIn() {
                     Login
                 </Button>
             </Form>
-            Pas de compte ? <a href="SignUp.js">Incris-toi!</a>
+            Pas de compte ? <a href="sign-up">Inscris-toi!</a>
         </div>
     );
 

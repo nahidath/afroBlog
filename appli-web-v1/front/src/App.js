@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Home   from './pages/Home/Home';
 import SignIn from './pages/Auth/SignIn';
+import SignUp from './pages/Auth/SignUp';
 import Article from './pages/Article/Article';
 import Articles from './pages/Articles/Articles';
 
@@ -25,6 +26,7 @@ function App() {
                 render={(props) => <Articles {...props}/>} />
               <Route path='/' exact component={Home} />
               <Route path='/sign-in' component={SignIn} />
+              <Route path='/sign-up' component={SignUp} />
             </Switch>
           </div>
         </Router>
