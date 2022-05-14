@@ -1,10 +1,24 @@
 const userModel = require('./../models/user.model');
 
 exports.signup = async function (user) {
+    const checkUserExists = (user) = await userModel.findOne( {
+        email : user.email,
+    }).select({_id:0, email: 1}).catch(err => {
+        return {
+            "status" : "fail",
+            "message" : err
+        }
+    });
 
+    if(checkUserExists){
+        return {
+            "status" : "fail",
+            "message" : "Cet utilisateur existe déjà"
+        }
+    }
     const userInsertion = await userModel.create({
-            nom: user.nom,
-            prenom: user.prenom,
+            name: user.name,
+            firstName: user.firstName,
             email: user.email,
             // username: user.username,
             password: user.password
@@ -15,6 +29,7 @@ exports.signup = async function (user) {
             "message" : err
         }
     });
+
 
     if (!userInsertion) {
         return {

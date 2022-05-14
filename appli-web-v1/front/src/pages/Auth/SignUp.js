@@ -3,15 +3,22 @@ import axios from 'axios';
 
 import './SignUp.css';
 import {Button, Col, Form} from "react-bootstrap";
+import {useHistory} from "react-router-dom";
 
 
 export default function  SignUp() {
+
+    const history = useHistory();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [name,setName] = useState("");
     const [firstName,setFirstName] = useState("");
     const [confPwd, setConfPwd] = useState("");
+
+    const handleSignUp = () => {
+        history.push({ pathname:'/sign-in'});
+    }
 
     const handleSubmit = (event) => {
         // Prevent page reload
@@ -20,6 +27,7 @@ export default function  SignUp() {
         if(password !== confPwd){
             event.stopPropagation();
             alert("Les mots de passe ne correspondent pas");
+            return;
         }
 
         axios.post('http://localhost:5000/user/signup', {
@@ -35,8 +43,9 @@ export default function  SignUp() {
             if(res.data["status"]=="fail"){
                 alert(res.data["message"])
             }else{
-                window.location = "/sign-in"
+                handleSignUp();
             }
+
             // const status = res.status;
             // //redirect logic
             // if (res.status == 200) {
@@ -118,7 +127,7 @@ export default function  SignUp() {
                 </Form.Group>
                 <Form.Group>
                     <Col smOffset={2} sm={10}>
-                        <Button block size="lg" type="submit" >Sign Up</Button>
+                        <Button block size="lg" type="submit" onClick={handleSubmit}>Sign Up</Button>
                     </Col>
                 </Form.Group>
             </Form>
