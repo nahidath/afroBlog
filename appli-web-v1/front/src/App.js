@@ -11,6 +11,7 @@ import Article from './pages/Article/Article';
 import Articles from './pages/Articles/Articles';
 
 import NavBar from './components/NavBar/NavBar';
+import Profile from "./pages/Profile/Profile";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
               <Route path='/' exact component={Home} />
               <Route path='/sign-in' component={SignIn} />
               <Route path='/sign-up' component={SignUp} />
+              <Route path='/profile' component={Profile} />
             </Switch>
           </div>
         </Router>

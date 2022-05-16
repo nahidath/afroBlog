@@ -1,7 +1,8 @@
 import './Profile.css';
 import {Button, Col, Form, FormControl, FormGroup} from "react-bootstrap";
 import {React} from "react";
-import {BsFillPencilFill} from "react-icons";
+import {BsFillPencilFill} from "react-icons/bs";
+import Divider from "@material-ui/core/Divider";
 
 
 
@@ -12,8 +13,9 @@ export default function Profile() {
         <div className="profile-wrapper">
             <div className="welcome-zone">
                 <div className="profile-pic">
-                    <img src="/love-test" alt= "profilePic" />
+                    <img src="/love-test.png" alt= "profilePic" width={"100px;"} height={"100px;"} />
                     <Button variant="outline-dark" size="sm" type="button"> <BsFillPencilFill/> </Button>
+                    {/*<BsFillPencilFill/>*/}
                 </div>
                 <div className="welcome-text">
                     welcome baba
@@ -61,7 +63,8 @@ export default function Profile() {
                             <Button type="submit">Save</Button>
                         </Col>
                     </FormGroup>
-                </Form>;
+                </Form>
+                <Divider />
                 <div className="fav-zone">
                     fav article
                 </div>

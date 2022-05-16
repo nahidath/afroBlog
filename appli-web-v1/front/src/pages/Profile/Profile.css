@@ -1,0 +1,33 @@
+.profile-wrapper {
+    width: 70%;
+}
+
+.profile-pic{
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.profile-pic > img{
+    border : 2px solid black;
+    border-radius: 50px;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+}
+
+.profile-pic > Button {
+    border-radius: 50px;
+    position: absolute;
+    /*top:30px;*/
+    /*right: 25px;*/
+    bottom:0;
+    right: 0;
+    background-color: white;
+}
+
+.welcome-zone{
+    display: inline-block;
+    width: 70%;
+    height: 100px;
+}
