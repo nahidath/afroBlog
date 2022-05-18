@@ -10,7 +10,7 @@ import Divider from "@material-ui/core/Divider";
 export default function Profile() {
 
     return(
-        <div className="profile-wrapper">
+        <div id="profile-wrapper">
             <div className="welcome-zone">
                 <div className="profile-pic">
                     <img src="/love-test.png" alt= "profilePic" width={"100px;"} height={"100px;"} />
@@ -22,6 +22,8 @@ export default function Profile() {
                 </div>
             </div>
             <div className="edit-profile-zone">
+                Edit your profile
+                <Divider />
                 <Form horizontal>
                     <FormGroup controlId="changeName">
                         <Col componentClass={Form.Label} sm={2}>
