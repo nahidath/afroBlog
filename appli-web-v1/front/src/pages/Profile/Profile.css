@@ -29,5 +29,10 @@
 .welcome-zone{
     display: inline-block;
     width: 70%;
-    height: 100px;
+    /*height: 100px;*/
+}
+
+.welcome-text{
+    position: absolute;
+    right: 0;
 }

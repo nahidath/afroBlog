@@ -12,6 +12,7 @@ import Articles from './pages/Articles/Articles';
 
 import NavBar from './components/NavBar/NavBar';
 import Profile from "./pages/Profile/Profile";
+import Footer from "./pages/Footer/Footer";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
               <Route path='/profile' component={Profile} />
             </Switch>
           </div>
+          <Footer />
         </Router>
     </div>
   );
