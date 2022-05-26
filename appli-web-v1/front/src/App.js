@@ -12,7 +12,7 @@ import Articles from './pages/Articles/Articles';
 
 import NavBar from './components/NavBar/NavBar';
 import Profile from "./pages/Profile/Profile";
-import Footer from "./pages/Footer/Footer";
+import Footer from "./components/Footer/Footer";
 
 
 function App() {

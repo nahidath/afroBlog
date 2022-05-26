@@ -16,24 +16,26 @@ export default function Footer () {
                             <Col sm={10}>
                                 <FormControl type="email" placeholder="Enter your email"/>
                             </Col>
-                            <Button type="submit" variant="light outline-dark" >Subscribe</Button>
+                            <Button type="submit" id="submitBtn" >Subscribe</Button>
                         </FormGroup>
                     </Row>
                 </Form>
             </div>
-            <div className="box2">
-                <ul className="box2-list">
-                    <li><a href='#'>MAQUILLAGE</a></li>
-                    <li><a href='#'>CHEVEUX</a></li>
-                    <li><a href='#'>PEAU</a></li>
-                </ul>
-            </div>
-            <div className="box3">
-                <ul className="box3-list">
-                    <li><a href='#'>A PROPOS DE NOUS</a></li>
-                    <li><a href='#'>CONTACT</a></li>
-                    <li><a href='#'>TERMES D'UTILISATION</a></li>
-                </ul>
+            <div className="footer-menus">
+                <div className="box2">
+                    <ul className="box2-list">
+                        <li><a href='#'>MAQUILLAGE</a></li>
+                        <li><a href='#'>CHEVEUX</a></li>
+                        <li><a href='#'>PEAU</a></li>
+                    </ul>
+                </div>
+                <div className="box3">
+                    <ul className="box3-list">
+                        <li><a href='#'>A PROPOS DE NOUS</a></li>
+                        <li><a href='#'>CONTACT</a></li>
+                        <li><a href='#'>TERMES D'UTILISATION</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     )

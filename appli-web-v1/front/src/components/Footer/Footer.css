@@ -6,6 +6,7 @@
     left: 0;
     width: 100%;
     display: flex;
+    justify-content: center;
     flex-direction:row;
     color: white;
 }
@@ -17,9 +18,10 @@
 .box2 > ul, .box3 > ul{
     list-style-type: none;
 }
-.box2{
+.footer-menus{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    margin-left: 200px;
 }
 
 .box2 > li{
@@ -34,4 +36,15 @@ a:link{
 a:hover{
     color: #C39A7E;
     text-decoration: underline;
+}
+
+#submitBtn {
+    color: white;
+    border: 1px solid white;
+    margin-left: -10px;
+}
+
+#submitBtn:hover{
+    color:black;
+    background-color: white;
 }
