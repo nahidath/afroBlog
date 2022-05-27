@@ -18,10 +18,16 @@ export default function Articles (props) {
         // </div>
        <div className="pageSection">
            <div id="banner">
-                Hair
+                <div id="textBanner">
+                    <h1>Hair</h1>
+                </div>
            </div>
            <div className="textTitle">
-               text blabla
+               We're here to help you in your good-hair journey—whatever that means to you.<br />
+               Want tips on how to transition to natural hair? We got you.<br/>
+               What about the best curling iron that’s actually worth your money?<br/>
+               We asked the pros to share their favorites.<br />
+               Whatever hair concern you have (or even if you’re just looking for some color/cut inspiration), you’ve come to the right place.
            </div>
            <div className="tabFilter">
                <Tabs
