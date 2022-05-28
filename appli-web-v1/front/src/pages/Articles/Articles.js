@@ -34,7 +34,7 @@ export default function Articles (props) {
                    id="controlled-tab-example"
                    activeKey={key}
                    onSelect={(k) => setKey(k)}
-                   className="mb-3"
+                   className="mb-3 tabsCustom"
                    >
                    <Tab eventKey="all" title="Tout">
                        <Row xs={1} md={2} className="g-4">

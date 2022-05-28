@@ -4,6 +4,20 @@
     background-color: rgb(255, 255, 255, .4);
 }
 
+.tabsCustom{
+    border-bottom: 1px solid black;
+}
+
+.nav-link{
+    
+}
+
+.nav-link:hover {
+    border-top: 1px solid black !important;
+    border-left: 1px solid black !important;
+    border-right: 1px solid black !important;
+}
+
 #banner{
     background: url("../../../public/hairBanner.png") no-repeat;
     height:280px;

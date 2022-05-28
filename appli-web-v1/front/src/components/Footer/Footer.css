@@ -28,12 +28,12 @@
     display: inline-block;
 }
 
-a:link{
+.footer-menus a:link{
     color: white;
     text-decoration: none;
 }
 
-a:hover{
+.footer-menus a:hover{
     color: #C39A7E;
     text-decoration: underline;
 }
