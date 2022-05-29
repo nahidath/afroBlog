@@ -4,15 +4,29 @@
     background-color: rgb(255, 255, 255, .4);
 }
 
+.textTitle{
+    width: 800px;
+    height:66px;
+    margin-bottom: 60px;
+    padding-top: 30px;
+}
+
 .tabsCustom{
     border-bottom: 1px solid black;
 }
 
-.nav-link{
-    
+.tabsCustom .nav-link{
+    color: black;
 }
 
-.nav-link:hover {
+.tabsCustom .nav-link.active{
+    background-color:transparent !important;
+    color: #993333 !important;
+    border-bottom: 3px solid #993333 !important;
+}
+
+.tabsCustom .nav-link:hover {
+    color: #993333 !important;
     border-top: 1px solid black !important;
     border-left: 1px solid black !important;
     border-right: 1px solid black !important;
