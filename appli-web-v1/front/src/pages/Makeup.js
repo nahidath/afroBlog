@@ -1,11 +1,12 @@
 import {Button, Card, Col, Row, Tab, Tabs} from "react-bootstrap";
 import React, {useState} from "react";
+import './Makeup.css';
 
 export default function Makeup(){
     const [key, setKey] = useState('all');
     return (
         <>
-            <div id="banner"> {/*TODO:changer la bannière*/}
+            <div id="banner" className="makeupBanner">
                 <div id="textBanner">
                     <h1>Makeup</h1>
                 </div>

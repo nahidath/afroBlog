@@ -1,11 +1,12 @@
 import {Button, Card, Col, Row, Tab, Tabs} from "react-bootstrap";
 import React, {useState} from "react";
+import './Skin.css';
 
 export default function Skin(){
     const [key, setKey] = useState('all');
     return (
         <>
-            <div id="banner"> {/*TODO:changer la bannière*/}
+            <div id="banner" className="skinBanner">
                 <div id="textBanner">
                     <h1>Skin</h1>
                 </div>
