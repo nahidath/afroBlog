@@ -21,11 +21,11 @@ export default function Hair(){
                 className="mb-3 tabsCustom"
             >
                 <Tab eventKey="all" title="Tout">
-                    <Row xs={1} md={2} className="g-4">
+                    <Row className="g-4">
                         {Array.from({length: 4}).map((_, idx) => (
                             <Col>
-                                <Card style={{width: '18rem'}}>
-                                    <Card.Img variant="top" src="/love-test.png"/>
+                                <Card style={{width: '210px', height:'420px'}}>
+                                    <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>
                                     {/*<Card.Img variant="top" src={['./articles', props.article.id, props.article.image].join('/')} />*/}
                                     <Card.Body>
                                         <Card.Title>hair article1</Card.Title>

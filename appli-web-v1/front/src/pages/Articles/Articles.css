@@ -53,3 +53,16 @@
     letter-spacing: .7px;
     font-weight:bold;
 }
+
+.tabFilter .card-title{
+    font-family:"Helvetica" !important;
+    font-weight:bold;
+    font-size:17px;
+}
+
+.tabFilter .card-subtitle{
+    font-family:"Helvetica" !important;
+    font-weight: lighter;
+    font-size:12px;
+}
+
