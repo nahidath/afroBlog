@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@100;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+
+.header{
+    background: url("../../../public/logoHNew_bis.jpg") no-repeat center !important;
+    height:500px;
+}
+
+.headerTitle{
+    position: absolute;
+    top:20%;
+    left:34%;
+    font-family: 'Kalam';
+    font-size:100px;
+}
+
+.subHeaderTitle{
+    position: absolute;
+    top:40%;
+    left:45%;
+    font-family: 'Open Sans';
+}

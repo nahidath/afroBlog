@@ -13,10 +13,13 @@ import Articles from './pages/Articles/Articles';
 import NavBar from './components/NavBar/NavBar';
 import Profile from "./pages/Profile/Profile";
 import Footer from "./components/Footer/Footer";
+import Header from "./components/Header/Header";
 
 
 function App() {
   return (
+    <>
+    <Header />
     <div id="app">
       <Router forceRefresh={false}>
           <NavBar />
@@ -35,6 +38,7 @@ function App() {
           <Footer />
         </Router>
     </div>
+    </>
   );
 }
 
