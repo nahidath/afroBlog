@@ -31,15 +31,16 @@ export default function NavBar (props) {
 
     return (
         <div id='navBar'>
-            <Navbar bg="light" expand="lg">
+            <Navbar bg="white" expand="lg">
                 <Container fluid>
-                    <Navbar.Brand onClick={handleHome}>
-                        <img src="/logo2.png" alt= "Afro Blog" />
-                    </Navbar.Brand>
+                    {/*<Navbar.Brand onClick={handleHome}>*/}
+                    {/*    <img src="/logo2.png" alt= "Afro Blog" />*/}
+                    {/*</Navbar.Brand>*/}
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                     <Nav
                         className="me-auto my-2 my-lg-0"
+                        id="navItems"
                         style={{ maxHeight: '200px' }}
                         navbarScroll
                     >
