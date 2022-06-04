@@ -102,7 +102,7 @@ export default function  SignUp() {
                     </Col>
                 </Form.Group>
                 <Form.Group controlId="password">
-                    <Col componentClass={Form.Label} sm={2}>
+                    <Col componentClass={Form.Label}>
                         Mot de passe
                     </Col>
                     <Col sm={10}>
@@ -114,7 +114,7 @@ export default function  SignUp() {
                     </Col>
                 </Form.Group>
                 <Form.Group  controlId="confPwd">
-                    <Col componentClass={Form.Label} sm={2}>
+                    <Col componentClass={Form.Label}>
                         Confirmez votre mot de passe
                     </Col>
                     <Col sm={10}>

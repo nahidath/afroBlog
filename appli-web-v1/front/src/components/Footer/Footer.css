@@ -1,5 +1,5 @@
 .footer-container{
-    margin-top: 1rem;
+    margin-top: 20px;
     padding: 1rem;
     background-color: #B25D3E;
     bottom: 0;
@@ -9,6 +9,7 @@
     justify-content: center;
     flex-direction:row;
     color: white;
+    height: 200px;
 }
 
 .box1{
@@ -28,7 +29,7 @@
     display: inline-block;
 }
 
-.footer-menus a:link{
+.footer-menus a{
     color: white;
     text-decoration: none;
 }

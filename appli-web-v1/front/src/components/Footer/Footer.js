@@ -3,8 +3,15 @@ import React from 'react';
 import './Footer.css';
 import {Col, Form, FormControl, Row} from "react-bootstrap";
 import {Button, FormGroup} from "@material-ui/core";
+import {useHistory} from "react-router-dom";
 
 export default function Footer () {
+
+    const history = useHistory();
+    const handleSetFilter = (pFilter) => {
+        history.push({ pathname: '/articles/' + pFilter});
+    }
+
     return(
         <div className="footer-container">
             <div className="box1">
@@ -24,9 +31,9 @@ export default function Footer () {
             <div className="footer-menus">
                 <div className="box2">
                     <ul className="box2-list">
-                        <li><a href='#'>MAQUILLAGE</a></li>
-                        <li><a href='#'>CHEVEUX</a></li>
-                        <li><a href='#'>PEAU</a></li>
+                        <li><a href='' onClick={() => handleSetFilter('cheveux')}>CHEVEUX</a></li>
+                        <li><a href='' onClick={() => handleSetFilter('maquillage')} >MAQUILLAGE</a></li>
+                        <li><a href='' onClick={() => handleSetFilter('peau')}>PEAU</a></li>
                     </ul>
                 </div>
                 <div className="box3">

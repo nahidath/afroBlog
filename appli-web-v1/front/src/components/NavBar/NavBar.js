@@ -29,9 +29,31 @@ export default function NavBar (props) {
         history.push({ pathname: '/articles/' + pFilter});
     }
 
+    const [top, setTop] = useState("450px");
+    const [positionNav, setPositionNav] = useState("absolute");
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [positionNav, top]);
+
+    const handleScroll = () => {
+        if (positionNav !== "fixed" && window.pageYOffset > 450) {
+            setTop("0");
+            setPositionNav("fixed");
+        }
+
+        if (positionNav === "fixed" && window.pageYOffset < 450) {
+            setTop("450px");
+            setPositionNav("absolute");
+        }
+    };
+
     return (
-        <div id='navBar'>
-            <Navbar bg="white" expand="lg">
+        <div id='navBar' >
+            <Navbar bg="white" expand="lg" style={{top: top, position: positionNav}}>
                 <Container fluid>
                     {/*<Navbar.Brand onClick={handleHome}>*/}
                     {/*    <img src="/logo2.png" alt= "Afro Blog" />*/}
