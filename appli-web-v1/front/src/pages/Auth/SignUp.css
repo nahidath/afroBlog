@@ -15,18 +15,23 @@
 
 }
 
-.signup-wrapper{
-    
+.signup-form{
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    margin-left: 50px;
+    width: 100%;
+
 }
 
 
-@media all and (min-width: 480px) {
-    .Login {
-        padding: 60px 0;
-    }
+/*@media all and (min-width: 480px) {*/
+/*    .Login {*/
+/*        padding: 60px 0;*/
+/*    }*/
 
-    .Login form {
-        margin: 0 auto;
-        max-width: 320px;
-    }
-}
+/*    .Login form {*/
+/*        margin: 0 auto;*/
+/*        max-width: 320px;*/
+/*    }*/
+/*}*/

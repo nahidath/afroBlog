@@ -61,7 +61,7 @@ export default function  SignUp() {
 
     return (
         <div className="signup-wrapper">
-            <Form horizontal onSubmit={handleSubmit}>
+            <Form horizontal onSubmit={handleSubmit} className="signup-form">
                 <Form.Group controlId="name">
                     <Col componentClass={Form.Label} sm={2}>
                         Nom
