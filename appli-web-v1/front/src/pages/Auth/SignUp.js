@@ -63,65 +63,70 @@ export default function  SignUp() {
         <div className="signup-wrapper">
             <Form horizontal onSubmit={handleSubmit} className="signup-form">
                 <Form.Group controlId="name">
-                    <Col componentClass={Form.Label} sm={2}>
+                    <Col componentClass={Form.Label} sm={2} className="label">
                         Nom
                     </Col>
-                    <Col sm={10}>
+                    <Col sm={10} className="inputLabel">
                         <Form.Control
                             autoFocus
                             type="text"
                             name="name"
                             onChange={(e) => setName(e.target.value)}
+                            // placeholder="Nom"
                         />
                     </Col>
                 </Form.Group>
                 <Form.Group controlId="firstName">
-                    <Col componentClass={Form.Label} sm={2}>
+                    <Col componentClass={Form.Label} sm={2} className="label">
                         Prénom
                     </Col>
-                    <Col sm={10}>
+                    <Col sm={10} className="inputLabel">
                         <Form.Control
                             autoFocus
                             type="text"
                             name="firstName"
                             onChange={(e) => setFirstName(e.target.value)}
+                            // placeholder="Prénom"
                         />
                     </Col>
                 </Form.Group>
                 <Form.Group controlId="email">
-                    <Col componentClass={Form.Label} sm={2}>
+                    <Col componentClass={Form.Label} sm={2} className="label">
                         Email
                     </Col>
-                    <Col sm={10}>
+                    <Col sm={10} className="inputLabel">
                         <Form.Control
                             autoFocus
                             type="email"
                             name="email"
                             onChange={(e) => setEmail(e.target.value)}
+                            // placeholder="Email"
                         />
                     </Col>
                 </Form.Group>
                 <Form.Group controlId="password">
-                    <Col componentClass={Form.Label}>
+                    <Col componentClass={Form.Label} className="label">
                         Mot de passe
                     </Col>
-                    <Col sm={10}>
+                    <Col sm={10} className="inputLabel">
                         <Form.Control
                             type="password"
                             name="password"
                             onChange={(e) => setPassword(e.target.value)}
+                            // placeholder="Mot de passe"
                         />
                     </Col>
                 </Form.Group>
                 <Form.Group  controlId="confPwd">
-                    <Col componentClass={Form.Label}>
+                    <Col componentClass={Form.Label} className="label">
                         Confirmez votre mot de passe
                     </Col>
-                    <Col sm={10}>
+                    <Col sm={10} className="inputLabel">
                         <Form.Control
                             type="password"
                             name="confPwd"
                             onChange={(e) => setConfPwd(e.target.value)}
+                            // placeholder="Confirmez votre mot de passe"
                         />
                     </Col>
                 </Form.Group>
@@ -131,6 +136,7 @@ export default function  SignUp() {
                     </Col>
                 </Form.Group>
             </Form>
+            <span>Déjà inscrit ? <a href="sign-in">Connecte-toi!</a></span>
         </div>
     );
 
