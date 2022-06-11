@@ -2,11 +2,9 @@
     width: 1080px;
     min-height: 1000px;
     background-color: white;
-
-
 }
 
-.articleImage,  .articleContent{
+.contentPart{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,42 +12,30 @@
 }
 
 .articleHead{
-    display:unset;
+    margin-left: 135px;
 }
 
 .articleTitle {
     font-size: 35px;
     font-weight: bold;
+    margin-top: 2.5%;
     margin-bottom: 2.5%;
-    /*margin-left: 10%;*/
 }
 
 .articleDateInfo {
-    font-size: 15px;
-    margin-top: 2.5%;
-    /*margin-left: 10%;*/
+    font-size: 13px;
+    margin-bottom: 2.5%;
 }
 
 .articleImage {
     width: 75%;
     aspect-ratio: 2;
-    /*margin-left: 10%;*/
-
 }
-
-/*#article .articleImageDesc {*/
-/*    font-size: 20px;*/
-/*    margin-top: 2.5%;*/
-/*    margin-right: 5%;*/
-/*    text-align: center;*/
-/*    font-style: italic;*/
-/*}*/
 
  .articleContent {
     font-size: 20px;
     width: 75%;
     margin-top: 2.5%;
-    /*margin-left: 10%;*/
     text-align: justify;
 }
 
@@ -63,7 +49,15 @@
 
 .categoryArt{
     margin-top: 50px;
-    /*margin-left: 10%;*/
+}
+
+.categoryArt a {
+    color: black;
+    text-decoration: none;
+}
+
+.categoryArt a:hover{
+    color: dodgerblue;
 }
 
 
