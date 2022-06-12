@@ -60,6 +60,39 @@
     color: dodgerblue;
 }
 
+.artDiscovery span{
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    font-style: italic;
+    padding: 10px 0px 15px;
+}
+
+.artList{
+    display: flex;
+    justify-content: center;
+}
+
+.artList .card{
+    border: none
+}
+
+.artList .card-title a{
+    text-decoration: none;
+    color: black;
+    margin-left: -20px;
+}
+
+.artList .card-subtitle{
+    margin-left: -20px;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+.MuiDivider-root{
+    margin-top: 2.5% !important;
+}
+
 
 @media screen and (min-width: 960px) and (max-width: 1120px) { 
     #article {width: 960px;}
