@@ -60,7 +60,7 @@
     color: dodgerblue;
 }
 
-.artDiscovery span{
+.artDiscovery span, .commentSection span{
     display: flex;
     justify-content: center;
     font-size: 20px;
@@ -93,6 +93,25 @@
     margin-top: 2.5% !important;
 }
 
+
+.commentSection{
+    display: flex;
+    flex-direction: column;
+    margin-left: 2.5%;
+}
+
+.nameComment, .txtcomment{
+    width:50%;
+    margin: 2px 0px 10px;
+}
+
+.txtcomment{
+    height : 100px;
+}
+
+.btn-subCom{
+    width: 20px !important;
+}
 
 @media screen and (min-width: 960px) and (max-width: 1120px) { 
     #article {width: 960px;}
