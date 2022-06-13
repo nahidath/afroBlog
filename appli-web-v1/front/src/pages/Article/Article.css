@@ -1,6 +1,6 @@
 .article {
     width: 1080px;
-    min-height: 1000px;
+    min-height: 100%;
     background-color: white;
 }
 
@@ -32,11 +32,12 @@
     aspect-ratio: 2;
 }
 
- .articleContent {
+.articleContent {
     font-size: 20px;
     width: 75%;
     margin-top: 2.5%;
     text-align: justify;
+    margin-bottom: 5%;
 }
 
 .articleAuthor {
@@ -63,6 +64,7 @@
 .artDiscovery span, .commentSection span{
     display: flex;
     justify-content: center;
+    align-items: center;
     font-size: 20px;
     font-style: italic;
     padding: 10px 0px 15px;
@@ -71,6 +73,7 @@
 .artList{
     display: flex;
     justify-content: center;
+
 }
 
 .artList .card{
@@ -89,15 +92,18 @@
     font-size: 12px;
 }
 
-.MuiDivider-root{
-    margin-top: 2.5% !important;
+.article hr {
+    width:75%;
 }
 
 
-.commentSection{
+.commentSection, .zoneCom{
     display: flex;
     flex-direction: column;
-    margin-left: 2.5%;
+}
+
+.zoneCom{
+    margin-left: 13%;
 }
 
 .nameComment, .txtcomment{
@@ -107,10 +113,15 @@
 
 .txtcomment{
     height : 100px;
+    resize: none;
+    overflow-y: auto;
 }
 
-.btn-subCom{
-    width: 20px !important;
+.btn-submitCom{
+    width:15%;
+    padding: 13px;
+    font-weight: bold;
+    margin: 10px 0px 20px 0px;
 }
 
 @media screen and (min-width: 960px) and (max-width: 1120px) { 

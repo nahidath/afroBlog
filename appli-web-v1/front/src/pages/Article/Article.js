@@ -28,7 +28,7 @@ export default function Article (props) {
                 {/*<div className='articleImageDesc'>{article.image_desc}</div>*/}
                 <div className='articleContent'>{article.content}</div>
             </div>
-            <Divider variant="middle" />
+            <hr/>
             <div className='artDiscovery'>
                 <span>VOUS POURRIEZ AUSSI AIMER</span>
                 <div className='artList'>
@@ -49,14 +49,17 @@ export default function Article (props) {
                     </Row>
                 </div>
             </div>
-            <Divider variant="middle" />
+            <hr/>
             <div className="commentSection">
                 <span>LAISSER UN COMMENTAIRE</span>
-                <label>Nom</label>
-                <input type="text" className="nameComment" />
-                <label>Commentaire</label>
-                <textarea className="txtcomment" placeholder="Laisser un commentaire"></textarea>
-                <Button variant="contained" className="btn-submitCom">SOUMMETRE</Button>
+                <div className="zoneCom">
+                    <label>Nom</label>
+                    <input type="text" className="nameComment" />
+                    <label>Commentaire</label>
+                    <textarea className="txtcomment" placeholder="Laisser un commentaire"></textarea>
+                    <Button variant="dark" className="btn-submitCom">SOUMMETRE</Button>
+                </div>
+
             </div>
         </div>
         </>
