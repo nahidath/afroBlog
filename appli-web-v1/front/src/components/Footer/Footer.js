@@ -39,7 +39,7 @@ export default function Footer () {
                 <div className="box3">
                     <ul className="box3-list">
                         <li><a href='#'>A PROPOS DE NOUS</a></li>
-                        <li><a href='#'>CONTACT</a></li>
+                        <li><a href='/contact'>CONTACT</a></li>
                         <li><a href='#'>TERMES D'UTILISATION</a></li>
                     </ul>
                 </div>

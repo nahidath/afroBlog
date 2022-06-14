@@ -14,6 +14,7 @@ import NavBar from './components/NavBar/NavBar';
 import Profile from "./pages/Profile/Profile";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
+import ContactForm from "./pages/ContactForm";
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
               <Route path='/sign-in' component={SignIn} />
               <Route path='/sign-up' component={SignUp} />
               <Route path='/profile' component={Profile} />
+              <Route path='/contact' component={ContactForm} />
             </Switch>
           </div>
           <Footer />
