@@ -15,7 +15,7 @@ export default function ContactForm(){
         <div className="contact-wrapper">
             <h3>Contactez-nous</h3>
             <div className="contactText>">
-                Avez-vous quelque chose à nous faire part ? Un commentaire ou une idée à partager ? Vous pouvez nous le faire savoir grâce au formulaire si dessous :
+                Avez-vous quelque chose à nous faire part ? Un commentaire ou une idée à partager ? Vous pouvez nous le faire savoir grâce au formulaire ci-dessous :
             </div>
             <div className="formContact">
                 <Form horizontal onSubmit={handleSubmit} className="contact-form">
@@ -45,9 +45,11 @@ export default function ContactForm(){
                             />
                         </Col>
                     </Form.Group>
-                    <label>Remarques, suggesstions</label>
-                    <textarea className="txtcontact" placeholder="Ecrivez ici..."></textarea>
-                    <Button variant="dark" className="btn-submitCom">Envoyer</Button>
+                    <div className="commentArea">
+                        <label>Remarques, suggestions</label>
+                        <textarea className="txtcontact" placeholder="Ecrivez ici..."></textarea>
+                        <Button variant="dark" className="btn-submitCom">Envoyer</Button>
+                    </div>
                 </Form>
             </div>
         </div>
