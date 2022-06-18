@@ -80,3 +80,26 @@ exports.signin = async function (user){
 
 
 };
+
+exports.getFavArticlesByUser = async function(user){
+    const favListArt = await userModel.find({
+        email: user.email
+    }).select({
+        _id:0,
+        favListArt: 1
+    })
+    .catch(err => {
+        return {
+            "status" : "fail",
+            "message" : err
+        }
+    });
+
+    if(favListArt){
+        return {
+            "status" : "success",
+            "data" : favListArt
+        }
+    }
+
+};

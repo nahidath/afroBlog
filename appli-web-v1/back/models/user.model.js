@@ -23,6 +23,10 @@ let user = new Schema(
         password: {
             type: String,
             required: true
+        },
+        favArtList: {
+            type: String,
+            required: true
         }
     },
     { 
