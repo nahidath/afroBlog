@@ -1,7 +1,7 @@
 const articleModel = require('./../models/article.model');
 
 exports.getAllArticle = async function (){
-    const allArticles = await articleModel.find();
+    const allArticles = await articleModel.find().sort({"date" : 1});
 
     if(allArticles){
         return {
@@ -36,3 +36,9 @@ exports.getArticleBySubcategory = async function (category, subcategory) {
         }
     }
 }
+
+// exports.getArticleContent = async function (article){
+//     const oneArticle = await articleModel.findOne(
+//         {id}
+//     )
+// }
