@@ -103,3 +103,41 @@ exports.getFavArticlesByUser = async function(user){
     }
 
 };
+
+//TODO: refaire l'update de l'user
+exports.updateUserProfile = async function (user){
+    const updateInfos = await userModel.updateMany(
+        { email: user.email},
+        { $set: { name: user.name, firstname: user.firstName, password: user.password } }
+    ).catch(err => {
+        return {
+            "status" : "fail",
+            "message" : err
+        }
+    });
+
+    if(updateInfos){
+        return {
+            "status" : "success",
+            "data" : updateInfos
+        }
+    }
+}
+
+exports.getUserInfos = async function (user){
+    const infoUser = await userModel.findOne(
+        { email : user.email }
+    ).catch(err => {
+        return {
+            "status" : "fail",
+            "message" : err
+        }
+    });
+
+    if(infoUser){
+        return {
+            "status" : "success",
+            "data" : infoUser
+        }
+    }
+}
