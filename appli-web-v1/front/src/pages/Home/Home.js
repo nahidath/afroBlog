@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import MainArticle from './MainArticle/MainArticle';
 import SubArticle from './SubArticle/SubArticle';
 import './Home.css';
@@ -8,53 +8,40 @@ import {
     getArticle
 } from '../../articles';
 import axios from "axios";
+import {map} from "react-bootstrap/ElementChildren";
 
 
 export default function Home() {
+    const [dataArt, getDataArt] = useState([]);
+    useEffect(() => {
+        displayArticles();
+    }, []);
+
 
     const displayArticles = () => {
-        axios.get('http://localhost:5000/articles/').then(resp => {
-            const dA = resp.data;
-            return (
-                <>
-                    {dA.map((data, key) => {
-                        return (
-                            <>
-                                {
-                                    (key === 0) ?
-                                        <>
-                                            <MainArticle article={key}/>
-                                        </> : <></>
-                                }
-                                {
-                                    (key != 0) ?
-                                        <>
-                                            <SubArticle article={key}/>
-                                        </> : <></>
-                                }
-                            </>
-                        );
-                    })}
-                </>
-            );
-            console.log(resp.data);
+        axios.get('http://localhost:5000/articles/all').then(resp => {
+            const dA = resp.data.data;
+            getDataArt(dA);
+        }).catch((err) => {
+            console.log(err);
         });
-    }
-
+    };
     return (
         <div id='home'>
-            <>
-                {
-                    displayArticles()
-                }
-            </>
-            {/*<MainArticle article={getArticle(0)}/>*/}
-            {/*<SubArticle article={getArticle(1)}/>*/}
-            {/*<SubArticle article={getArticle(1)}/>*/}
-            {/*<SubArticle article={getArticle(1)}/>*/}
-            {/*<SubArticle article={getArticle(1)}/>*/}
-            {/*<SubArticle article={getArticle(1)}/>*/}
-            {/* <MainArticle article={getArticle(1)}/> */}
+            {dataArt.map((elt, index) => {
+                return (
+                    <div key={index}>
+                        {
+                            (index === 0) ?<MainArticle article={elt}/>:<></>
+                        }
+                        {
+                            (index != 0) ? <SubArticle  article={elt}/> : <></>
+                        }
+                    </div>
+                );
+            })}
         </div>
     );
+
+
 };

@@ -14,11 +14,11 @@ export default function MainArticle (props) {
 
     return (
         <div id='mainArticle'>
-            <img 
-                src={['./articles', props.article.id, props.article.image].join('/')}
-                alt="mainArticle"  
-                className="mainArticleImg" 
-            />
+            {/*<img */}
+            {/*    src={['./articles', props.article.id, props.article.image].join('/')}*/}
+            {/*    alt="mainArticle"  */}
+            {/*    className="mainArticleImg" */}
+            {/*/>*/}
             <div className="mainArticleText">
                 <h2>
                     {props.article.title}
