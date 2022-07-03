@@ -22,17 +22,13 @@ export default function SubArticle (props) {
             {/*/>*/}
             <div className="articleText">
                 <Row className="g-4">
-                    {Array.from({length: 4}).map((_, idx) => (
+                    {Array.from({length: 8}).map((_, idx) => (
                         <Col>
-                            <Card style={{width: '210px', height:'420px'}}>
-                                {/*<Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>*/}
-                                <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>
-                                {/*<Card.Img variant="top" src={['./articles', props.article.id, props.article.image].join('/')} />*/}
+                            <Card className="displaySubArt">
+                                <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}} />
                                 <Card.Body>
                                     <Card.Title>{props.article.title}</Card.Title>
-                                    <Card.Subtitle className="mb-2 text-muted">{props.article.category} -
-                                        {props.article.date}</Card.Subtitle>
-                                    {/*<Card.Title>{props.article.title}</Card.Title>*/}
+                                    <Card.Subtitle className="mb-2 text-muted">{props.article.category} - {props.article.date}</Card.Subtitle>
                                     <Card.Text>
                                         {props.article.description}
                                     </Card.Text>
@@ -42,13 +38,6 @@ export default function SubArticle (props) {
                         </Col>
                     ))}
                 </Row>
-                {/*<h2>*/}
-                {/*    {props.article.title}*/}
-                {/*</h2>*/}
-                {/*<p>*/}
-                {/*    {props.article.description}*/}
-                {/*</p>*/}
-                {/*<h5 onClick={handleGoArticle}>Lire la suite</h5>*/}
             </div>
             
         </div>

@@ -9,6 +9,7 @@
 #subArticle .articleImg {
     width: 100%;
     aspect-ratio: 16/10;
+    border : 1px solid black;
 }
 
 #subArticle .articleText {
@@ -23,6 +24,13 @@
 #subArticle h5 {
     float: right;
     cursor: pointer;
+}
+
+.displaySubArt{
+    width: 210px;
+    height: 420px;
+    border : none;
+    margin-top: 10px;
 }
 
 @media screen and (max-width: 850px) { 
