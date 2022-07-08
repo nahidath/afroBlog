@@ -5,37 +5,21 @@ import axios from "axios";
 export default function Hair(){
     const [key, setKey] = useState('all');
 
-    const [dataArt, getDataArt] = useState([]);
+    const [dataArt, setDataArt] = useState([]);
     useEffect(() => {
-        displayArticlesBySubCat();
+        displayArticlesBySubCat(key);
     }, []);
 
 
-    // const displayArticlesByCat = () => {
-    //     axios.get('http://localhost:5000/articles/category/hair').then(resp => {
-    //         const dA = resp.data.data;
-    //         getDataArt(dA);
-    //     }).catch((err) => {
-    //         console.log(err);
-    //     });
-    // };
-
-    const displayArticlesBySubCat = (subC) => {
-        if(subC == "all"){
-            axios.get('http://localhost:5000/articles/category/hair').then(resp => {
-                const dA = resp.data.data;
-                getDataArt(dA);
-            }).catch((err) => {
-                console.log(err);
-            });
-        }else{
-            axios.get('http://localhost:5000/articles/sub/hair/${subC}').then(resp => {
-                const dA = resp.data.data;
-                getDataArt(dA);
-            }).catch((err) => {
-                console.log(err);
-            });
-        }
+    const displayArticlesBySubCat = (subCat) => {
+        axios.get('http://localhost:5000/articles/category',{
+        params : {category : 'hair', subCategory : subCat}
+        }).then(resp => {
+            const dA = resp.data.data;
+            setDataArt(dA);
+        }).catch((err) => {
+            console.log(err);
+        });
 
     };
 
@@ -53,7 +37,7 @@ export default function Hair(){
         <div className="tabFilter">
             <Tabs
                 id="controlled-tab-example"
-                activeKey={key}
+                defaultActiveKey={key}
                 onSelect={(k) => {setKey(k);displayArticlesBySubCat(k);}}
                 className="mb-3 tabsCustom"
             >
@@ -61,7 +45,7 @@ export default function Hair(){
                     {dataArt.map((elt, index) => {
                         return(
                             <Row className="g-4">
-                                {Array.from({length: 4}).map((_, idx) => (
+                                {Array.from({length: dataArt.length}).map((_, idx) => (
                                     <Col>
                                         <Card style={{width: '210px', height:'420px'}}>
                                             <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>
@@ -85,7 +69,7 @@ export default function Hair(){
                     {dataArt.map((elt, index) => {
                         return(
                             <Row className="g-4">
-                                {Array.from({length: 4}).map((_, idx) => (
+                                {Array.from({length: dataArt.length}).map((_, idx) => (
                                     <Col>
                                         <Card style={{width: '210px', height:'420px'}}>
                                             <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>
@@ -109,7 +93,7 @@ export default function Hair(){
                     {dataArt.map((elt, index) => {
                         return(
                             <Row className="g-4">
-                                {Array.from({length: 4}).map((_, idx) => (
+                                {Array.from({length: dataArt.length}).map((_, idx) => (
                                     <Col>
                                         <Card style={{width: '210px', height:'420px'}}>
                                             <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>
@@ -133,7 +117,7 @@ export default function Hair(){
                     {dataArt.map((elt, index) => {
                         return(
                             <Row className="g-4">
-                                {Array.from({length: 4}).map((_, idx) => (
+                                {Array.from({length: dataArt.length}).map((_, idx) => (
                                     <Col>
                                         <Card style={{width: '210px', height:'420px'}}>
                                             <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>

@@ -14,22 +14,29 @@ exports.getAllArticle = async function (){
 };
 
 exports.getArticleByCategory = async function (category) {
-    const articleByCategory = await articleModel.find(
-        { category: category }
-    )
-
-    if(articleByCategory){
-        return {
-            "status" : "success",
-            "data" : articleByCategory
-        }
-    }
+    // const articleByCategory = await articleModel.find(
+    //     { category: category }
+    // )
+    //
+    // if(articleByCategory){
+    //     return {
+    //         "status" : "success",
+    //         "data" : articleByCategory
+    //     }
+    // }
+    console.log("ok")
 }
 
 exports.getArticleBySubcategory = async function (category, subcategory) {
-    const articleBySubcategory = await articleModel.find(
-        {category: category, subCategory: subcategory}
-    )
+
+    let match = {}
+
+    if (subcategory == "all"){
+        match = {category: category}
+    }else{
+        match = {category: category, subCategory: subcategory}
+    }
+    const articleBySubcategory = await articleModel.find(match)
 
     if(articleBySubcategory){
         return{
