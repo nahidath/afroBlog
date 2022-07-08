@@ -39,6 +39,10 @@ let articles = new Schema(
         imgDesc: {
             type : String,
             required: true
+        },
+        commentList: {
+            type : Array,
+            required: true
         }
 
     },

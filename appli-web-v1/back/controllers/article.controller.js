@@ -26,3 +26,22 @@ exports.getArticleBySubcategory = async function (req, res, next) {
         next(err);
     }
 }
+
+exports.getArticleByID =  async function (req, res, next) {
+    try {
+        res.json(await articleService.getArticleByID(req.query._id));
+
+    } catch (err) {
+        console.error('Error while getting article : ', err.message);
+        next(err);
+    }
+}
+
+exports.getRandomArticles = async function (req, res, next) {
+    try {
+        res.json(await articleService.getRandomArticles());
+    } catch (err) {
+        console.error('Error while getting articles : ', err.message);
+        next(err);
+    }
+}

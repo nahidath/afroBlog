@@ -23,6 +23,10 @@ export default function Hair(){
 
     };
 
+    const handleGoArticle = (article_id) => {
+        history.push({ pathname:'/article/' + article_id});
+    }
+
 
     return (
         <>
@@ -56,7 +60,7 @@ export default function Hair(){
                                                 <Card.Text>
                                                     {elt.description}
                                                 </Card.Text>
-                                                <Button variant="outline-dark">Lire la suite</Button>
+                                                <Button variant="outline-dark" onClick={handleGoArticle(elt._id)}>Lire la suite</Button>
                                             </Card.Body>
                                         </Card>
                                     </Col>
@@ -80,7 +84,7 @@ export default function Hair(){
                                                 <Card.Text>
                                                     {elt.description}
                                                 </Card.Text>
-                                                <Button variant="outline-dark">Lire la suite</Button>
+                                                <Button variant="outline-dark" onClick={handleGoArticle(elt._id)}>Lire la suite</Button>
                                             </Card.Body>
                                         </Card>
                                     </Col>
@@ -104,7 +108,7 @@ export default function Hair(){
                                                 <Card.Text>
                                                     {elt.description}
                                                 </Card.Text>
-                                                <Button variant="outline-dark">Lire la suite</Button>
+                                                <Button variant="outline-dark" onClick={handleGoArticle(elt._id)}>Lire la suite</Button>
                                             </Card.Body>
                                         </Card>
                                     </Col>
@@ -128,7 +132,7 @@ export default function Hair(){
                                                 <Card.Text>
                                                     {elt.description}
                                                 </Card.Text>
-                                                <Button variant="outline-dark">Lire la suite</Button>
+                                                <Button variant="outline-dark" onClick={handleGoArticle(elt._id)}>Lire la suite</Button>
                                             </Card.Body>
                                         </Card>
                                     </Col>

@@ -14,17 +14,16 @@ exports.getAllArticle = async function (){
 };
 
 exports.getArticleByCategory = async function (category) {
-    // const articleByCategory = await articleModel.find(
-    //     { category: category }
-    // )
-    //
-    // if(articleByCategory){
-    //     return {
-    //         "status" : "success",
-    //         "data" : articleByCategory
-    //     }
-    // }
-    console.log("ok")
+    const articleByCategory = await articleModel.find(
+        { category: category }
+    )
+
+    if(articleByCategory){
+        return {
+            "status" : "success",
+            "data" : articleByCategory
+        }
+    }
 }
 
 exports.getArticleBySubcategory = async function (category, subcategory) {
@@ -46,8 +45,28 @@ exports.getArticleBySubcategory = async function (category, subcategory) {
     }
 }
 
-// exports.getArticleContent = async function (article){
-//     const oneArticle = await articleModel.findOne(
-//         {id}
-//     )
-// }
+exports.getArticleByID = async function (id){
+    const oneArticle = await articleModel.findOne(
+        {id}
+    )
+
+    if(oneArticle){
+        return{
+            "status" : "success",
+            "data" : oneArticle
+        }
+    }
+}
+
+exports.getRandomArticles = async function(){
+    const randomArt = await articleModel.aggregate(
+        [ { $sample: { size: 3 } } ]
+    )
+
+    if(randomArt){
+        return{
+            "status" : "success",
+            "data" : randomArt
+        }
+    }
+}
