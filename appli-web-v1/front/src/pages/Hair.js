@@ -1,10 +1,12 @@
 import {Button, Card, Col, Row, Tab, Tabs} from "react-bootstrap";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import {useHistory} from "react-router-dom";
 
 export default function Hair(){
     const [key, setKey] = useState('all');
-
+    const history = useHistory();
+    const [idArt, setIdArt] = useState();
     const [dataArt, setDataArt] = useState([]);
     useEffect(() => {
         displayArticlesBySubCat(key);
@@ -23,8 +25,10 @@ export default function Hair(){
 
     };
 
-    const handleGoArticle = (article_id) => {
-        history.push({ pathname:'/article/' + article_id});
+    const handleGoArticle = (ia) => {
+        console.log(ia)
+        history.push({ pathname:'/article/'+ ia});
+        console.log("linktoarticle");
     }
 
 
@@ -60,7 +64,7 @@ export default function Hair(){
                                                 <Card.Text>
                                                     {elt.description}
                                                 </Card.Text>
-                                                <Button variant="outline-dark" onClick={handleGoArticle(elt._id)}>Lire la suite</Button>
+                                                <Button variant="outline-dark" onClick={()=>{handleGoArticle(elt._id)}}>Lire la suite</Button>
                                             </Card.Body>
                                         </Card>
                                     </Col>

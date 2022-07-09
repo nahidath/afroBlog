@@ -4,7 +4,6 @@ exports.getAllArticle = async function (){
     // const allArticles = await articleModel.find().select({ _id: 0, title: 1, category: 1});
     const allArticles = await articleModel.find().sort({date : -1});
 
-    console.log(allArticles);
     if(allArticles){
         return {
             "status" : "success",

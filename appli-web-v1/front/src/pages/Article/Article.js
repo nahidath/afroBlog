@@ -6,6 +6,7 @@ import {
 import {Divider} from "@material-ui/core";
 import {Button, Card, Col, Form, Row} from "react-bootstrap";
 import axios from "axios";
+import { useHistory } from 'react-router-dom';
 // import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 export default function Article (props) {
@@ -13,12 +14,22 @@ export default function Article (props) {
     // const article = getArticle(props.match.params.id);
     // const [name,setName] = useState("");
 
-    const [dataArt, setDataArt] = useState([]);
+    const history = useHistory();
+    const [dataArt, setDataArt] = useState({
+        author: "",
+        category : "",
+        subCategory : "",
+        title : "",
+        date : "",
+        imageDesc : "",
+        content : ""
+    });
     const [randArt, setRandArt] =  useState([]);
     useEffect(() => {
         getArticle();
-        displayRandomArticle();
+        // displayRandomArticle();
     }, []);
+
 
     var articleID = props.match.params.id;
     const getArticle = () => {
@@ -34,8 +45,8 @@ export default function Article (props) {
 
     const displayRandomArticle = () => {
         axios.get('http://localhost:5000/articles/randoms').then((resp) => {
-            const dA = resp.data.data;
-            setRandArt(dA);
+            const rA = resp.data.data;
+            setRandArt(rA);
         }).catch((err) => {
             console.log(err);
         })
@@ -48,24 +59,19 @@ export default function Article (props) {
     return (
         <>
         <div className='article'>
-            {dataArt.map((elt, index) => {
-                return(
-                    <>
-                    <div className="articleHead">
-                        <div className='categoryArt'><a href="#">{elt.category}</a> > <a href="#">{elt.subCategory}</a></div>
-                        <div className='articleTitle'>{elt.title}</div>
-                        <div className='articleDateInfo'>Ecrit par {elt.author} Publié le {elt.date}</div>
-                    </div>
-                    <div className='contentPart'>
-                        {/*<img*/}
-                        {/*    src={['/articles', article.id, article.image].join('/')}*/}
-                        {/*    alt="articleImage"*/}
-                        {/*    className='articleImage'/>*/}
-                        <div className='articleImageDesc'>{elt.image_desc}</div>
-                        <div className='articleContent'>{elt.content}</div>
-                    </div></>
-                );
-            })}
+            <div className="articleHead">
+                <div className='categoryArt'><a href="#">{dataArt.category}</a> > <a href="#">{dataArt.subCategory}</a></div>
+                <div className='articleTitle'>{dataArt.title}</div>
+                <div className='articleDateInfo'>Ecrit par {dataArt.author} Publié le {dataArt.date}</div>
+            </div>
+            <div className='contentPart'>
+                {/*<img*/}
+                {/*    src={['/articles', article.id, article.image].join('/')}*/}
+                {/*    alt="articleImage"*/}
+                {/*    className='articleImage'/>*/}
+                <div className='articleImageDesc'>{dataArt.image_desc}</div>
+                <div className='articleContent'>{dataArt.content}</div>
+            </div>
             <hr/>
             <div className='artDiscovery'>
                 <span>VOUS POURRIEZ AUSSI AIMER</span>
@@ -73,7 +79,7 @@ export default function Article (props) {
                     {randArt.map((elt, index) =>{
                         return (
                             <Row className="g-4">
-                                {Array.from({length: 3}).map((_, idx) => (
+                                {Array.from({length: randArt.length}).map((_, idx) => (
                                     <Col>
                                         <Card style={{width: '210px', height:'350px'}}>
                                             <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>

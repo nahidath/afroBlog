@@ -9,7 +9,7 @@ export default function MainArticle (props) {
     const history = useHistory();
 
     const handleGoArticle = () => {
-        history.push({ pathname:'/article/' + props.article.id});
+        history.push({ pathname:'/article/' + props.article._id});
     }
 
     return (
