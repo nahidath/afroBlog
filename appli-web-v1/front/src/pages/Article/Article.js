@@ -49,15 +49,20 @@ export default function Article (props) {
         })
     }
 
+    console.log(window.location.href)
+
     const postComment = (event) => {
+        const getCurrentID = window.location.pathname.split('/');
+        const date =  new Date();
+        // const current = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
         axios.post('http://localhost:5000/comments/add', {
             withCredentials: true,
             data: {
                 author: name,
                 commentDesc: content,
-                //TODO: ajouterla date et get l'id de l'article actuel
-                // date : date,
-                // articleID :
+                //TODO: verifer la date et l'articleID
+                date : date.toLocaleString(),
+                articleID : getCurrentID[1]
             }
         }).then((res) =>{
             console.log(res)
