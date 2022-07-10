@@ -1,18 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import './Article.css';
-import {
-  getArticle
-} from '../../articles';
-import {Divider} from "@material-ui/core";
 import {Button, Card, Col, Form, Row} from "react-bootstrap";
 import axios from "axios";
 import { useHistory } from 'react-router-dom';
-// import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 export default function Article (props) {
-    
-    // const article = getArticle(props.match.params.id);
-    // const [name,setName] = useState("");
+
+    const [name,setName] = useState("");
+    const [content, setContent] = useState("");
+
 
     const history = useHistory();
     const [dataArt, setDataArt] = useState({
@@ -27,14 +23,13 @@ export default function Article (props) {
     const [randArt, setRandArt] =  useState([]);
     useEffect(() => {
         getArticle();
-        // displayRandomArticle();
+        displayRandomArticle();
     }, []);
 
 
-    var articleID = props.match.params.id;
     const getArticle = () => {
         axios.get('http://localhost:5000/articles/article',{
-            params : {id : articleID}
+            params : {_id : props.match.params.id}
         }).then((resp) => {
             const dA = resp.data.data;
             setDataArt(dA);
@@ -44,9 +39,34 @@ export default function Article (props) {
     }
 
     const displayRandomArticle = () => {
+        console.log("function displayRandomArticle")
         axios.get('http://localhost:5000/articles/randoms').then((resp) => {
             const rA = resp.data.data;
+            console.log(rA);
             setRandArt(rA);
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
+
+    const postComment = (event) => {
+        axios.post('http://localhost:5000/comments/add', {
+            withCredentials: true,
+            data: {
+                author: name,
+                commentDesc: content,
+                //TODO: ajouterla date et get l'id de l'article actuel
+                // date : date,
+                // articleID :
+            }
+        }).then((res) =>{
+            console.log(res)
+            if(res.data["status"]=="fail"){
+                alert(res.data["message"])
+            }else{
+                handleSignUp();
+            }
+
         }).catch((err) => {
             console.log(err);
         })
@@ -76,24 +96,22 @@ export default function Article (props) {
             <div className='artDiscovery'>
                 <span>VOUS POURRIEZ AUSSI AIMER</span>
                 <div className='artList'>
-                    {randArt.map((elt, index) =>{
-                        return (
-                            <Row className="g-4">
-                                {Array.from({length: randArt.length}).map((_, idx) => (
-                                    <Col>
+                    {randArt.map((elt, index) =>
+                            <Row key={index} className="g-4 miniature">
+                                {Array.from({length: 1}).map((_, idx) => (
+                                    <Col key={idx}>
                                         <Card style={{width: '210px', height:'350px'}}>
                                             <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>
                                             {/*<Card.Img variant="top" src={['./articles', props.article.id, props.article.image].join('/')} />*/}
                                             <Card.Body>
-                                                <Card.Title><a href="#" onClick={handleGoArticle(randArt._id)}>{randArt.title}</a></Card.Title>
-                                                <Card.Subtitle className="mb-2 text-muted">{randArt.category} - {randArt.date}</Card.Subtitle>
+                                                <Card.Title><a href="" onClick={() => handleGoArticle(elt._id)}>{elt.title}</a></Card.Title>
+                                                <Card.Subtitle className="mb-2 text-muted">{elt.category} - {elt.date}</Card.Subtitle>
                                             </Card.Body>
                                         </Card>
                                     </Col>
                                 ))}
                             </Row>
-                        );
-                    })}
+                    )}
                 </div>
             </div>
             <hr/>
@@ -101,10 +119,10 @@ export default function Article (props) {
                 <span>LAISSER UN COMMENTAIRE</span>
                 <div className="zoneCom">
                     <label>Nom</label>
-                    <input type="text" className="nameComment" />
+                    <input type="text" className="nameComment" name="name"/>
                     <label>Commentaire</label>
-                    <textarea className="txtcomment" placeholder="Laisser un commentaire"></textarea>
-                    <Button variant="dark" className="btn-submitCom">SOUMMETRE</Button>
+                    <textarea className="txtcomment" placeholder="Laisser un commentaire" name="content"></textarea>
+                    <Button variant="dark" className="btn-submitCom" onClick={postComment}>SOUMMETRE</Button>
                 </div>
 
             </div>

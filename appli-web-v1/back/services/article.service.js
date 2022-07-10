@@ -46,9 +46,8 @@ exports.getArticleBySubcategory = async function (category, subcategory) {
 
 exports.getArticleByID = async function (id){
     const oneArticle = await articleModel.findOne(
-        {id}
+        {_id : id}
     )
-
     if(oneArticle){
         return{
             "status" : "success",
@@ -61,7 +60,6 @@ exports.getRandomArticles = async function(){
     const randomArt = await articleModel.aggregate(
         [ { $sample: { size: 3 } } ]
     )
-
     if(randomArt){
         return{
             "status" : "success",

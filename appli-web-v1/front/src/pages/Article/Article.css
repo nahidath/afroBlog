@@ -70,10 +70,13 @@
     padding: 10px 0px 15px;
 }
 
+.artList .miniature {
+    padding : 35px;
+}
+
 .artList{
     display: flex;
     justify-content: center;
-
 }
 
 .artList .card{

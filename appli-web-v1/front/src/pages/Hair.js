@@ -6,7 +6,6 @@ import {useHistory} from "react-router-dom";
 export default function Hair(){
     const [key, setKey] = useState('all');
     const history = useHistory();
-    const [idArt, setIdArt] = useState();
     const [dataArt, setDataArt] = useState([]);
     useEffect(() => {
         displayArticlesBySubCat(key);
@@ -26,9 +25,7 @@ export default function Hair(){
     };
 
     const handleGoArticle = (ia) => {
-        console.log(ia)
         history.push({ pathname:'/article/'+ ia});
-        console.log("linktoarticle");
     }
 
 
@@ -50,11 +47,10 @@ export default function Hair(){
                 className="mb-3 tabsCustom"
             >
                 <Tab eventKey="all" title="Tout">
-                    {dataArt.map((elt, index) => {
-                        return(
-                            <Row className="g-4">
+                    {dataArt.map((elt, index) =>
+                            <Row key={index} className="g-4">
                                 {Array.from({length: dataArt.length}).map((_, idx) => (
-                                    <Col>
+                                    <Col key={idx}>
                                         <Card style={{width: '210px', height:'420px'}}>
                                             <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>
                                             {/*<Card.Img variant="top" src={['./articles', props.article.id, props.article.image].join('/')} />*/}
@@ -64,21 +60,19 @@ export default function Hair(){
                                                 <Card.Text>
                                                     {elt.description}
                                                 </Card.Text>
-                                                <Button variant="outline-dark" onClick={()=>{handleGoArticle(elt._id)}}>Lire la suite</Button>
+                                                <Button variant="outline-dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
                                             </Card.Body>
                                         </Card>
                                     </Col>
                                 ))}
                             </Row>
-                        );
-                    })}
+                    )}
                 </Tab>
                 <Tab eventKey="haircare" title="Soin des cheveux" >
-                    {dataArt.map((elt, index) => {
-                        return(
-                            <Row className="g-4">
+                    {dataArt.map((elt, index) =>
+                            <Row key={index} className="g-4">
                                 {Array.from({length: dataArt.length}).map((_, idx) => (
-                                    <Col>
+                                    <Col key={idx}>
                                         <Card style={{width: '210px', height:'420px'}}>
                                             <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>
                                             {/*<Card.Img variant="top" src={['./articles', props.article.id, props.article.image].join('/')} />*/}
@@ -88,21 +82,19 @@ export default function Hair(){
                                                 <Card.Text>
                                                     {elt.description}
                                                 </Card.Text>
-                                                <Button variant="outline-dark" onClick={handleGoArticle(elt._id)}>Lire la suite</Button>
+                                                <Button variant="outline-dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
                                             </Card.Body>
                                         </Card>
                                     </Col>
                                 ))}
                             </Row>
-                        );
-                    })}
+                    )}
                 </Tab>
                 <Tab eventKey="naturalHair" title="Cheveux naturels">
-                    {dataArt.map((elt, index) => {
-                        return(
-                            <Row className="g-4">
+                    {dataArt.map((elt, index) =>
+                            <Row key={index} className="g-4">
                                 {Array.from({length: dataArt.length}).map((_, idx) => (
-                                    <Col>
+                                    <Col key={idx}>
                                         <Card style={{width: '210px', height:'420px'}}>
                                             <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>
                                             {/*<Card.Img variant="top" src={['./articles', props.article.id, props.article.image].join('/')} />*/}
@@ -112,21 +104,19 @@ export default function Hair(){
                                                 <Card.Text>
                                                     {elt.description}
                                                 </Card.Text>
-                                                <Button variant="outline-dark" onClick={handleGoArticle(elt._id)}>Lire la suite</Button>
+                                                <Button variant="outline-dark" onClick={() =>handleGoArticle(elt._id)}>Lire la suite</Button>
                                             </Card.Body>
                                         </Card>
                                     </Col>
                                 ))}
                             </Row>
-                        );
-                    })}
+                    )}
                 </Tab>
                 <Tab eventKey="coiffures" title="Coiffures">
-                    {dataArt.map((elt, index) => {
-                        return(
-                            <Row className="g-4">
+                    {dataArt.map((elt, index) =>
+                            <Row key={index} className="g-4">
                                 {Array.from({length: dataArt.length}).map((_, idx) => (
-                                    <Col>
+                                    <Col key={idx}>
                                         <Card style={{width: '210px', height:'420px'}}>
                                             <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>
                                             {/*<Card.Img variant="top" src={['./articles', props.article.id, props.article.image].join('/')} />*/}
@@ -136,14 +126,13 @@ export default function Hair(){
                                                 <Card.Text>
                                                     {elt.description}
                                                 </Card.Text>
-                                                <Button variant="outline-dark" onClick={handleGoArticle(elt._id)}>Lire la suite</Button>
+                                                <Button variant="outline-dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
                                             </Card.Body>
                                         </Card>
                                     </Col>
                                 ))}
                             </Row>
-                        );
-                    })}
+                    )}
                 </Tab>
             </Tabs>
         </div></>

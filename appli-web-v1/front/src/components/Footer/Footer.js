@@ -19,7 +19,7 @@ export default function Footer () {
                 <p>Le blog Afro par excellence</p>
                 <Form >
                     <Row>
-                        <FormGroup controlId="getEmail">
+                        <FormGroup>
                             <Col sm={10}>
                                 <FormControl type="email" placeholder="Enter your email"/>
                             </Col>
