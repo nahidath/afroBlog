@@ -61,11 +61,11 @@ export default function Article (props) {
             }
         }).then((res) =>{
             console.log(res)
-            if(res.data["status"]=="fail"){
-                alert(res.data["message"])
-            }else{
-                handleSignUp();
-            }
+            // if(res.data["status"]=="fail"){
+            //     alert(res.data["message"])
+            // }else{
+            //     handleSignUp();
+            // }
 
         }).catch((err) => {
             console.log(err);
@@ -104,7 +104,7 @@ export default function Article (props) {
                                             <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>
                                             {/*<Card.Img variant="top" src={['./articles', props.article.id, props.article.image].join('/')} />*/}
                                             <Card.Body>
-                                                <Card.Title><a href="" onClick={() => handleGoArticle(elt._id)}>{elt.title}</a></Card.Title>
+                                                <Card.Title><a href={elt._id} onClick={() => handleGoArticle(elt._id)}>{elt.title}</a></Card.Title>
                                                 <Card.Subtitle className="mb-2 text-muted">{elt.category} - {elt.date}</Card.Subtitle>
                                             </Card.Body>
                                         </Card>
