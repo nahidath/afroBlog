@@ -24,8 +24,10 @@ mongoose.connection.on('connected', () => console.log('Database connected'));
 // Routes
 const userRouter = require('./routes/user.route');
 const articleRouter = require('./routes/article.route');
+const commentRouter = require('./routes/comment.route');
 app.use('/user', userRouter);
 app.use('/articles', articleRouter);
+app.use('/comments', commentRouter);
 
 // Run the server
 server.listen(5000);

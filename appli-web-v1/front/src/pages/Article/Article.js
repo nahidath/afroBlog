@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './Article.css';
-import {Button, Card, Col, Form, Row} from "react-bootstrap";
+import {Button, Card, Col, Row} from "react-bootstrap";
 import axios from "axios";
 import { useHistory } from 'react-router-dom';
 
@@ -53,24 +53,18 @@ export default function Article (props) {
 
     const postComment = (event) => {
         const getCurrentID = window.location.pathname.split('/');
-        const date =  new Date();
+        // const date =  new Date();
         // const current = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
         axios.post('http://localhost:5000/comments/add', {
             withCredentials: true,
             data: {
                 author: name,
                 commentDesc: content,
-                //TODO: verifer la date et l'articleID
-                date : date.toLocaleString(),
-                articleID : getCurrentID[1]
+                articleID : getCurrentID[2]
             }
         }).then((res) =>{
             console.log(res)
-            // if(res.data["status"]=="fail"){
-            //     alert(res.data["message"])
-            // }else{
-            //     handleSignUp();
-            // }
+            console.log("added comment")
 
         }).catch((err) => {
             console.log(err);
@@ -124,9 +118,9 @@ export default function Article (props) {
                 <span>LAISSER UN COMMENTAIRE</span>
                 <div className="zoneCom">
                     <label>Nom</label>
-                    <input type="text" className="nameComment" name="name"/>
+                    <input type="text" className="nameComment" name="name" onChange={(e) => setName(e.target.value)}/>
                     <label>Commentaire</label>
-                    <textarea className="txtcomment" placeholder="Laisser un commentaire" name="content"></textarea>
+                    <textarea className="txtcomment" placeholder="Laisser un commentaire" name="content" onChange={(e) => setContent(e.target.value)}></textarea>
                     <Button variant="dark" className="btn-submitCom" onClick={postComment}>SOUMMETRE</Button>
                 </div>
 
