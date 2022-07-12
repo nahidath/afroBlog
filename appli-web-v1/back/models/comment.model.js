@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId
+
 
 let comments = new Schema(
     {
@@ -18,8 +20,8 @@ let comments = new Schema(
             required: true
         },
         articleID : {
-            type: Number,
-            required: true
+            type: ObjectId,
+            ref: 'articles'
         }
 
     },

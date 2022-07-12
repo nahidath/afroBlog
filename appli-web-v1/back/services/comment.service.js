@@ -3,7 +3,7 @@ const commentModel = require('./../models/comment.model')
 exports.addComment = async function (comment){
     console.log(comment)
     const newComment = (comment) =   await commentModel.create({
-        author: comment.author, commentDesc: comment.desc, articleID : comment.articleID
+        author: comment.author, commentDesc: comment.commentDesc, articleID : comment.articleID, date : comment.date
     }).catch(err => {
         return {
             "status" : "fail",

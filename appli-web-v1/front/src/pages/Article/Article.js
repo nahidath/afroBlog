@@ -125,6 +125,21 @@ export default function Article (props) {
                 </div>
 
             </div>
+            {/*TODO: faire la request axios pour recup les coms de l'article et contenu coms*/}
+            <div className="displayCommentsSection">
+                <span className="numberOfComments">1 Commentaire(s)</span>
+                <div className="allComments">
+                    <div className="comment">
+                        <img className="userAvatar" src="/love-test.png"/>
+                        <div className="userInfosComment">
+                            <p>user name</p>
+                            <p>date</p>
+                            <p>content comment</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
         </>
     );
