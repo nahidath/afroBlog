@@ -139,8 +139,8 @@
 
 .userAvatar{
     border-radius: 50px;
-    height: 100px;
-    width : 100px;
+    height: 90px;
+    width : 90px;
 }
 
 .comment{
@@ -150,6 +150,15 @@
 
 .userInfosComment{
     margin-left: 30px;
+}
+
+#styleUserName{
+    margin-bottom: 1px;
+    font-weight: bold;
+}
+
+#dateCom{
+    font-size: 12px;
 }
 
 

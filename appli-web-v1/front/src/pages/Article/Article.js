@@ -8,6 +8,8 @@ export default function Article (props) {
 
     const [name,setName] = useState("");
     const [content, setContent] = useState("");
+    const [commentArt, setCommentArt] = useState([]);
+    const [numberOfComments, setNumberOfComments] = useState(0);
 
 
     const history = useHistory();
@@ -26,6 +28,10 @@ export default function Article (props) {
         displayRandomArticle();
     }, []);
 
+    useEffect(() =>{
+        getCommentsArticle();
+    }, [numberOfComments])
+
 
     const getArticle = () => {
         axios.get('http://localhost:5000/articles/article',{
@@ -39,22 +45,17 @@ export default function Article (props) {
     }
 
     const displayRandomArticle = () => {
-        console.log("function displayRandomArticle")
         axios.get('http://localhost:5000/articles/randoms').then((resp) => {
             const rA = resp.data.data;
-            console.log(rA);
             setRandArt(rA);
         }).catch((err) => {
             console.log(err);
         })
     }
 
-    console.log(window.location.href)
 
     const postComment = (event) => {
         const getCurrentID = window.location.pathname.split('/');
-        // const date =  new Date();
-        // const current = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
         axios.post('http://localhost:5000/comments/add', {
             withCredentials: true,
             data: {
@@ -63,12 +64,29 @@ export default function Article (props) {
                 articleID : getCurrentID[2]
             }
         }).then((res) =>{
-            console.log(res)
-            console.log("added comment")
+            console.log("aaaaaaa")
+            console.log(res.data.data);
+            setCommentArt(res.data.data);
+            setNumberOfComments(numberOfComments +1)
+            window.location.reload()
+            console.log(numberOfComments)
 
         }).catch((err) => {
             console.log(err);
         })
+    }
+
+    const getCommentsArticle = () => {
+        axios.get('http://localhost:5000/comments/allComments',{
+            params : {articleID : props.match.params.id}
+        }).then((resp) => {
+            const cA = resp.data.data;
+            setCommentArt(cA);
+            const nb_cA = cA.length;
+            setNumberOfComments(nb_cA);
+        }).catch((err) => {
+            console.log(err);
+        });
     }
 
     const handleGoArticle = (article_id) => {
@@ -127,17 +145,18 @@ export default function Article (props) {
             </div>
             {/*TODO: faire la request axios pour recup les coms de l'article et contenu coms*/}
             <div className="displayCommentsSection">
-                <span className="numberOfComments">1 Commentaire(s)</span>
+                <span className="numberOfComments">{numberOfComments} Commentaire(s)</span>
                 <div className="allComments">
-                    <div className="comment">
-                        <img className="userAvatar" src="/love-test.png"/>
-                        <div className="userInfosComment">
-                            <p>user name</p>
-                            <p>date</p>
-                            <p>content comment</p>
+                    {commentArt.map((elt, index) =>
+                        <div className="comment" key={index}>
+                            <img className="userAvatar" src="/love-test.png"/>
+                            <div className="userInfosComment">
+                                <p id="styleUserName">{elt.author}</p>
+                                <p id="dateCom">{elt.date}</p>
+                                <p>{elt.commentDesc}</p>
+                            </div>
                         </div>
-
-                    </div>
+                    )}
                 </div>
             </div>
         </div>
