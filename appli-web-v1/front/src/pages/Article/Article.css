@@ -137,7 +137,7 @@
     padding-bottom : 25px;
 }
 
-.userAvatar{
+#userAvatar{
     border-radius: 50px;
     height: 90px;
     width : 90px;
@@ -146,6 +146,9 @@
 .comment{
     display: flex;
     flex-direction: row;
+    padding : 20px;
+    word-wrap: break-word;
+    width : 80%;
 }
 
 .userInfosComment{

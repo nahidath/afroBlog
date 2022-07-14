@@ -64,12 +64,9 @@ export default function Article (props) {
                 articleID : getCurrentID[2]
             }
         }).then((res) =>{
-            console.log("aaaaaaa")
-            console.log(res.data.data);
+            window.location.reload();
             setCommentArt(res.data.data);
             setNumberOfComments(numberOfComments +1)
-            window.location.reload()
-            console.log(numberOfComments)
 
         }).catch((err) => {
             console.log(err);
@@ -143,13 +140,12 @@ export default function Article (props) {
                 </div>
 
             </div>
-            {/*TODO: faire la request axios pour recup les coms de l'article et contenu coms*/}
             <div className="displayCommentsSection">
                 <span className="numberOfComments">{numberOfComments} Commentaire(s)</span>
                 <div className="allComments">
                     {commentArt.map((elt, index) =>
                         <div className="comment" key={index}>
-                            <img className="userAvatar" src="/love-test.png"/>
+                            <img id="userAvatar" src="/love-test.png"/>
                             <div className="userInfosComment">
                                 <p id="styleUserName">{elt.author}</p>
                                 <p id="dateCom">{elt.date}</p>
