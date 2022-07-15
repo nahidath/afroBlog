@@ -1,15 +1,36 @@
 import './ContactForm.css';
 import {Button, Col, Form} from "react-bootstrap";
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
+import emailjs from '@emailjs/browser';
 
 
 
 export default function ContactForm(){
 
-    const [email, setEmail] = useState("");
-    const [name,setName] = useState("");
+    // const [email, setEmail] = useState("");
+    // const [name,setName] = useState("");
+    //
+    // const handleChange = (e) => {
+    //     setToSend({ ...toSend, [e.target.name]: e.target.value });
+    // };
 
-    const handleSubmit = (event) => {}
+    const form = useRef();
+    console.log(form.current);
+
+    const sendEmail = (e) => {
+        e.preventDefault();
+        console.log("sending")
+        console.log(form.current);
+        console.log(e.currentTarget);
+        emailjs.sendForm('service_ck55iw9', 'template_yafwsxd', '#contact-form', '4efi92eRP81rtkqUk')
+            .then(function(response) {
+                window.location.reload();
+                alert("Request sent successfully");
+                console.log('SUCCESS!', response.status, response.text);
+            }, function(error) {
+                console.log('FAILED...', error);
+            });
+    };
 
     return(
         <div className="contact-wrapper">
@@ -18,7 +39,7 @@ export default function ContactForm(){
                 Avez-vous quelque chose à nous faire part ? Un commentaire ou une idée à partager ? Vous pouvez nous le faire savoir grâce au formulaire ci-dessous :
             </div>
             <div className="formContact">
-                <Form horizontal onSubmit={handleSubmit}>
+                <Form horizontal onSubmit={sendEmail} id="contact-form" ref={form}>
                     <Form.Group controlId="name">
                         <Col componentClass={Form.Label} sm={2}>
                             Nom
@@ -28,7 +49,7 @@ export default function ContactForm(){
                                 autoFocus
                                 type="text"
                                 name="name"
-                                onChange={(e) => setName(e.target.value)}
+                                // onChange={(e) => setName(e.target.value)}
                             />
                         </Col>
                     </Form.Group>
@@ -41,14 +62,14 @@ export default function ContactForm(){
                                 autoFocus
                                 type="email"
                                 name="email"
-                                onChange={(e) => setEmail(e.target.value)}
+                                // onChange={(e) => setEmail(e.target.value)}
                             />
                         </Col>
                     </Form.Group>
                     <div className="commentArea">
                         <label>Remarques, suggestions</label>
                         <textarea className="txtcontact" placeholder="Ecrivez ici..."></textarea>
-                        <Button variant="dark" className="btn-submitCom">Envoyer</Button>
+                        <Button type="submit" variant="dark" className="btn-submitCom">Envoyer</Button>
                     </div>
                 </Form>
             </div>
