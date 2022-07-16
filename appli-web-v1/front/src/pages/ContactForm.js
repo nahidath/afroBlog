@@ -7,22 +7,11 @@ import emailjs from '@emailjs/browser';
 
 export default function ContactForm(){
 
-    // const [email, setEmail] = useState("");
-    // const [name,setName] = useState("");
-    //
-    // const handleChange = (e) => {
-    //     setToSend({ ...toSend, [e.target.name]: e.target.value });
-    // };
-
     const form = useRef();
-    console.log(form.current);
 
     const sendEmail = (e) => {
         e.preventDefault();
-        console.log("sending")
-        console.log(form.current);
-        console.log(e.currentTarget);
-        emailjs.sendForm('service_ck55iw9', 'template_yafwsxd', '#contact-form', '4efi92eRP81rtkqUk')
+        emailjs.sendForm('service_ck55iw9', 'template_yafwsxd', form.current, '4efi92eRP81rtkqUk')
             .then(function(response) {
                 window.location.reload();
                 alert("Request sent successfully");
@@ -39,8 +28,8 @@ export default function ContactForm(){
                 Avez-vous quelque chose à nous faire part ? Un commentaire ou une idée à partager ? Vous pouvez nous le faire savoir grâce au formulaire ci-dessous :
             </div>
             <div className="formContact">
-                <Form horizontal onSubmit={sendEmail} id="contact-form" ref={form}>
-                    <Form.Group controlId="name">
+                <Form horizontal onSubmit={sendEmail} ref={form}>
+                    <Form.Group>
                         <Col componentClass={Form.Label} sm={2}>
                             Nom
                         </Col>
@@ -48,12 +37,11 @@ export default function ContactForm(){
                             <Form.Control
                                 autoFocus
                                 type="text"
-                                name="name"
-                                // onChange={(e) => setName(e.target.value)}
+                                name="from_name"
                             />
                         </Col>
                     </Form.Group>
-                    <Form.Group controlId="email">
+                    <Form.Group>
                         <Col componentClass={Form.Label} sm={2}>
                             Email
                         </Col>
@@ -62,13 +50,12 @@ export default function ContactForm(){
                                 autoFocus
                                 type="email"
                                 name="email"
-                                // onChange={(e) => setEmail(e.target.value)}
                             />
                         </Col>
                     </Form.Group>
                     <div className="commentArea">
                         <label>Remarques, suggestions</label>
-                        <textarea className="txtcontact" placeholder="Ecrivez ici..."></textarea>
+                        <textarea className="txtcontact" placeholder="Ecrivez ici..." name="message"></textarea>
                         <Button type="submit" variant="dark" className="btn-submitCom">Envoyer</Button>
                     </div>
                 </Form>
