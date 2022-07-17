@@ -15,6 +15,7 @@ import Profile from "./pages/Profile/Profile";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import ContactForm from "./pages/ContactForm";
+import {ToastContainer} from "react-toastify";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
       <Router forceRefresh={false}>
           <NavBar />
           <div className='section-central'>
+            <ToastContainer hideProgressBar={true} />
             <Switch>
               <Route path="/article/:id" exact 
                 render={(props) => <Article {...props}/>} />

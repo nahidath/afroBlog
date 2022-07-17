@@ -1,8 +1,10 @@
 import './ContactForm.css';
 import {Button, Col, Form} from "react-bootstrap";
-import React, {useRef, useState} from "react";
+import React, {useRef} from "react";
 import emailjs from '@emailjs/browser';
+import {toast } from 'react-toastify';
 
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function ContactForm(){
@@ -13,12 +15,16 @@ export default function ContactForm(){
         e.preventDefault();
         emailjs.sendForm('service_ck55iw9', 'template_yafwsxd', form.current, '4efi92eRP81rtkqUk')
             .then(function(response) {
-                window.location.reload();
-                alert("Request sent successfully");
+                e.target.reset();
+                toast.success("Request sent successfully !", {
+                    theme: "colored",
+                    position: toast.POSITION.TOP_CENTER
+                });
                 console.log('SUCCESS!', response.status, response.text);
             }, function(error) {
                 console.log('FAILED...', error);
             });
+
     };
 
     return(
@@ -57,6 +63,7 @@ export default function ContactForm(){
                         <label>Remarques, suggestions</label>
                         <textarea className="txtcontact" placeholder="Ecrivez ici..." name="message"></textarea>
                         <Button type="submit" variant="dark" className="btn-submitCom">Envoyer</Button>
+
                     </div>
                 </Form>
             </div>
