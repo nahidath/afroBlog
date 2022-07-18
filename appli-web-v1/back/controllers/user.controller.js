@@ -35,3 +35,12 @@ exports.updateUserProfile = async function (req, res, next) {
         next(err);
     }
 }
+
+exports.getFavArticlesByUser = async function (req, res, next) {
+    try {
+        res.json(await userService.getFavArticlesByUser(req.query.email));
+    } catch (err) {
+        console.error('Error while getFavArticlesByUser :', err.message);
+        next(err);
+    }
+}

@@ -81,9 +81,34 @@ exports.signin = async function (user){
 
 };
 
-exports.getFavArticlesByUser = async function(user){
+exports.addArtFav = async function (articleList, idUser){
+    const faL = await userModel.create({
+        favArtList : articleList,
+        _id : idUser
+    }).catch(err => {
+        return {
+            "status" : "fail",
+            "message" : err
+        }
+    });
+
+    if (!faL) {
+        return {
+            "status" : "fail",
+            "message" : "Erreur lors de l'insertion"
+        }
+    }
+
+    return {
+        "status" : "success",
+        "data" : faL
+    }
+
+}
+
+exports.getFavArticlesByUser = async function(emailUsr){
     const favListArt = await userModel.find({
-        email: user.email
+        email: emailUsr
     }).select({
         _id:0,
         favListArt: 1

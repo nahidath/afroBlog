@@ -8,5 +8,6 @@ router.post('/signup', userController.signup);
 router.post('/signin', userController.signin);
 router.get('/user', userController.getUserInfos);
 router.post('/updateProfile', userController.updateUserProfile);
+router.get('/favListArt', userController.getFavArticlesByUser);
 
 module.exports = router;

@@ -53,6 +53,10 @@ export default function Profile(props) {
                 const updtUser = resp.data.data;
                 setupdtProfile(updtUser);
                 event.target.reset();
+                toast.success("Profil modifié", {
+                    theme: "colored",
+                    position: toast.POSITION.TOP_CENTER
+                });
             })
         }else{
             toast.error("L'ancien mot de passe ne correspond pas", {

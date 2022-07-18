@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId
 
 let user = new Schema(
     {
@@ -24,10 +25,10 @@ let user = new Schema(
             type: String,
             required: true
         },
-        favArtList: {
-            type: String,
-            required: true
-        }
+        favArtList: [{
+            type: ObjectId,
+            ref: 'articles'
+        }]
     },
     { 
         collection: "Users",
