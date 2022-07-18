@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import './SignIn.css';
 import {Button, Form} from "react-bootstrap";
+import {toast} from "react-toastify";
 
 
 export default function  SignIn() {
@@ -18,16 +19,8 @@ export default function  SignIn() {
     const validateForm = () => {
         return email.length > 0 && password.length > 0;
     }
-    // const [errorMessages, setErrorMessages] = useState({});
-    // const [isSubmitted, setIsSubmitted] = useState(false);
-    //
-    // const errors = {
-    //     email: "invalid email",
-    //     pass: "invalid password"
-    // };
 
     const handleSubmit = (event) => {
-        // Prevent page reload
         event.preventDefault();
 
         axios.post('http://localhost:5000/user/signin', {
@@ -37,10 +30,13 @@ export default function  SignIn() {
                 password: password
             }
         }).then((res) =>{
-            console.log(res)
             if(res.data["status"]=="fail"){
-                alert(res.data["message"])
+                toast.error(res.data["message"], {
+                    theme: "colored",
+                    position: toast.POSITION.TOP_CENTER
+                });
             }else{
+                this.props.history.push("/profile");
                 window.location = "/"
             }
             // const status = res.status;

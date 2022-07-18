@@ -104,7 +104,6 @@ exports.getFavArticlesByUser = async function(user){
 
 };
 
-//TODO: refaire l'update de l'user
 exports.updateUserProfile = async function (user){
     const updateInfos = await userModel.updateMany(
         { email: user.email},

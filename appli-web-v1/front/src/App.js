@@ -35,7 +35,8 @@ function App() {
               <Route path='/' exact component={Home} />
               <Route path='/sign-in' component={SignIn} />
               <Route path='/sign-up' component={SignUp} />
-              <Route path='/profile' component={Profile} />
+              <Route path='/profile' exact
+                     render={(props) => <Profile {...props}/>}/>
               <Route path='/contact' component={ContactForm} />
             </Switch>
           </div>

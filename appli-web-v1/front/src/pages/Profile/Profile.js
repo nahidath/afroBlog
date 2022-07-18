@@ -1,13 +1,70 @@
 import './Profile.css';
 import {Button, Col, Form, FormControl, FormGroup} from "react-bootstrap";
-import {React} from "react";
+import {React, useEffect, useState} from "react";
 import {BsFillPencilFill} from "react-icons/bs";
-import Divider from "@material-ui/core/Divider";
+import axios from "axios";
+import {toast} from "react-toastify";
 
 
 
 
-export default function Profile() {
+export default function Profile(props) {
+
+    const [profile, setProfile] = useState({
+        name : ""
+    });
+    const [updtProfile, setupdtProfile] = {
+        name : ""
+    }
+
+    const [firstName, setfirstName] = useState("");
+    const [name, setName] = useState("");
+    const [oldPassword, setoldPassword] = useState("");
+    const [newPassword, setnewPassword] = useState("");
+
+    useEffect(() => {
+        getUserProfile();
+    }, [])
+
+    const getUserProfile = () => {
+        axios.get('http://localhost:5000/user/user',{
+            params : {email : props.match.params.email}
+        }).then((resp) => {
+            const pUser = resp.data.data;
+            setProfile(pUser);
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
+
+    const updateProfile = (event) => {
+        if(oldPassword == props.match.params.password) {
+            axios.post('http://localhost:5000/user/updateProfile',{
+                withCredentials: true,
+                data : {
+                    email : props.match.params.email,
+                    name : name,
+                    firstName : firstName,
+                    password : newPassword
+
+                }
+
+            }).then((resp) => {
+                const updtUser = resp.data.data;
+                setupdtProfile(updtUser);
+                event.target.reset();
+            })
+        }else{
+            toast.error("L'ancien mot de passe ne correspond pas", {
+                theme: "colored",
+                position: toast.POSITION.TOP_CENTER
+            });
+            event.preventDefault();
+        }
+
+    }
+
+
 
     return(
         <div id="profile-wrapper">
@@ -18,19 +75,26 @@ export default function Profile() {
                     {/*<BsFillPencilFill/>*/}
                 </div>
                 <div className="welcome-text">
-                    welcome baba
+                    {
+                        (updtProfile.name != profile.name) ?
+                            "Welcome " + updtProfile.name : "Welcome " + profile.name
+                    }
+
                 </div>
             </div>
             <div className="edit-profile-zone">
                 Edit your profile
-                <Divider />
-                <Form horizontal>
+                <hr/>
+                <Form horizontal onSubmit={updateProfile}>
                     <FormGroup controlId="changeName">
                         <Col componentClass={Form.Label} sm={2}>
                             New Name
                         </Col>
                         <Col sm={10}>
-                            <FormControl type="text" />
+                            <FormControl
+                                type="text"
+                                onChange={(e) => setName(e.target.value)}
+                            />
                         </Col>
                     </FormGroup>
 
@@ -39,7 +103,10 @@ export default function Profile() {
                             New Firstname
                         </Col>
                         <Col sm={10}>
-                            <FormControl type="text"  />
+                            <FormControl
+                                type="text"
+                                onChange={(e) => setfirstName(e.target.value)}
+                            />
                         </Col>
                     </FormGroup>
 
@@ -48,7 +115,10 @@ export default function Profile() {
                             Old password
                         </Col>
                         <Col sm={10}>
-                            <FormControl type="password"  />
+                            <FormControl
+                                type="password"
+                                onChange={(e) => setoldPassword(e.target.value)}
+                            />
                         </Col>
                     </FormGroup>
 
@@ -57,7 +127,10 @@ export default function Profile() {
                             New Password
                         </Col>
                         <Col sm={10}>
-                            <FormControl type="password"  />
+                            <FormControl
+                                type="password"
+                                onChange={(e) => setnewPassword(e.target.value)}
+                            />
                         </Col>
                     </FormGroup>
                     <FormGroup>
@@ -66,7 +139,7 @@ export default function Profile() {
                         </Col>
                     </FormGroup>
                 </Form>
-                <Divider />
+                <hr/>
                 <div className="fav-zone">
                     fav article
                 </div>
