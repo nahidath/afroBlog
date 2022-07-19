@@ -26,8 +26,8 @@ let user = new Schema(
             required: true
         },
         favArtList: [{
-            type: ObjectId,
-            ref: 'articles'
+            type: String,
+            required: true
         }]
     },
     { 

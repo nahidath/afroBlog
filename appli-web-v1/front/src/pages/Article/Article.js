@@ -6,17 +6,15 @@ import { useHistory } from 'react-router-dom';
 import {IconButton} from "@mui/material";
 import { BsHeart } from "react-icons/bs";
 
+axios.withCredentials = true;
+
 export default function Article (props) {
 
     const [name,setName] = useState("");
     const [content, setContent] = useState("");
     const [commentArt, setCommentArt] = useState([]);
     const [numberOfComments, setNumberOfComments] = useState(0);
-    const [favArt, setFavArt] = useState("");
-    const [favArtList, setFavArtList] = useState([]);
-    const [favColor, setFavColor] = useState("none");
     const [isFav, setisFav] = useState(false);
-
 
     const history = useHistory();
     const [dataArt, setDataArt] = useState({
@@ -97,19 +95,19 @@ export default function Article (props) {
     }
 
     const handleFavAddClick = () => {
-        if(!isFav){
-            console.log("fav")
-            // console.log("list before", favArtList)
-            // setFavColor("red");
-            // setFavArt(props.match.params.id);
-            // console.log(favArt);s
-            let favList = [...favArtList];
-            favList.push(props.match.params.id);
-            setFavArtList(favArt);
-            // console.log("added");
-            // console.log("list", favArtList)
-        }
-        setisFav(!isFav);
+        let action = !isFav ? "add" : "delete";
+        axios.post('http://localhost:5000/user/updateFavArticles', {
+            mail: "nana@gmail.com",
+            action: action,
+            articleID : props.match.params.id
+        }).then((res) =>{
+            console.log(res);
+            if (res.data.status === "success") {
+                setisFav(!isFav);
+            }
+        }).catch((err) => {
+            console.log(err);
+        })
     }
 
 

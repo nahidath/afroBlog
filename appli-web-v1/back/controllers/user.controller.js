@@ -36,6 +36,15 @@ exports.updateUserProfile = async function (req, res, next) {
     }
 }
 
+exports.updateFavArticles = async function (req, res, next) {
+    try {
+        res.json(await userService.updateFavArticles(req.body.mail, req.body.action, req.body.articleID));
+    } catch (err) {
+        console.error('Error while updateFavArticles :', err.message);
+        next(err);
+    }
+}
+
 exports.getFavArticlesByUser = async function (req, res, next) {
     try {
         res.json(await userService.getFavArticlesByUser(req.query.email));
