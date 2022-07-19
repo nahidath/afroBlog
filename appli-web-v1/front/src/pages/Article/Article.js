@@ -5,6 +5,7 @@ import axios from "axios";
 import { useHistory } from 'react-router-dom';
 import {IconButton} from "@mui/material";
 import { BsHeart } from "react-icons/bs";
+import ShareButtons from "../../components/Share/ShareButtons";
 
 axios.withCredentials = true;
 
@@ -13,7 +14,6 @@ export default function Article (props) {
     const [name,setName] = useState("");
     const [content, setContent] = useState("");
     const [commentArt, setCommentArt] = useState([]);
-    const [numberOfComments, setNumberOfComments] = useState(0);
     const [isFav, setisFav] = useState(false);
 
     const history = useHistory();
@@ -30,11 +30,8 @@ export default function Article (props) {
     useEffect(() => {
         getArticle();
         displayRandomArticle();
-    }, []);
-
-    useEffect(() =>{
         getCommentsArticle();
-    }, [numberOfComments])
+    }, []);
 
 
     const getArticle = () => {
@@ -68,9 +65,10 @@ export default function Article (props) {
                 articleID : getCurrentID[2]
             }
         }).then((res) =>{
-            window.location.reload();
-            setCommentArt(res.data.data);
-            setNumberOfComments(numberOfComments +1)
+            let listComment  = [...commentArt];
+            listComment.push(res.data.data)
+            setCommentArt(listComment);
+            event.target.reset();
 
         }).catch((err) => {
             console.log(err);
@@ -81,10 +79,7 @@ export default function Article (props) {
         axios.get('http://localhost:5000/comments/allComments',{
             params : {articleID : props.match.params.id}
         }).then((resp) => {
-            const cA = resp.data.data;
-            setCommentArt(cA);
-            const nb_cA = cA.length;
-            setNumberOfComments(nb_cA);
+            setCommentArt(resp.data.data);
         }).catch((err) => {
             console.log(err);
         });
@@ -118,11 +113,14 @@ export default function Article (props) {
             <div className="articleHead">
                 <div className='categoryArt'><a href="#">{dataArt.category}</a> > <a href="#">{dataArt.subCategory}</a></div>
                 <div className='articleTitle'>{dataArt.title}</div>
-                {/*<Button onClick={(e) => {setisFav(true); handleFavAddClick(e);}}><BsHeart/></Button>*/}
-                <IconButton aria-label="heart"
-                            onClick={handleFavAddClick}
-                ><BsHeart color={isFav ? "red" : "black"}/></IconButton>
+                <div className="heartFavIcon" >
+                    <IconButton aria-label="heart" onClick={handleFavAddClick} ><BsHeart color={isFav ? "red" : "black"} /></IconButton>
+                </div>
+
                 <div className='articleDateInfo'>Ecrit par {dataArt.author} Publié le {dataArt.date}</div>
+                <div>
+                    <ShareButtons title={dataArt.title} url={window.location.href}/>
+                </div>
             </div>
             <div className='contentPart'>
                 {/*<img*/}
@@ -157,17 +155,20 @@ export default function Article (props) {
             <hr/>
             <div className="commentSection">
                 <span>LAISSER UN COMMENTAIRE</span>
-                <div className="zoneCom">
-                    <label>Nom</label>
-                    <input type="text" className="nameComment" name="name" onChange={(e) => setName(e.target.value)}/>
-                    <label>Commentaire</label>
-                    <textarea className="txtcomment" placeholder="Laisser un commentaire" name="content" onChange={(e) => setContent(e.target.value)}></textarea>
-                    <Button variant="dark" className="btn-submitCom" onClick={postComment}>SOUMMETRE</Button>
-                </div>
+                <form onSubmit={postComment}>
+                    <div className="zoneCom">
+                        <label>Nom</label>
+                        <input type="text" className="nameComment" name="name" onChange={(e) => setName(e.target.value)}/>
+                        <label>Commentaire</label>
+                        <textarea className="txtcomment" placeholder="Laisser un commentaire" name="content" onChange={(e) => setContent(e.target.value)}></textarea>
+                        <Button variant="dark" className="btn-submitCom" type="submit" >SOUMMETRE</Button>
+                    </div>
+                </form>
+
 
             </div>
             <div className="displayCommentsSection">
-                <span className="numberOfComments">{numberOfComments} Commentaire(s)</span>
+                <span className="numberOfComments">{commentArt.length} Commentaire(s)</span>
                 <div className="allComments">
                     {commentArt.map((elt, index) =>
                         <div className="comment" key={index}>

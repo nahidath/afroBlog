@@ -1,14 +1,17 @@
 import './Profile.css';
-import {Button, Col, Form, FormControl, FormGroup} from "react-bootstrap";
+import {Button, Card, Col, Form, FormControl, FormGroup, Row} from "react-bootstrap";
 import {React, useEffect, useState} from "react";
 import {BsFillPencilFill} from "react-icons/bs";
 import axios from "axios";
 import {toast} from "react-toastify";
+import {useHistory} from "react-router-dom";
 
 
 
 
 export default function Profile(props) {
+
+    const history = useHistory();
 
     const [profile, setProfile] = useState({
         name : ""
@@ -17,6 +20,7 @@ export default function Profile(props) {
         name : ""
     }
 
+    const [listArt, setListArt] = useState([]);
     const [firstName, setfirstName] = useState("");
     const [name, setName] = useState("");
     const [oldPassword, setoldPassword] = useState("");
@@ -24,6 +28,7 @@ export default function Profile(props) {
 
     useEffect(() => {
         getUserProfile();
+        favArtUsr();
     }, [])
 
     const getUserProfile = () => {
@@ -66,6 +71,20 @@ export default function Profile(props) {
             event.preventDefault();
         }
 
+    }
+
+    const favArtUsr = () => {
+        axios.get('http://localhost:5000/user/favListArt',{
+            params : {email : props.match.params.email}
+        }).then((resp) => {
+            setListArt(resp.data.data);
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
+
+    const handleGoArticle = (article_id) => {
+        history.push({ pathname:'/article/' + article_id});
     }
 
 
@@ -145,7 +164,22 @@ export default function Profile(props) {
                 </Form>
                 <hr/>
                 <div className="fav-zone">
-                    fav article
+                    {listArt.map((elt, index) =>
+                        <Row key={index} className="g-4 miniature">
+                            {Array.from({length: listArt.length}).map((_, idx) => (
+                                <Col key={idx}>
+                                    <Card style={{width: '210px', height:'350px'}}>
+                                        <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>
+                                        {/*<Card.Img variant="top" src={['./articles', props.article.id, props.article.image].join('/')} />*/}
+                                        <Card.Body>
+                                            <Card.Title><a href={elt._id} onClick={() => handleGoArticle(elt._id)}>{elt.title}</a></Card.Title>
+                                            <Card.Subtitle className="mb-2 text-muted">{elt.category} - {elt.date}</Card.Subtitle>
+                                        </Card.Body>
+                                    </Card>
+                                </Col>
+                            ))}
+                        </Row>
+                    )}
                 </div>
             </div>
 

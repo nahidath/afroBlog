@@ -36,3 +36,29 @@
     position: absolute;
     right: 0;
 }
+
+
+.fav-zone .miniature {
+    padding : 35px;
+}
+
+.fav-zone{
+    display: flex;
+    justify-content: center;
+}
+
+.fav-zone .card{
+    border: none
+}
+
+.fav-zone .card-title a{
+    text-decoration: none;
+    color: black;
+    margin-left: -20px;
+}
+
+.fav-zone .card-subtitle{
+    margin-left: -20px;
+    font-weight: normal;
+    font-size: 12px;
+}
