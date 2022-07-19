@@ -3,6 +3,8 @@ import './Article.css';
 import {Button, Card, Col, Row} from "react-bootstrap";
 import axios from "axios";
 import { useHistory } from 'react-router-dom';
+import {IconButton} from "@mui/material";
+import { BsHeart } from "react-icons/bs";
 
 export default function Article (props) {
 
@@ -13,7 +15,7 @@ export default function Article (props) {
     const [favArt, setFavArt] = useState("");
     const [favArtList, setFavArtList] = useState([]);
     const [favColor, setFavColor] = useState("none");
-    const [isFav, setisFav] = useState("false");
+    const [isFav, setisFav] = useState(false);
 
 
     const history = useHistory();
@@ -94,14 +96,23 @@ export default function Article (props) {
         history.push({ pathname:'/article/' + article_id});
     }
 
-    const handleFavAddClick = (e) => {
-        if(isFav){
-            setFavColor("red");
-            setFavArt(props.match.params.id);
+    const handleFavAddClick = () => {
+        if(!isFav){
+            console.log("fav")
+            // console.log("list before", favArtList)
+            // setFavColor("red");
+            // setFavArt(props.match.params.id);
+            // console.log(favArt);s
+            let favList = [...favArtList];
+            favList.push(props.match.params.id);
             setFavArtList(favArt);
+            // console.log("added");
+            // console.log("list", favArtList)
         }
-
+        setisFav(!isFav);
     }
+
+
 
     return (
         <>
@@ -109,6 +120,10 @@ export default function Article (props) {
             <div className="articleHead">
                 <div className='categoryArt'><a href="#">{dataArt.category}</a> > <a href="#">{dataArt.subCategory}</a></div>
                 <div className='articleTitle'>{dataArt.title}</div>
+                {/*<Button onClick={(e) => {setisFav(true); handleFavAddClick(e);}}><BsHeart/></Button>*/}
+                <IconButton aria-label="heart"
+                            onClick={handleFavAddClick}
+                ><BsHeart color={isFav ? "red" : "black"}/></IconButton>
                 <div className='articleDateInfo'>Ecrit par {dataArt.author} Publié le {dataArt.date}</div>
             </div>
             <div className='contentPart'>
