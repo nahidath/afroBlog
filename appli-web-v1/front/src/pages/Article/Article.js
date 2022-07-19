@@ -10,6 +10,10 @@ export default function Article (props) {
     const [content, setContent] = useState("");
     const [commentArt, setCommentArt] = useState([]);
     const [numberOfComments, setNumberOfComments] = useState(0);
+    const [favArt, setFavArt] = useState("");
+    const [favArtList, setFavArtList] = useState([]);
+    const [favColor, setFavColor] = useState("none");
+    const [isFav, setisFav] = useState("false");
 
 
     const history = useHistory();
@@ -88,6 +92,15 @@ export default function Article (props) {
 
     const handleGoArticle = (article_id) => {
         history.push({ pathname:'/article/' + article_id});
+    }
+
+    const handleFavAddClick = (e) => {
+        if(isFav){
+            setFavColor("red");
+            setFavArt(props.match.params.id);
+            setFavArtList(favArt);
+        }
+
     }
 
     return (
