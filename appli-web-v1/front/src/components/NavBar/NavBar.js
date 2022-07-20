@@ -6,6 +6,10 @@ import { React, useEffect, useRef, useState } from "react";
 
 // Import style
 import "./NavBar.css";
+import DarkMode from "../Theme/DarkMode";
+import {IconButton} from "@mui/material";
+import { ImSearch } from "react-icons/im";
+
 
 
 
@@ -60,6 +64,7 @@ export default function NavBar (props) {
                     {/*</Navbar.Brand>*/}
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
+                    <DarkMode />
                     <Nav
                         className="me-auto my-2 my-lg-0"
                         id="navItems"
@@ -89,11 +94,12 @@ export default function NavBar (props) {
                                 style={{ display: isResearchDisplay ? "block" : "none" }}
                             /> 
                             {/* <Button variant="outline-success">Search</Button> */}
-                            <img 
-                                src='/research.png'
-                                className="bs-search"
-                                onClick={() => setResearchDisplay(!isResearchDisplay)}
-                            />
+                            <IconButton aria-label="Search"
+                                        onClick={() => setResearchDisplay(!isResearchDisplay)} size="medium"><ImSearch className="bs-search"/></IconButton>
+                            {/*<img */}
+                            {/*    src='/research.png'*/}
+                            {/*    */}
+                            {/*/>*/}
                         </Form>
                         <Nav.Link className="signupLink" onClick={handleSignIn}>
                             Sign In

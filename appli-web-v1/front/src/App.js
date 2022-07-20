@@ -16,27 +16,18 @@ import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import ContactForm from "./pages/ContactForm";
 import {ToastContainer} from "react-toastify";
-import useLocalStorage from 'use-local-storage'
+import DarkMode from "./components/Theme/DarkMode";
 
 
 function App() {
-  const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const [theme, setTheme] = useLocalStorage('theme', defaultDark ? 'dark' : 'light');
-  const switchTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-  }
 
 
   return (
     <>
     <Header />
-    <div id="app" data-theme={theme}>
+    <div id="app">
       <Router forceRefresh={false}>
           <NavBar />
-        <button className="btn-dark-mode" onClick={switchTheme}>
-          Switch to {theme === 'light' ? 'dark' : 'light'} Theme
-        </button>
           <div className='section-central'>
             <ToastContainer hideProgressBar={true} />
             <Switch>

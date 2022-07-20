@@ -56,10 +56,7 @@
 } */
 
 #navBar .bs-search{
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
-    margin-right: 15px;
+    margin-right: 10px;
 }
 
 #navBar .searchInput {

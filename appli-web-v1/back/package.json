@@ -10,7 +10,8 @@
     "emailjs-com": "^3.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.2.9"
+    "mongoose": "^6.2.9",
+    "use-dark-mode": "^2.3.1"
   },
   "devDependencies": {},
   "scripts": {
