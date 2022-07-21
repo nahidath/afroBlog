@@ -114,7 +114,7 @@ export default function Article (props) {
                 <div className='categoryArt'><a href="#">{dataArt.category}</a> > <a href="#">{dataArt.subCategory}</a></div>
                 <div className='articleTitle'>{dataArt.title}</div>
                 <div className="heartFavIcon" >
-                    <IconButton aria-label="heart" onClick={handleFavAddClick} ><BsHeart color={isFav ? "red" : "black"} /></IconButton>
+                    <IconButton aria-label="heart" onClick={handleFavAddClick} ><BsHeart className="heartIcon" color={isFav ? "red" : "black"} /></IconButton>
                 </div>
 
                 <div className='articleDateInfo'>Ecrit par {dataArt.author} Publié le {dataArt.date}</div>

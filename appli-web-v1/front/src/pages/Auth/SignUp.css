@@ -24,13 +24,13 @@
 
 }
 
-.signup-form .label{
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: translate(10px, 10px);
-    transition: transform .25s;
-}
+/*.signup-form .label{*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    transform: translate(10px, 10px);*/
+/*    transition: transform .25s;*/
+/*}*/
 
 .signup-form .form-group{
     position: relative;

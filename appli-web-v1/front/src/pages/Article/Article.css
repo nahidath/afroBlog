@@ -1,7 +1,11 @@
 .article {
     width: 1080px;
     min-height: 100%;
+    top:10px;
     background-color: white;
+    /*border-right : 1px solid #c4c2c2 !important;*/
+    /*border-left : 1px solid #b7b7b7 !important;*/
+
 }
 
 .contentPart{
