@@ -60,7 +60,7 @@ export default function Hair(){
                                                 <Card.Text>
                                                     {elt.description}
                                                 </Card.Text>
-                                                <Button variant="outline-dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
+                                                <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
                                             </Card.Body>
                                         </Card>
                                     </Col>
@@ -82,7 +82,7 @@ export default function Hair(){
                                                 <Card.Text>
                                                     {elt.description}
                                                 </Card.Text>
-                                                <Button variant="outline-dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
+                                                <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
                                             </Card.Body>
                                         </Card>
                                     </Col>
@@ -104,7 +104,7 @@ export default function Hair(){
                                                 <Card.Text>
                                                     {elt.description}
                                                 </Card.Text>
-                                                <Button variant="outline-dark" onClick={() =>handleGoArticle(elt._id)}>Lire la suite</Button>
+                                                <Button variant="dark" onClick={() =>handleGoArticle(elt._id)}>Lire la suite</Button>
                                             </Card.Body>
                                         </Card>
                                     </Col>
@@ -126,7 +126,7 @@ export default function Hair(){
                                                 <Card.Text>
                                                     {elt.description}
                                                 </Card.Text>
-                                                <Button variant="outline-dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
+                                                <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
                                             </Card.Body>
                                         </Card>
                                     </Col>

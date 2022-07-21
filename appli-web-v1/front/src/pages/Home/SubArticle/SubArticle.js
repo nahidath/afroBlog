@@ -10,7 +10,7 @@ export default function SubArticle (props) {
     const history = useHistory();
 
     const handleGoArticle = () => {
-        history.push({ pathname:'/article/' + props.article.id});
+        history.push({ pathname:'/article/' + props.article._id});
     }
 
     return (
@@ -22,8 +22,8 @@ export default function SubArticle (props) {
             {/*/>*/}
             <div className="articleText">
                 <Row className="g-4">
-                    {Array.from({length: 8}).map((_, idx) => (
-                        <Col>
+                    {Array.from({length: 2}).map((_, idx) => (
+                        <Col key={idx}>
                             <Card className="displaySubArt">
                                 <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}} />
                                 <Card.Body>
@@ -32,7 +32,7 @@ export default function SubArticle (props) {
                                     <Card.Text>
                                         {props.article.description}
                                     </Card.Text>
-                                    <Button variant="outline-dark" onClick={handleGoArticle}>Lire la suite</Button>
+                                    <Button variant="dark" onClick={handleGoArticle}>Lire la suite</Button>
                                 </Card.Body>
                             </Card>
                         </Col>

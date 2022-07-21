@@ -105,6 +105,14 @@ export default function Article (props) {
         })
     }
 
+    const favColorTheme = () => {
+        const storedTheme = localStorage.getItem("theme");
+        if(storedTheme === "dark"){
+            return "white";
+        }
+        return "black";
+    }
+
 
 
     return (
@@ -114,7 +122,7 @@ export default function Article (props) {
                 <div className='categoryArt'><a href="#">{dataArt.category}</a> > <a href="#">{dataArt.subCategory}</a></div>
                 <div className='articleTitle'>{dataArt.title}</div>
                 <div className="heartFavIcon" >
-                    <IconButton aria-label="heart" onClick={handleFavAddClick} ><BsHeart className="heartIcon" color={isFav ? "red" : "black"} /></IconButton>
+                    <IconButton aria-label="heart" onClick={handleFavAddClick} ><BsHeart className="heartIcon" color={isFav ? "red" : favColorTheme()} /></IconButton>
                 </div>
 
                 <div className='articleDateInfo'>Ecrit par {dataArt.author} Publié le {dataArt.date}</div>

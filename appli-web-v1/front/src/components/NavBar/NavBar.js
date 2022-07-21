@@ -88,7 +88,7 @@ export default function NavBar (props) {
                             <FormControl
                                 type="search"
                                 placeholder="Search"
-                                className="me-2 mr-2"
+                                className="me-2 mr-2 searchBar"
                                 aria-label="Search"
                                 ref={researchRef} 
                                 style={{ display: isResearchDisplay ? "block" : "none" }}

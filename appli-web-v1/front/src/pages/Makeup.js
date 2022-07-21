@@ -56,7 +56,7 @@ export default function Makeup(){
                                                     <Card.Text>
                                                         {elt.description}
                                                     </Card.Text>
-                                                    <Button variant="outline-dark">Lire la suite</Button>
+                                                    <Button variant="dark">Lire la suite</Button>
                                                 </Card.Body>
                                             </Card>
                                         </Col>
@@ -80,7 +80,7 @@ export default function Makeup(){
                                                     <Card.Text>
                                                         {elt.description}
                                                     </Card.Text>
-                                                    <Button variant="outline-dark">Lire la suite</Button>
+                                                    <Button variant="dark">Lire la suite</Button>
                                                 </Card.Body>
                                             </Card>
                                         </Col>
@@ -104,7 +104,7 @@ export default function Makeup(){
                                                     <Card.Text>
                                                         {elt.description}
                                                     </Card.Text>
-                                                    <Button variant="outline-dark">Lire la suite</Button>
+                                                    <Button variant="dark">Lire la suite</Button>
                                                 </Card.Body>
                                             </Card>
                                         </Col>
@@ -128,7 +128,7 @@ export default function Makeup(){
                                                     <Card.Text>
                                                         {elt.description}
                                                     </Card.Text>
-                                                    <Button variant="outline-dark">Lire la suite</Button>
+                                                    <Button variant="dark">Lire la suite</Button>
                                                 </Card.Body>
                                             </Card>
                                         </Col>
@@ -152,7 +152,7 @@ export default function Makeup(){
                                                     <Card.Text>
                                                         {elt.description}
                                                     </Card.Text>
-                                                    <Button variant="outline-dark">Lire la suite</Button>
+                                                    <Button variant="dark">Lire la suite</Button>
                                                 </Card.Body>
                                             </Card>
                                         </Col>

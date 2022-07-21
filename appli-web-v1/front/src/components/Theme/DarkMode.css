@@ -6,6 +6,7 @@
     --nav-link-active-color:#993333;
     --bg-footer : #B25D3E;
     --input-color: white;
+    --btn-color-hover:black;
 
 }
 
@@ -19,6 +20,7 @@
     --navBar-color : #111111;
     --nav-link-active-color:#ca9b52;
     --bg-footer : #421e13;
+    --btn-color-hover:#ca9b52;
 }
 
 /* 3 */
@@ -26,13 +28,16 @@ body, #home, .card-body,.article{
     background-color: var(--background-color);
     color: var(--font-color);
 }
-.categoryArt a, .heartIcon {
+.categoryArt a {
     color: var(--font-color);
 }
 .card-title a{
     color: var(--font-color)!important;
 }
 
+.btn:hover{
+    background-color: var(--btn-color-hover);
+}
 
 h1, .subHeaderTitle{
     color: #111111;
@@ -46,7 +51,7 @@ h1, .subHeaderTitle{
     color: var(--font-color);
 }
 
-.nav-tabs, .btn-outline-dark, .navbar-light .navbar-toggler, hr{
+.nav-tabs, .btn, .navbar-light .navbar-toggler, hr{
     border-color: var(--font-color);
 }
 
@@ -56,10 +61,9 @@ input, textarea{
     color: var(--font-color);
 }
 
-.form-control{
+.form-control, .form-control:focus{
     background-color: var(--input-color);
     color: var(--font-color)!important;
-
 
 }
 
@@ -76,6 +80,7 @@ input, textarea{
 
 .contact-wrapper, .login-wrapper, .signup-wrapper{
     background-color: var(--background-color)!important;
+    box-shadow: 0 6px 6px rgba(232,232,232, 0.4) !important;
 }
 
 .footer-container{
