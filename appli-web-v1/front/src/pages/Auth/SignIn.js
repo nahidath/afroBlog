@@ -4,6 +4,7 @@ import axios from 'axios';
 import './SignIn.css';
 import {Button, Form} from "react-bootstrap";
 import {toast} from "react-toastify";
+import {setAuthToken} from "./setAuthToken()";
 
 
 export default function  SignIn() {
@@ -15,6 +16,7 @@ export default function  SignIn() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     // const [isAuthenticated, userHasAuthenticated] = useState(false);
+
 
     const validateForm = () => {
         return email.length > 0 && password.length > 0;
@@ -36,8 +38,22 @@ export default function  SignIn() {
                     position: toast.POSITION.TOP_CENTER
                 });
             }else{
-                this.props.history.push("/profile");
-                window.location = "/"
+                const userStored = JSON.stringify(email);
+                localStorage.setItem("user", userStored);
+
+                window.location = "/profile";
+                // return res.data;
+                // //get token from response
+                // const token  =  res.data;
+                // console.log(res.data);
+                //
+                // //set JWT token to local
+                // localStorage.setItem("token", token);
+                //
+                // //set token to axios common header
+                // setAuthToken(token);
+                // // this.props.history.push("/profile");
+                // // window.location = "/"
             }
             // const status = res.status;
             // //redirect logic

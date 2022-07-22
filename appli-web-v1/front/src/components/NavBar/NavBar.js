@@ -9,6 +9,7 @@ import "./NavBar.css";
 import DarkMode from "../Theme/DarkMode";
 import {IconButton} from "@mui/material";
 import { ImSearch } from "react-icons/im";
+import {toast} from "react-toastify";
 
 
 
@@ -18,6 +19,8 @@ export default function NavBar (props) {
     const history = useHistory();
 
     const [isResearchDisplay, setResearchDisplay] = useState(false);
+    const [user, setUser] = useState("");
+    const [isLogged, setisLogged] = useState(false);
     const researchRef = useRef();
 
 
@@ -27,6 +30,11 @@ export default function NavBar (props) {
 
     const handleSignIn = () => {
         history.push({ pathname:'/sign-in'});
+    }
+
+    const goToProfile = () =>{
+        history.push({ pathname:'/profile'});
+
     }
 
     const handleSetFilter = (pFilter) => {
@@ -43,6 +51,11 @@ export default function NavBar (props) {
         };
     }, [positionNav, top]);
 
+
+    useEffect(() => {
+        checkLogged();
+    },[]);
+
     const handleScroll = () => {
         if (positionNav !== "fixed" && window.pageYOffset > 450) {
             setTop("0");
@@ -54,6 +67,24 @@ export default function NavBar (props) {
             setPositionNav("absolute");
         }
     };
+
+    const checkLogged = () => {
+        const loggedInUser = localStorage.getItem("user");
+        if (loggedInUser) {
+            const foundUser = JSON.parse(loggedInUser);
+            setUser(foundUser);
+            setisLogged(true);
+        }
+    }
+    const handleLogout = () => {
+        localStorage.clear();
+        window.location = "/";
+        toast.success("Déconnexion réussie", {
+            theme: "colored",
+            position: toast.POSITION.TOP_RIGHT
+        });
+    };
+
 
     return (
         <div id='navBar' >
@@ -101,9 +132,15 @@ export default function NavBar (props) {
                             {/*    */}
                             {/*/>*/}
                         </Form>
-                        <Nav.Link className="signupLink" onClick={handleSignIn}>
-                            Sign In
-                        </Nav.Link>
+                        {
+                            (isLogged) ? <NavDropdown title={user} id="navbarScrollingDropdown" className="signupLink">
+                        <NavDropdown.Item onClick={goToProfile}>Profile</NavDropdown.Item>
+                        <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+                        </NavDropdown>:<Nav.Link className="signupLink" onClick={handleSignIn}>
+                                Sign In
+                            </Nav.Link>
+                        }
+
                     </Nav>
                     </Navbar.Collapse>
                 </Container>

@@ -82,9 +82,9 @@ exports.signin = async function (user){
 
 };
 
-exports.getUserInfos = async function (user){
+exports.getUserInfos = async function (userEmail){
     const infoUser = await userModel.findOne(
-        { email : user.email }
+        { email : userEmail }
     ).catch(err => {
         return {
             "status" : "fail",

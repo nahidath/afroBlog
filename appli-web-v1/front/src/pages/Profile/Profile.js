@@ -5,6 +5,7 @@ import {BsFillPencilFill} from "react-icons/bs";
 import axios from "axios";
 import {toast} from "react-toastify";
 import {useHistory} from "react-router-dom";
+import SignIn from "../Auth/SignIn";
 
 
 
@@ -16,15 +17,21 @@ export default function Profile(props) {
     const [profile, setProfile] = useState({
         name : ""
     });
-    const [updtProfile, setupdtProfile] = {
+    const [updtProfile, setupdtProfile] = useState({
         name : ""
-    }
+    });
 
     const [listArt, setListArt] = useState([]);
     const [firstName, setfirstName] = useState("");
     const [name, setName] = useState("");
     const [oldPassword, setoldPassword] = useState("");
     const [newPassword, setnewPassword] = useState("");
+
+    const getCurrentUser = () => {
+        return JSON.parse(localStorage.getItem("user"));
+    };
+    const currentUser = getCurrentUser();
+    // console.log("the current user", currentUser);
 
     useEffect(() => {
         getUserProfile();
@@ -33,10 +40,10 @@ export default function Profile(props) {
 
     const getUserProfile = () => {
         axios.get('http://localhost:5000/user/user',{
-            params : {email : props.match.params.email}
+            params : {email : currentUser}
         }).then((resp) => {
-            const pUser = resp.data.data;
-            setProfile(pUser);
+            setProfile(resp.data.data);
+            console.log(profile);
         }).catch((err) => {
             console.log(err);
         });
@@ -98,9 +105,9 @@ export default function Profile(props) {
                     {/*<BsFillPencilFill/>*/}
                 </div>
                 <div className="welcome-text">
-                    {
-                        (updtProfile.name != profile.name) ?
-                            "Welcome " + updtProfile.name : "Welcome " + profile.name
+                    Welcome {
+                        // (updtProfile.name != profile.name) updtProfile.name : profile.name
+                        profile.name
                     }
 
                 </div>
