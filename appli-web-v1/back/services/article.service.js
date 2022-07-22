@@ -56,6 +56,20 @@ exports.getArticleByID = async function (id){
     }
 }
 
+exports.getFavArticleByID = async function (listID){
+    console.log("liste id", listID);
+    const favArticles = await articleModel.find(
+        {_id: { $in: listID } }
+    )
+
+    if(favArticles){
+        return{
+            "status" : "success",
+            "data" : favArticles
+        }
+    }
+}
+
 exports.getRandomArticles = async function(){
     const randomArt = await articleModel.aggregate(
         [ { $sample: { size: 3 } } ]

@@ -78,7 +78,7 @@ input, textarea{
 
 }
 
-.contact-wrapper, .login-wrapper, .signup-wrapper{
+.contact-wrapper, .login-wrapper, .signup-wrapper, .profile-wrapper{
     background-color: var(--background-color)!important;
     box-shadow: 0 6px 6px rgba(232,232,232, 0.4) !important;
 }

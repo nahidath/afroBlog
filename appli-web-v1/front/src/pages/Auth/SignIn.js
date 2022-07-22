@@ -38,7 +38,7 @@ export default function  SignIn() {
                     position: toast.POSITION.TOP_CENTER
                 });
             }else{
-                const userStored = JSON.stringify(email);
+                const userStored = JSON.stringify(res.data.data);
                 localStorage.setItem("user", userStored);
 
                 window.location = "/profile";

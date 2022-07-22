@@ -133,7 +133,7 @@ export default function NavBar (props) {
                             {/*/>*/}
                         </Form>
                         {
-                            (isLogged) ? <NavDropdown title={user} id="navbarScrollingDropdown" className="signupLink">
+                            (isLogged) ? <NavDropdown title={user.name} id="navbarScrollingDropdown" className="signupLink">
                         <NavDropdown.Item onClick={goToProfile}>Profile</NavDropdown.Item>
                         <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
                         </NavDropdown>:<Nav.Link className="signupLink" onClick={handleSignIn}>

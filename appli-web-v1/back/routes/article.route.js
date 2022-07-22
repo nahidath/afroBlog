@@ -9,6 +9,9 @@ router.get('/all', articleController.getAllArticle)
 router.get('/category', articleController.getArticleBySubcategory)
 //get article by his id
 router.get('/article', articleController.getArticleByID)
+//get fav article of the user
+router.get('/favArticles', articleController.getFavArticleByID)
+
 //get randoms articles
 router.get('/randoms', articleController.getRandomArticles)
 

@@ -15,6 +15,11 @@ export default function Article (props) {
     const [content, setContent] = useState("");
     const [commentArt, setCommentArt] = useState([]);
     const [isFav, setisFav] = useState(false);
+    const [favListCU, setFavListCU] = useState([]);
+    const getCurrentUser = () => {
+        return JSON.parse(localStorage.getItem("user"));
+    };
+    const currentUser = getCurrentUser();
 
     const history = useHistory();
     const [dataArt, setDataArt] = useState({
@@ -31,7 +36,17 @@ export default function Article (props) {
         getArticle();
         displayRandomArticle();
         getCommentsArticle();
+        // getFavListCurrentUser();
+
     }, []);
+
+    // useEffect(() => {
+    //     const usrUpdt = {
+    //         ...currentUser,
+    //         favArtList : favListCU
+    //     }
+    //     localStorage.setItem("user", JSON.stringify(usrUpdt));
+    // },[isFav])
 
 
     const getArticle = () => {
@@ -92,7 +107,7 @@ export default function Article (props) {
     const handleFavAddClick = () => {
         let action = !isFav ? "add" : "delete";
         axios.post('http://localhost:5000/user/updateFavArticles', {
-            mail: "nana@gmail.com",
+            mail: currentUser.email,
             action: action,
             articleID : props.match.params.id
         }).then((res) =>{
@@ -103,6 +118,17 @@ export default function Article (props) {
         }).catch((err) => {
             console.log(err);
         })
+    }
+
+    const getFavListCurrentUser = () => {
+        axios.get('http://localhost:5000/user/favListArt',{
+            params : {email: currentUser.email}
+        }).then((resp) => {
+            setFavListCU(resp.data.data);
+            console.log(resp.data.data)
+        }).catch((err) => {
+            console.log(err);
+        });
     }
 
     const favColorTheme = () => {

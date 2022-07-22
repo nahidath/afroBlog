@@ -2,9 +2,11 @@ import {Button, Card, Col, Row, Tab, Tabs} from "react-bootstrap";
 import React, {useEffect, useState} from "react";
 import './Skin.css';
 import axios from "axios";
+import {useHistory} from "react-router-dom";
 
 export default function Skin(){
     const [key, setKey] = useState('all');
+    const history = useHistory();
 
     const [dataArt, setDataArt] = useState([]);
     useEffect(() => {
@@ -23,6 +25,11 @@ export default function Skin(){
         });
 
     };
+
+    const handleGoArticle = (ia) => {
+        history.push({ pathname:'/article/'+ ia});
+    }
+
     return (
         <>
             <div id="banner" className="skinBanner">
@@ -55,7 +62,7 @@ export default function Skin(){
                                                     <Card.Text>
                                                         {elt.description}
                                                     </Card.Text>
-                                                    <Button variant="dark">Lire la suite</Button>
+                                                    <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
                                                 </Card.Body>
                                             </Card>
                                         </Col>
@@ -79,7 +86,7 @@ export default function Skin(){
                                                     <Card.Text>
                                                         {elt.description}
                                                     </Card.Text>
-                                                    <Button variant="dark">Lire la suite</Button>
+                                                    <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
                                                 </Card.Body>
                                             </Card>
                                         </Col>
@@ -103,7 +110,7 @@ export default function Skin(){
                                                     <Card.Text>
                                                         {elt.description}
                                                     </Card.Text>
-                                                    <Button variant="dark">Lire la suite</Button>
+                                                    <Button variant="dark"onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
                                                 </Card.Body>
                                             </Card>
                                         </Col>
@@ -127,7 +134,7 @@ export default function Skin(){
                                                     <Card.Text>
                                                         {elt.description}
                                                     </Card.Text>
-                                                    <Button variant="dark">Lire la suite</Button>
+                                                    <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
                                                 </Card.Body>
                                             </Card>
                                         </Col>
@@ -151,7 +158,7 @@ export default function Skin(){
                                                     <Card.Text>
                                                         {elt.description}
                                                     </Card.Text>
-                                                    <Button variant="dark">Lire la suite</Button>
+                                                    <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
                                                 </Card.Body>
                                             </Card>
                                         </Col>
@@ -175,7 +182,7 @@ export default function Skin(){
                                                     <Card.Text>
                                                         {elt.description}
                                                     </Card.Text>
-                                                    <Button variant="dark">Lire la suite</Button>
+                                                    <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
                                                 </Card.Body>
                                             </Card>
                                         </Col>

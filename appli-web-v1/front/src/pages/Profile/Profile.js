@@ -1,11 +1,12 @@
 import './Profile.css';
 import {Button, Card, Col, Form, FormControl, FormGroup, Row} from "react-bootstrap";
 import {React, useEffect, useState} from "react";
-import {BsFillPencilFill} from "react-icons/bs";
+import {BsFillPencilFill, BsFillSuitHeartFill} from "react-icons/bs";
 import axios from "axios";
 import {toast} from "react-toastify";
 import {useHistory} from "react-router-dom";
 import SignIn from "../Auth/SignIn";
+import {forEach} from "react-bootstrap/ElementChildren";
 
 
 
@@ -14,9 +15,13 @@ export default function Profile(props) {
 
     const history = useHistory();
 
-    const [profile, setProfile] = useState({
-        name : ""
-    });
+    // const [profile, setProfile] = useState({
+    //     name : "",
+    //     firstName : "",
+    //     email : "",
+    //     password : "",
+    //     favArtList : []
+    // });
     const [updtProfile, setupdtProfile] = useState({
         name : ""
     });
@@ -31,23 +36,27 @@ export default function Profile(props) {
         return JSON.parse(localStorage.getItem("user"));
     };
     const currentUser = getCurrentUser();
-    // console.log("the current user", currentUser);
 
     useEffect(() => {
-        getUserProfile();
-        favArtUsr();
+        // getUserProfile();
+        displayFavArtUsr();
     }, [])
 
-    const getUserProfile = () => {
-        axios.get('http://localhost:5000/user/user',{
-            params : {email : currentUser}
-        }).then((resp) => {
-            setProfile(resp.data.data);
-            console.log(profile);
-        }).catch((err) => {
-            console.log(err);
-        });
-    }
+    // useEffect(() => {
+    //     localStorage.setItem("user", JSON.stringify(profile));
+    // },[profile])
+    //
+    // const getUserProfile = () => {
+    //     axios.get('http://localhost:5000/user/user',{
+    //         params : {email : currentUser}
+    //     }).then((resp) => {
+    //         // const userUpdt = JSON.stringify(resp.data.data);
+    //         // localStorage.setItem("user", userUpdt);
+    //         setProfile(resp.data.data);
+    //     }).catch((err) => {
+    //         console.log(err);
+    //     });
+    // }
 
     const updateProfile = (event) => {
         if(oldPassword == props.match.params.password) {
@@ -80,14 +89,16 @@ export default function Profile(props) {
 
     }
 
-    const favArtUsr = () => {
-        axios.get('http://localhost:5000/user/favListArt',{
-            params : {email : props.match.params.email}
+    const displayFavArtUsr = () => {
+        const currentUserList = currentUser.favArtList;
+        axios.get('http://localhost:5000/articles/favArticles',{
+            params : {list: currentUserList}
         }).then((resp) => {
-            setListArt(resp.data.data);
+            setListArt(resp.data.data)
         }).catch((err) => {
             console.log(err);
         });
+
     }
 
     const handleGoArticle = (article_id) => {
@@ -97,7 +108,7 @@ export default function Profile(props) {
 
 
     return(
-        <div id="profile-wrapper">
+        <div className="profile-wrapper">
             <div className="welcome-zone">
                 <div className="profile-pic">
                     <img src="/love-test.png" alt= "profilePic" width={"100px;"} height={"100px;"} />
@@ -107,7 +118,7 @@ export default function Profile(props) {
                 <div className="welcome-text">
                     Welcome {
                         // (updtProfile.name != profile.name) updtProfile.name : profile.name
-                        profile.name
+                        currentUser.name
                     }
 
                 </div>
@@ -117,7 +128,7 @@ export default function Profile(props) {
                 <hr/>
                 <Form horizontal onSubmit={updateProfile}>
                     <FormGroup controlId="changeName">
-                        <Col componentClass={Form.Label} sm={2}>
+                        <Col componentClass={Form.Label}>
                             New Name
                         </Col>
                         <Col sm={10}>
@@ -129,7 +140,7 @@ export default function Profile(props) {
                     </FormGroup>
 
                     <FormGroup controlId="changeFirstName">
-                        <Col componentClass={Form.Label} sm={2}>
+                        <Col componentClass={Form.Label} >
                             New Firstname
                         </Col>
                         <Col sm={10}>
@@ -141,7 +152,7 @@ export default function Profile(props) {
                     </FormGroup>
 
                     <FormGroup controlId="getOldPassword">
-                        <Col componentClass={Form.Label} sm={2}>
+                        <Col componentClass={Form.Label}>
                             Old password
                         </Col>
                         <Col sm={10}>
@@ -153,7 +164,7 @@ export default function Profile(props) {
                     </FormGroup>
 
                     <FormGroup controlId="getNewPassword">
-                        <Col componentClass={Form.Label} sm={2}>
+                        <Col componentClass={Form.Label}>
                             New Password
                         </Col>
                         <Col sm={10}>
@@ -171,6 +182,7 @@ export default function Profile(props) {
                 </Form>
                 <hr/>
                 <div className="fav-zone">
+                    <span>Vos articles favoris <BsFillSuitHeartFill/></span>
                     {listArt.map((elt, index) =>
                         <Row key={index} className="g-4 miniature">
                             {Array.from({length: listArt.length}).map((_, idx) => (

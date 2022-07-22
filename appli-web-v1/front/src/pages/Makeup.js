@@ -2,9 +2,11 @@ import {Button, Card, Col, Row, Tab, Tabs} from "react-bootstrap";
 import React, {useEffect, useState} from "react";
 import './Makeup.css';
 import axios from "axios";
+import {useHistory} from "react-router-dom";
 
 export default function Makeup(){
     const [key, setKey] = useState('all');
+    const history = useHistory();
 
     const [dataArt, setDataArt] = useState([]);
     useEffect(() => {
@@ -23,6 +25,10 @@ export default function Makeup(){
         });
 
     };
+
+    const handleGoArticle = (ia) => {
+        history.push({ pathname:'/article/'+ ia});
+    }
 
     return (
         <>
@@ -56,7 +62,7 @@ export default function Makeup(){
                                                     <Card.Text>
                                                         {elt.description}
                                                     </Card.Text>
-                                                    <Button variant="dark">Lire la suite</Button>
+                                                    <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
                                                 </Card.Body>
                                             </Card>
                                         </Col>
@@ -80,7 +86,7 @@ export default function Makeup(){
                                                     <Card.Text>
                                                         {elt.description}
                                                     </Card.Text>
-                                                    <Button variant="dark">Lire la suite</Button>
+                                                    <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
                                                 </Card.Body>
                                             </Card>
                                         </Col>
@@ -104,7 +110,7 @@ export default function Makeup(){
                                                     <Card.Text>
                                                         {elt.description}
                                                     </Card.Text>
-                                                    <Button variant="dark">Lire la suite</Button>
+                                                    <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
                                                 </Card.Body>
                                             </Card>
                                         </Col>
@@ -128,7 +134,7 @@ export default function Makeup(){
                                                     <Card.Text>
                                                         {elt.description}
                                                     </Card.Text>
-                                                    <Button variant="dark">Lire la suite</Button>
+                                                    <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
                                                 </Card.Body>
                                             </Card>
                                         </Col>
@@ -152,7 +158,7 @@ export default function Makeup(){
                                                     <Card.Text>
                                                         {elt.description}
                                                     </Card.Text>
-                                                    <Button variant="dark">Lire la suite</Button>
+                                                    <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
                                                 </Card.Body>
                                             </Card>
                                         </Col>

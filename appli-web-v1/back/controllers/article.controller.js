@@ -37,6 +37,16 @@ exports.getArticleByID =  async function (req, res, next) {
     }
 }
 
+exports.getFavArticleByID =  async function (req, res, next) {
+    try {
+        res.json(await articleService.getFavArticleByID(req.query.list));
+
+    } catch (err) {
+        console.error('Error while getting article : ', err.message);
+        next(err);
+    }
+}
+
 exports.getRandomArticles = async function (req, res, next) {
     try {
         res.json(await articleService.getRandomArticles());

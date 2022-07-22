@@ -1,5 +1,12 @@
-#profile-wrapper {
-    width: 70%;
+.profile-wrapper {
+    width: 60%;
+    height: auto;
+    border: 1px solid #b7b7b7;
+    padding: 2rem;
+    margin: 40px 0 40px 0;
+    background-color: white;
+    box-shadow: 0 6px 6px rgba(0,0,0, 0.2);
+    border-radius: 10px;
 }
 
 .profile-pic{
@@ -33,18 +40,17 @@
 }
 
 .welcome-text{
-    position: absolute;
-    right: 0;
-}
-
-
-.fav-zone .miniature {
-    padding : 35px;
+    position: relative;
+    margin-left: 175px;
+    bottom : 70px;
+    font-size: 30px;
+    font-weight: bold;
 }
 
 .fav-zone{
     display: flex;
     justify-content: center;
+    flex-direction:column;
 }
 
 .fav-zone .card{
@@ -61,4 +67,14 @@
     margin-left: -20px;
     font-weight: normal;
     font-size: 12px;
+}
+
+.fav-zone span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-style: italic;
+    padding: 10px 0px 15px;
+    gap:10px;
 }

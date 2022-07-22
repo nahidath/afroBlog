@@ -48,17 +48,17 @@ exports.signup = async function (user) {
 exports.signin = async function (user){
     const userFind = await userModel.findOne({
         email: user.email
-    })
-    .select({
-        _id:0,
-        password: 1
-    })
-    .catch(err => {
-        return {
-            "status" : "fail",
-            "message" : err
-        }
     });
+    // .select({
+    //     _id:0,
+    //     password: 1
+    // })
+    // .catch(err => {
+    //     return {
+    //         "status" : "fail",
+    //         "message" : err
+    //     }
+    // });
 
 
     if(userFind == null){
@@ -69,7 +69,8 @@ exports.signin = async function (user){
     }else if(userFind.password == user.password) {
         return {
             "status" : "success",
-            "message" : "password correct"
+            "message" : "password correct",
+            "data": userFind
         }
     }else {
         return {
@@ -150,7 +151,7 @@ exports.updateFavArticles = async function (mail, action, articleId){
 }
 
 exports.getFavArticlesByUser = async function(emailUsr){
-    const favListArt = await userModel.find({
+    const favListArt = await userModel.findOne({
         email: emailUsr
     }).select({
         _id:0,
