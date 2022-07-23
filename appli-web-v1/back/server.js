@@ -1,6 +1,8 @@
 // App initialization
 const express = require('express');  
 const app = express();
+const dotenv = require('dotenv');
+dotenv.config();
 const cors = require('cors');
 app.use(cors({ 
     origin: "http://localhost:3000", 
@@ -10,11 +12,12 @@ app.use(express.json());
 
 // Server initialization
 var credentials;
-var server = require('http').createServer(credentials, app);  
+var server = require('http').createServer(credentials, app);
+const db_url = process.env.DATABASE_URL;
 
 // Mongoose initizalization
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://afroAdm:afroAdm@afroblogdb.aa9d0.mongodb.net/AB_v1?retryWrites=true&w=majority', {
+mongoose.connect(db_url, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
