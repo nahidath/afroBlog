@@ -1,8 +1,6 @@
 // App initialization
-const serverless = require('serverless-http');
 const express = require('express');
 const app = express();
-const router = express.Router();
 const dotenv = require('dotenv');
 dotenv.config();
 const cors = require('cors');
@@ -33,13 +31,9 @@ const commentRouter = require('./routes/comment.route');
 app.use('/user', userRouter);
 app.use('/articles', articleRouter);
 app.use('/comments', commentRouter);
-app.use("/.netlify/back/server", articleRouter) // path must route to lambda
-// app.use("/", router);
-
-
 
 // Run the server
 server.listen(5000);
 
-module.exports.handler = serverless(app);
+
 
