@@ -36,10 +36,10 @@ app.use('/comments', commentRouter);
 app.use("/.netlify/back/server", router) // path must route to lambda
 app.use("/", router);
 
-module.exports.handler = serverless(app);
+
 
 // Run the server
 server.listen(5000);
 
-
+module.exports.handler = serverless(app);
 
