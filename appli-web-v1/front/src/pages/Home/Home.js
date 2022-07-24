@@ -19,7 +19,7 @@ export default function Home() {
 
 
     const displayArticles = () => {
-        axios.get('/.netlify/back/articles/all').then(resp => {
+        axios.get('https://afroblog-v1.netlify.app/.netlify/back/articles/all').then(resp => {
             const dA = resp.data.data;
             getDataArt(dA);
         }).catch((err) => {
