@@ -33,8 +33,8 @@ const commentRouter = require('./routes/comment.route');
 app.use('/user', userRouter);
 app.use('/articles', articleRouter);
 app.use('/comments', commentRouter);
-app.use("/.netlify/back/server", router) // path must route to lambda
-app.use("/", router);
+app.use("/.netlify/back/server", articleRouter) // path must route to lambda
+// app.use("/", router);
 
 
 
