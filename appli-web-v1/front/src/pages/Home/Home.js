@@ -19,7 +19,7 @@ export default function Home() {
 
 
     const displayArticles = () => {
-        axios.get('http://localhost:5000/articles/all').then(resp => {
+        axios.get('/.netlify/back/articles/all').then(resp => {
             const dA = resp.data.data;
             getDataArt(dA);
         }).catch((err) => {
