@@ -17,6 +17,7 @@ import Header from "./components/Header/Header";
 import ContactForm from "./pages/ContactForm";
 import {ToastContainer} from "react-toastify";
 import DarkMode from "./components/Theme/DarkMode";
+import SearchPage from "./pages/SearchPage";
 
 
 function App() {
@@ -41,6 +42,9 @@ function App() {
               <Route path='/profile' exact
                      render={(props) => <Profile {...props}/>}/>
               <Route path='/contact' component={ContactForm} />
+              {/*<Route path='/search?s=:word' exact*/}
+              {/*       render={(props) =><SearchPage{...props}/>} />*/}
+              <Route path='/search' component={SearchPage} />
             </Switch>
           </div>
           <Footer />

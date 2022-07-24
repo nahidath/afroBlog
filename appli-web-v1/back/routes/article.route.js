@@ -11,8 +11,9 @@ router.get('/category', articleController.getArticleBySubcategory)
 router.get('/article', articleController.getArticleByID)
 //get fav article of the user
 router.get('/favArticles', articleController.getFavArticleByID)
-
 //get randoms articles
 router.get('/randoms', articleController.getRandomArticles)
+//get articles by search
+router.get('/search', articleController.searchArticles)
 
 module.exports = router;

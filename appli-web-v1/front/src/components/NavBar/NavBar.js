@@ -10,6 +10,8 @@ import DarkMode from "../Theme/DarkMode";
 import {IconButton} from "@mui/material";
 import { ImSearch } from "react-icons/im";
 import {toast} from "react-toastify";
+import axios from "axios";
+import SearchPage from "../../pages/SearchPage";
 
 
 
@@ -22,7 +24,7 @@ export default function NavBar (props) {
     const [user, setUser] = useState("");
     const [isLogged, setisLogged] = useState(false);
     const researchRef = useRef();
-
+    const [searchText, setSearchText] = useState("");
 
     const handleHome = () => {
         history.push({ pathname:'/'});
@@ -85,6 +87,13 @@ export default function NavBar (props) {
         });
     };
 
+    const handleSearch = () => {
+        // history.push({pathname: '/search?s=' + searchText})
+        console.log(searchText);
+        history.push({pathname: '/search'})
+
+    }
+
 
     return (
         <div id='navBar' >
@@ -123,14 +132,11 @@ export default function NavBar (props) {
                                 aria-label="Search"
                                 ref={researchRef} 
                                 style={{ display: isResearchDisplay ? "block" : "none" }}
-                            /> 
-                            {/* <Button variant="outline-success">Search</Button> */}
+                                onChange={(e)=> setSearchText(e.target.value)}
+                                onSubmit={handleSearch}
+                            />
                             <IconButton aria-label="Search"
-                                        onClick={() => setResearchDisplay(!isResearchDisplay)} size="medium"><ImSearch className="bs-search"/></IconButton>
-                            {/*<img */}
-                            {/*    src='/research.png'*/}
-                            {/*    */}
-                            {/*/>*/}
+                                        onClick={() => setResearchDisplay(!isResearchDisplay)}  size="medium"><ImSearch className="bs-search"/></IconButton>
                         </Form>
                         {
                             (isLogged) ? <NavDropdown title={user.name} id="navbarScrollingDropdown" className="signupLink">

@@ -81,3 +81,15 @@ exports.getRandomArticles = async function(){
         }
     }
 }
+
+exports.searchArticles = async function(searchText){
+    const regex = "/"+searchText+"/"
+    const search =  await articleModel.find( { title: { $regex: regex, $options:'i'} } )
+
+    if(search){
+        return{
+            "status" : "success",
+            "data" : search
+        }
+    }
+}

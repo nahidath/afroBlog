@@ -1,0 +1,15 @@
+.search-page {
+    width: 1080px;
+    min-height: 100%;
+    top:10px;
+    background-color: white;
+
+}
+
+.search-page span{
+    font-size : 36px;
+}
+
+.searchList{
+
+}

@@ -55,3 +55,13 @@ exports.getRandomArticles = async function (req, res, next) {
         next(err);
     }
 }
+
+
+exports.searchArticles = async function (req, res, next) {
+    try {
+        res.json(await articleService.searchArticles(req.query.searchText));
+    } catch (err) {
+        console.error('Error while getting articles : ', err.message);
+        next(err);
+    }
+}
