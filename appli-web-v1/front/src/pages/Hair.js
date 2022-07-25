@@ -48,89 +48,81 @@ export default function Hair(){
             >
                 <Tab eventKey="all" title="Tout">
                     {dataArt.map((elt, index) =>
-                            <Row key={index} className="g-4">
-                                {Array.from({length: dataArt.length}).map((_, idx) => (
-                                    <Col key={idx}>
-                                        <Card style={{width: '210px', height:'420px'}}>
-                                            <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>
-                                            {/*<Card.Img variant="top" src={['./articles', props.article.id, props.article.image].join('/')} />*/}
-                                            <Card.Body>
-                                                <Card.Title>{elt.title}</Card.Title>
-                                                <Card.Subtitle className="mb-2 text-muted">{elt.category} - {elt.date}</Card.Subtitle>
-                                                <Card.Text>
-                                                    {elt.description}
-                                                </Card.Text>
-                                                <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
-                                            </Card.Body>
-                                        </Card>
-                                    </Col>
-                                ))}
+                            <Row key={index} className="g-4" xs={1} md={4}>
+                                <Col xs={1} md={4}>
+                                    <Card style={{width: '210px', height:'420px'}}>
+                                        <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>
+                                        {/*<Card.Img variant="top" src={['./articles', props.article.id, props.article.image].join('/')} />*/}
+                                        <Card.Body>
+                                            <Card.Title>{elt.title}</Card.Title>
+                                            <Card.Subtitle className="mb-2 text-muted">{elt.category} - {elt.date}</Card.Subtitle>
+                                            <Card.Text>
+                                                {elt.description}
+                                            </Card.Text>
+                                            <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
+                                        </Card.Body>
+                                    </Card>
+                                </Col>
                             </Row>
                     )}
                 </Tab>
                 <Tab eventKey="haircare" title="Soin des cheveux" >
                     {dataArt.map((elt, index) =>
-                            <Row key={index} className="g-4">
-                                {Array.from({length: dataArt.length}).map((_, idx) => (
-                                    <Col key={idx}>
-                                        <Card style={{width: '210px', height:'420px'}}>
-                                            <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>
-                                            {/*<Card.Img variant="top" src={['./articles', props.article.id, props.article.image].join('/')} />*/}
-                                            <Card.Body>
-                                                <Card.Title>{elt.title}</Card.Title>
-                                                <Card.Subtitle className="mb-2 text-muted">{elt.category} - {elt.date}</Card.Subtitle>
-                                                <Card.Text>
-                                                    {elt.description}
-                                                </Card.Text>
-                                                <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
-                                            </Card.Body>
-                                        </Card>
-                                    </Col>
-                                ))}
+                            <Row key={index} className="g-4" xs={1} md={4}>
+                                <Col xs={1} md={4}>
+                                    <Card style={{width: '210px', height:'420px'}}>
+                                        <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>
+                                        {/*<Card.Img variant="top" src={['./articles', props.article.id, props.article.image].join('/')} />*/}
+                                        <Card.Body>
+                                            <Card.Title>{elt.title}</Card.Title>
+                                            <Card.Subtitle className="mb-2 text-muted">{elt.category} - {elt.date}</Card.Subtitle>
+                                            <Card.Text>
+                                                {elt.description}
+                                            </Card.Text>
+                                            <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
+                                        </Card.Body>
+                                    </Card>
+                                </Col>
                             </Row>
                     )}
                 </Tab>
                 <Tab eventKey="naturalHair" title="Cheveux naturels">
                     {dataArt.map((elt, index) =>
-                            <Row key={index} className="g-4">
-                                {Array.from({length: dataArt.length}).map((_, idx) => (
-                                    <Col key={idx}>
-                                        <Card style={{width: '210px', height:'420px'}}>
-                                            <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>
-                                            {/*<Card.Img variant="top" src={['./articles', props.article.id, props.article.image].join('/')} />*/}
-                                            <Card.Body>
-                                                <Card.Title>{elt.title}</Card.Title>
-                                                <Card.Subtitle className="mb-2 text-muted">{elt.category} - {elt.date}</Card.Subtitle>
-                                                <Card.Text>
-                                                    {elt.description}
-                                                </Card.Text>
-                                                <Button variant="dark" onClick={() =>handleGoArticle(elt._id)}>Lire la suite</Button>
-                                            </Card.Body>
-                                        </Card>
-                                    </Col>
-                                ))}
+                            <Row key={index} className="g-4" xs={1} md={4}>
+                                <Col xs={1} md={4}>
+                                    <Card style={{width: '210px', height:'420px'}}>
+                                        <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>
+                                        {/*<Card.Img variant="top" src={['./articles', props.article.id, props.article.image].join('/')} />*/}
+                                        <Card.Body>
+                                            <Card.Title>{elt.title}</Card.Title>
+                                            <Card.Subtitle className="mb-2 text-muted">{elt.category} - {elt.date}</Card.Subtitle>
+                                            <Card.Text>
+                                                {elt.description}
+                                            </Card.Text>
+                                            <Button variant="dark" onClick={() =>handleGoArticle(elt._id)}>Lire la suite</Button>
+                                        </Card.Body>
+                                    </Card>
+                                </Col>
                             </Row>
                     )}
                 </Tab>
                 <Tab eventKey="coiffures" title="Coiffures">
                     {dataArt.map((elt, index) =>
-                            <Row key={index} className="g-4">
-                                {Array.from({length: dataArt.length}).map((_, idx) => (
-                                    <Col key={idx}>
-                                        <Card style={{width: '210px', height:'420px'}}>
-                                            <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>
-                                            {/*<Card.Img variant="top" src={['./articles', props.article.id, props.article.image].join('/')} />*/}
-                                            <Card.Body>
-                                                <Card.Title>{elt.title}</Card.Title>
-                                                <Card.Subtitle className="mb-2 text-muted">{elt.category} - {elt.date}</Card.Subtitle>
-                                                <Card.Text>
-                                                    {elt.description}
-                                                </Card.Text>
-                                                <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
-                                            </Card.Body>
-                                        </Card>
-                                    </Col>
-                                ))}
+                            <Row key={index} className="g-4" xs={1} md={4}>
+                                <Col xs={1} md={4}>
+                                    <Card style={{width: '210px', height:'420px'}}>
+                                        <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>
+                                        {/*<Card.Img variant="top" src={['./articles', props.article.id, props.article.image].join('/')} />*/}
+                                        <Card.Body>
+                                            <Card.Title>{elt.title}</Card.Title>
+                                            <Card.Subtitle className="mb-2 text-muted">{elt.category} - {elt.date}</Card.Subtitle>
+                                            <Card.Text>
+                                                {elt.description}
+                                            </Card.Text>
+                                            <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
+                                        </Card.Body>
+                                    </Card>
+                                </Col>
                             </Row>
                     )}
                 </Tab>

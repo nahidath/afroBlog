@@ -24,7 +24,7 @@
 }
 
 /* 3 */
-body, #home, .card-body,.article{
+body, #home, .card-body,.article, .search-page{
     background-color: var(--background-color);
     color: var(--font-color);
 }

@@ -2,14 +2,18 @@
     width: 1080px;
     min-height: 100%;
     top:10px;
-    background-color: white;
 
 }
 
-.search-page span{
+.search-page-title{
+    margin-top: 20px;
     font-size : 36px;
+    height : 130px;
 }
 
 .searchList{
-
+    display: flex;
+    flex-direction: row;
+    gap : 35px;
+    flex-wrap :wrap;
 }
