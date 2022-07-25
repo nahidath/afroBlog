@@ -42,9 +42,8 @@ function App() {
               <Route path='/profile' exact
                      render={(props) => <Profile {...props}/>}/>
               <Route path='/contact' component={ContactForm} />
-              {/*<Route path='/search?s=:word' exact*/}
-              {/*       render={(props) =><SearchPage{...props}/>} />*/}
-              <Route path='/search' component={SearchPage} />
+              <Route path='/search?s=:word' exact
+                     render={(props) =><SearchPage{...props}/>} />
             </Switch>
           </div>
           <Footer />

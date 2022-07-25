@@ -18,7 +18,7 @@ export default function SearchPage (props){
 
     useEffect(() => {
         getSearch();
-    }, []);
+    }, [query]);
 
 
     const getSearch = () => {
@@ -26,6 +26,7 @@ export default function SearchPage (props){
             params : {searchText : query}
         }).then((resp) => {
             setResults(resp.data.data);
+            console.log(resp.data.data);
         }).catch((err) => {
             console.log(err);
         });

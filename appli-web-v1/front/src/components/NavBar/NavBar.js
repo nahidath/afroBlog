@@ -89,8 +89,10 @@ export default function NavBar (props) {
 
     const handleSearch = () => {
         // history.push({pathname: '/search?s=' + searchText})
-        console.log(searchText);
-        history.push({pathname: '/search'})
+        if(isResearchDisplay){
+            history.push({pathname: '/search?s=' + searchText})
+        }
+
 
     }
 
@@ -133,10 +135,10 @@ export default function NavBar (props) {
                                 ref={researchRef} 
                                 style={{ display: isResearchDisplay ? "block" : "none" }}
                                 onChange={(e)=> setSearchText(e.target.value)}
-                                onSubmit={handleSearch}
+                                // onSubmit={handleSearch}
                             />
                             <IconButton aria-label="Search"
-                                        onClick={() => setResearchDisplay(!isResearchDisplay)}  size="medium"><ImSearch className="bs-search"/></IconButton>
+                                        onClick={() => {setResearchDisplay(!isResearchDisplay); handleSearch();}}  size="medium"><ImSearch className="bs-search"/></IconButton>
                         </Form>
                         {
                             (isLogged) ? <NavDropdown title={user.name} id="navbarScrollingDropdown" className="signupLink">

@@ -83,9 +83,8 @@ exports.getRandomArticles = async function(){
 }
 
 exports.searchArticles = async function(searchText){
-    const regex = "/"+searchText+"/"
-    const search =  await articleModel.find( { title: { $regex: regex, $options:'i'} } )
-
+    const search =  await articleModel.find( { title: { $regex: searchText, $options:'i'} } )
+    console.log(search)
     if(search){
         return{
             "status" : "success",
