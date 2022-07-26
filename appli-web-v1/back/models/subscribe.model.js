@@ -13,6 +13,10 @@ let subscribers = new Schema(
             required: true
         }
 
+    },
+    {
+        collection: "Subscribers",
+        versionKey: false
     }
 );
 

@@ -1,8 +1,8 @@
 const subscribersModel = require('./../models/subscribe.model')
 
 exports.subscribe = async function (email){
-    const checkSubscribe = (email) = await subscribersModel.findOne( {
-        email : email,
+    const checkSubscribe = await subscribersModel.findOne( {
+        email : email.email,
     }).select({_id:0, email: 1}).catch(err => {
         return {
             "status" : "fail",
@@ -12,21 +12,21 @@ exports.subscribe = async function (email){
 
     if (checkSubscribe){
         return {
-            "status" : "fail",
+            "status" : "infofail",
             "message" : "Vous êtes déjà abonné à notre newsletter"
         }
     }
 
-    const newSubcriber = await subscribersModel.create({
-        email : email,
-        subscribed: true
+    const newSubscriber = await subscribersModel.create({
+        email : email.email,
+        subscribed: 1
     }).catch(err => {
         return {
             "status" : "fail",
             "message" : err
         }
     });
-    if (newSubcriber) {
+    if (!newSubscriber) {
         return {
             "status" : "fail",
             "message" : "Erreur lors de l'insertion"
@@ -35,7 +35,8 @@ exports.subscribe = async function (email){
 
     return {
         "status" : "success",
-        "data" : newSubcriber
+        "data" : newSubscriber,
+        "message" : "Félicitations ! Vous êtes à present abonné à notre newsletter"
     }
 }
 
