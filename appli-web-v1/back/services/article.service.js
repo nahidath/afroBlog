@@ -57,7 +57,6 @@ exports.getArticleByID = async function (id){
 }
 
 exports.getFavArticleByID = async function (listID){
-    console.log("liste id", listID);
     const favArticles = await articleModel.find(
         {_id: { $in: listID } }
     )

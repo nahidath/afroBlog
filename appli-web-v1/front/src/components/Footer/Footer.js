@@ -18,7 +18,7 @@ export default function Footer () {
 
     const sendEmail = (e) => {
         e.preventDefault();
-        emailjs.send('service_ck55iw9', 'template_k4xib47', {email:email, image:'logoforemail.jpg'},'4efi92eRP81rtkqUk')
+        emailjs.send('service_ck55iw9', 'template_k4xib47', {email:email},'4efi92eRP81rtkqUk')
             .then(function(response) {
                 toast.info("Un email de bienvenue t'a été envoyé !", {
                     theme: "colored",
