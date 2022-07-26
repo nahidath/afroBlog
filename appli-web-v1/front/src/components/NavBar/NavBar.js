@@ -87,7 +87,8 @@ export default function NavBar (props) {
         });
     };
 
-    const handleSearch = () => {
+    const handleSearch = (event) => {
+        event.preventDefault();
         // history.push({pathname: '/search?s=' + searchText})
         if(isResearchDisplay){
             history.push({pathname: '/search?s=' + searchText})
@@ -126,7 +127,7 @@ export default function NavBar (props) {
                         </NavDropdown> */}
                     </Nav>
                     <Nav className='rightPart'>
-                        <Form className="d-flex">
+                        <Form className="d-flex" onSubmit={handleSearch}>
                             <FormControl
                                 type="search"
                                 placeholder="Search"
@@ -135,7 +136,6 @@ export default function NavBar (props) {
                                 ref={researchRef} 
                                 style={{ display: isResearchDisplay ? "block" : "none" }}
                                 onChange={(e)=> setSearchText(e.target.value)}
-                                // onSubmit={handleSearch}
                             />
                             <IconButton aria-label="Search"
                                         onClick={() => {setResearchDisplay(!isResearchDisplay); handleSearch();}}  size="medium"><ImSearch className="bs-search"/></IconButton>
