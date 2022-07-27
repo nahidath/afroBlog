@@ -18,6 +18,7 @@ import ContactForm from "./pages/ContactForm";
 import {ToastContainer} from "react-toastify";
 import DarkMode from "./components/Theme/DarkMode";
 import SearchPage from "./pages/SearchPage";
+import CGU from "./pages/CGU";
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
               <Route path='/contact' component={ContactForm} />
               <Route path='/search?s=:word' exact
                      render={(props) =><SearchPage{...props}/>} />
+              <Route path='/cgu' component={CGU}/>
             </Switch>
           </div>
           <Footer />

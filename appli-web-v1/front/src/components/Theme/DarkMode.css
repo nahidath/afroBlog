@@ -28,7 +28,7 @@ body, #home, .card-body,.article, .search-page{
     background-color: var(--background-color);
     color: var(--font-color);
 }
-.categoryArt a {
+.categoryArt a,.cgu-content h1 {
     color: var(--font-color);
 }
 .card-title a{
