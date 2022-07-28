@@ -59,3 +59,21 @@ exports.updateSubscription = async function (email) {
     }
 
 }
+
+exports.checkSubscribed = async function (email) {
+    const check = await subscribersModel.findOne( {
+        email : email.email,
+    }).select({_id:0, email: 1}).catch(err => {
+        return {
+            "status" : "fail",
+            "message" : err
+        }
+    });
+
+    if (check){
+        return {
+            "status" : "success",
+            "message" : "Vous êtes déjà abonné à notre newsletter"
+        }
+    }
+}

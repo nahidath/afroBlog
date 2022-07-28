@@ -174,6 +174,14 @@ export default function Profile(props) {
                             />
                         </Col>
                     </FormGroup>
+                    <Form.Group>
+                        <Form.Check
+                            type='checkbox'
+                            id="subscribeBox"
+                            label="S'abonner à la newsletter"
+                            onChange={(e) =>setChecked(e.target.checked)}
+                        />
+                    </Form.Group>
                     <FormGroup>
                         <Col smOffset={2} sm={10}>
                             <Button type="submit">Save</Button>

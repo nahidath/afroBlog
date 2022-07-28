@@ -4,6 +4,8 @@ import axios from 'axios';
 import './SignUp.css';
 import {Button, Col, Form} from "react-bootstrap";
 import {useHistory} from "react-router-dom";
+import {toast} from "react-toastify";
+import emailjs from "@emailjs/browser";
 
 
 export default function  SignUp() {
@@ -15,6 +17,7 @@ export default function  SignUp() {
     const [name,setName] = useState("");
     const [firstName,setFirstName] = useState("");
     const [confPwd, setConfPwd] = useState("");
+    const [checked, setChecked] = useState(false);
 
     const handleSignUp = () => {
         history.push({ pathname:'/sign-in'});
@@ -43,6 +46,7 @@ export default function  SignUp() {
             if(res.data["status"]=="fail"){
                 alert(res.data["message"])
             }else{
+                subSignUp();
                 handleSignUp();
             }
 
@@ -57,6 +61,29 @@ export default function  SignUp() {
         })
 
     };
+    const sendEmail = () => {
+        emailjs.send('service_ck55iw9', 'template_k4xib47', {email:email},'4efi92eRP81rtkqUk')
+            .then(function(response) {
+                console.log('SUCCESS!', response.status, response.text);
+            }, function(error) {
+                console.log('FAILED...', error);
+            });
+
+    }
+    const subSignUp = () =>{
+        if (checked){
+            axios.post('http://localhost:5000/sub/subscribe', {
+                withCredentials: true,
+                data: {
+                    email: email
+                }
+            }).then((res) =>{
+                    sendEmail();
+            }).catch((err) => {
+                console.log(err);
+            })
+        }
+    }
 
 
     return (
@@ -129,6 +156,14 @@ export default function  SignUp() {
                             // placeholder="Confirmez votre mot de passe"
                         />
                     </Col>
+                </Form.Group>
+                <Form.Group>
+                    <Form.Check
+                        type='checkbox'
+                        id="subscribeBox"
+                        label="S'abonner à la newsletter"
+                        onChange={(e) =>setChecked(e.target.checked)}
+                    />
                 </Form.Group>
                 <Form.Group>
                     <Col smOffset={2} sm={10}>
