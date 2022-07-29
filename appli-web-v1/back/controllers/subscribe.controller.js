@@ -17,3 +17,12 @@ exports.updateSubscription = async function (req, res, next) {
         next(err);
     }
 }
+
+exports.checkSubscribed = async function (req, res, next) {
+    try {
+        res.json(await subscribeService.checkSubscribed(req.query.email));
+    } catch (err) {
+        console.error('Error while checkSubscribed:', err.message);
+        next(err);
+    }
+}

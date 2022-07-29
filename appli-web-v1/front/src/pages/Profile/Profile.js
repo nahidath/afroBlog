@@ -7,11 +7,16 @@ import {toast} from "react-toastify";
 import {useHistory} from "react-router-dom";
 import SignIn from "../Auth/SignIn";
 import {forEach} from "react-bootstrap/ElementChildren";
+import emailjs from "@emailjs/browser";
 
 
 
 
 export default function Profile(props) {
+    const getCurrentUser = () => {
+        return JSON.parse(localStorage.getItem("user"));
+    };
+    const currentUser = getCurrentUser();
 
     const history = useHistory();
 
@@ -29,17 +34,15 @@ export default function Profile(props) {
     const [listArt, setListArt] = useState([]);
     const [firstName, setfirstName] = useState("");
     const [name, setName] = useState("");
-    const [oldPassword, setoldPassword] = useState("");
     const [newPassword, setnewPassword] = useState("");
+    const [checkbox, setCheckbox] = useState("");
+    const [checked, setChecked] = useState(false);
 
-    const getCurrentUser = () => {
-        return JSON.parse(localStorage.getItem("user"));
-    };
-    const currentUser = getCurrentUser();
 
     useEffect(() => {
         // getUserProfile();
         displayFavArtUsr();
+        setCheckboxSub();
     }, [])
 
     // useEffect(() => {
@@ -58,8 +61,68 @@ export default function Profile(props) {
     //     });
     // }
 
+    const sendEmail = (sub) => {
+        if(sub == "subscribe"){
+            emailjs.send('service_ck55iw9', 'template_k4xib47', {email:currentUser.email, subject:"Bienvenue sur notre newsletter !!", message:"\n" +
+                    "BIENVENUE CHEZ AFROBLOG !\n" +
+                    "\n" +
+                    "MERCI DE T'ÊTRE ABONNÉ(E) À LA NEWSLETTER D' AFROBLOG. DÈS AUJOURD'HUI, TU RECEVRAS PAR MAIL DES INFORMATIONS SUR LES TENDANCES, LA MODE ET LES NOUVEAUTÉS D' AFROBLOG. TU SERAS INFORMÉ(E) À TOUT MOMENT !\n" +
+                    "\n" +
+                    "À BIENTÔT ET PROFITE BIEN DE NOTRE BLOG !\n" +
+                    "\n" +
+                    "www.afroblog.com"},'4efi92eRP81rtkqUk')
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                }, function(error) {
+                    console.log('FAILED...', error);
+                });
+
+        }else{
+            emailjs.send('service_ck55iw9', 'template_k4xib47', {email:currentUser.email, subject: "Oh non vous partez !", message:"Oh non, vous vous êtes désabonné de la newsletter!\nMais c'est pas grave tu continueras à avoir accès à tous les articles du blog.\n\nA très vite !!!\n\n\nwww.afroblog.com"},'4efi92eRP81rtkqUk')
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                }, function(error) {
+                    console.log('FAILED...', error);
+                });
+        }
+
+    }
+
+    const subscribe = (event, check) => {
+        if(check == true){
+            axios.post('http://localhost:5000/sub/subscribe', {
+                withCredentials: true,
+                data: {
+                    email: currentUser.email
+                }
+            }).then((res) =>{
+                toast.success(res.data["message"], {
+                    theme: "colored",
+                    position: toast.POSITION.TOP_CENTER
+                });
+                sendEmail("subscribe");
+            }).catch((err) => {
+                console.log(err);
+            })
+        }else{
+            axios.post('http://localhost:5000/sub/unsubscribe', {
+                withCredentials: true,
+                data: {
+                    email: currentUser.email
+                }
+            }).then((res) =>{
+                sendEmail("unsubscribe");
+            }).catch((err) => {
+                console.log(err);
+            })
+        }
+
+
+    }
+
+    //TODO:revoir cette fonction
     const updateProfile = (event) => {
-        if(oldPassword == props.match.params.password) {
+        if(newPassword !== "") {
             axios.post('http://localhost:5000/user/updateProfile',{
                 withCredentials: true,
                 data : {
@@ -73,6 +136,11 @@ export default function Profile(props) {
             }).then((resp) => {
                 const updtUser = resp.data.data;
                 setupdtProfile(updtUser);
+                if(checked){
+                  subscribe(event,true);
+                }else{
+                    subscribe(event,false);
+                }
                 event.target.reset();
                 toast.success("Profil modifié", {
                     theme: "colored",
@@ -105,6 +173,13 @@ export default function Profile(props) {
         history.push({ pathname:'/article/' + article_id});
     }
 
+    const setCheckboxSub = () => {
+        axios.get('http://localhost:5000/sub/check',{
+            params: {email : currentUser.email}
+        }).then((resp) => {
+            setCheckbox("checked");
+        })
+    }
 
 
     return(
@@ -150,19 +225,6 @@ export default function Profile(props) {
                             />
                         </Col>
                     </FormGroup>
-
-                    <FormGroup controlId="getOldPassword">
-                        <Col componentClass={Form.Label}>
-                            Old password
-                        </Col>
-                        <Col sm={10}>
-                            <FormControl
-                                type="password"
-                                onChange={(e) => setoldPassword(e.target.value)}
-                            />
-                        </Col>
-                    </FormGroup>
-
                     <FormGroup controlId="getNewPassword">
                         <Col componentClass={Form.Label}>
                             New Password
@@ -180,6 +242,7 @@ export default function Profile(props) {
                             id="subscribeBox"
                             label="S'abonner à la newsletter"
                             onChange={(e) =>setChecked(e.target.checked)}
+                            checked={checkbox}
                         />
                     </Form.Group>
                     <FormGroup>

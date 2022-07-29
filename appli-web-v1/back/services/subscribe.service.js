@@ -73,7 +73,7 @@ exports.checkSubscribed = async function (email) {
     if (check){
         return {
             "status" : "success",
-            "message" : "Vous êtes déjà abonné à notre newsletter"
+            "message" : "true"
         }
     }
 }

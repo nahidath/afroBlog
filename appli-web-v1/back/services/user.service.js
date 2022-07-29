@@ -102,7 +102,7 @@ exports.getUserInfos = async function (userEmail){
 }
 
 exports.updateUserProfile = async function (user){
-    const updateInfos = await userModel.updateMany(
+    const updateInfos = await userModel.updateOne(
         { email: user.email},
         { $set: { name: user.name, firstname: user.firstName, password: user.password } }
     ).catch(err => {
