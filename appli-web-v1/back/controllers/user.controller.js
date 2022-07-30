@@ -29,7 +29,7 @@ exports.getUserInfos = async function (req, res, next) {
 
 exports.updateUserProfile = async function (req, res, next) {
     try {
-        res.json(await userService.updateUserProfile(req.query.email));
+        res.json(await userService.updateUserProfile(req.body.data));
     } catch (err) {
         console.error('Error while updateUserProfile :', err.message);
         next(err);

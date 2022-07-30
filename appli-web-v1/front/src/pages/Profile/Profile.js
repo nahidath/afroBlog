@@ -120,40 +120,32 @@ export default function Profile(props) {
 
     }
 
-    //TODO:revoir cette fonction
     const updateProfile = (event) => {
-        if(newPassword !== "") {
-            axios.post('http://localhost:5000/user/updateProfile',{
-                withCredentials: true,
-                data : {
-                    email : props.match.params.email,
-                    name : name,
-                    firstName : firstName,
-                    password : newPassword
-
-                }
-
-            }).then((resp) => {
-                const updtUser = resp.data.data;
-                setupdtProfile(updtUser);
-                if(checked){
-                  subscribe(event,true);
-                }else{
-                    subscribe(event,false);
-                }
-                event.target.reset();
-                toast.success("Profil modifié", {
-                    theme: "colored",
-                    position: toast.POSITION.TOP_CENTER
-                });
-            })
-        }else{
-            toast.error("L'ancien mot de passe ne correspond pas", {
+        axios.post('http://localhost:5000/user/updateProfile',{
+            withCredentials: true,
+            data : {
+                email : currentUser.email,
+                name : name,
+                firstName : firstName,
+                password : newPassword
+            }
+        }).then((resp) => {
+            setupdtProfile(resp.data.data);
+            const userStored = JSON.stringify(resp.data.data);
+            localStorage.setItem("user", userStored);
+            // if(checked){
+            //   subscribe(event,true);
+            // }else{
+            //     subscribe(event,false);
+            // }
+            event.target.reset();
+            toast.success("Profil modifié", {
                 theme: "colored",
                 position: toast.POSITION.TOP_CENTER
             });
-            event.preventDefault();
-        }
+        }).catch((err) => {
+        console.log(err);
+        })
 
     }
 
@@ -177,8 +169,14 @@ export default function Profile(props) {
         axios.get('http://localhost:5000/sub/check',{
             params: {email : currentUser.email}
         }).then((resp) => {
-            setCheckbox("checked");
-        })
+            if(resp.data["status"] == "success"){
+                setCheckbox("checked");
+            }else{
+                setCheckbox("");
+            }
+        }).catch((err) => {
+            console.log(err);
+        });
     }
 
 
@@ -191,11 +189,7 @@ export default function Profile(props) {
                     {/*<BsFillPencilFill/>*/}
                 </div>
                 <div className="welcome-text">
-                    Welcome {
-                        // (updtProfile.name != profile.name) updtProfile.name : profile.name
-                        currentUser.name
-                    }
-
+                    Welcome {currentUser.name}
                 </div>
             </div>
             <div className="edit-profile-zone">
@@ -254,10 +248,10 @@ export default function Profile(props) {
                 <hr/>
                 <div className="fav-zone">
                     <span>Vos articles favoris <BsFillSuitHeartFill/></span>
-                    {listArt.map((elt, index) =>
-                        <Row key={index} className="g-4 miniature">
-                            {Array.from({length: listArt.length}).map((_, idx) => (
-                                <Col key={idx}>
+                    <div className="fav-zone-art">
+                        {listArt.map((elt, index) =>
+                            <Row key={index} className="g-4 miniature" xs={1} md={4}>
+                                <Col xs={1} md={4}>
                                     <Card style={{width: '210px', height:'350px'}}>
                                         <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>
                                         {/*<Card.Img variant="top" src={['./articles', props.article.id, props.article.image].join('/')} />*/}
@@ -267,9 +261,9 @@ export default function Profile(props) {
                                         </Card.Body>
                                     </Card>
                                 </Col>
-                            ))}
-                        </Row>
-                    )}
+                            </Row>
+                        )}
+                    </div>
                 </div>
             </div>
 

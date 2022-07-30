@@ -47,12 +47,6 @@
     font-weight: bold;
 }
 
-.fav-zone{
-    display: flex;
-    justify-content: center;
-    flex-direction:column;
-}
-
 .fav-zone .card{
     border: none
 }
@@ -77,4 +71,10 @@
     font-style: italic;
     padding: 10px 0px 15px;
     gap:10px;
+}
+
+.fav-zone-art{
+    display: flex;
+    flex-flow: row wrap;
+    gap:15px;
 }

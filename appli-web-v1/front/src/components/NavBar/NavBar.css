@@ -31,6 +31,11 @@
 
 #navBar .rightPart {
     margin-left: auto;
+    margin-right: 20px;
+}
+
+.dropdown-menu{
+    min-width: 7rem !important;
 }
 
 #navBar .nav-link {

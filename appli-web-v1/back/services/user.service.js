@@ -102,9 +102,17 @@ exports.getUserInfos = async function (userEmail){
 }
 
 exports.updateUserProfile = async function (user){
+    let params= {
+        name: user.name, firstname: user.firstName, password: user.password
+    };
+    for(let prop in params){ //it will remove fields who are undefined or null
+        if(!params[prop]){
+            delete params[prop];
+        }
+    }
     const updateInfos = await userModel.updateOne(
         { email: user.email},
-        { $set: { name: user.name, firstname: user.firstName, password: user.password } }
+        params
     ).catch(err => {
         return {
             "status" : "fail",
@@ -113,9 +121,20 @@ exports.updateUserProfile = async function (user){
     });
 
     if(updateInfos){
-        return {
-            "status" : "success",
-            "data" : updateInfos
+        const infoUser = await userModel.findOne(
+            { email : user.email  }
+        ).catch(err => {
+            return {
+                "status" : "fail",
+                "message" : err
+            }
+        });
+
+        if(infoUser){
+            return {
+                "status" : "success",
+                "data" : infoUser
+            }
         }
     }
 }
