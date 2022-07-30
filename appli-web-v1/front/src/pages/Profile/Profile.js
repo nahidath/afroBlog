@@ -1,6 +1,6 @@
 import './Profile.css';
 import {Button, Card, Col, Form, FormControl, FormGroup, Row} from "react-bootstrap";
-import {React, useEffect, useState} from "react";
+import {React, useEffect, useRef, useState} from "react";
 import {BsFillPencilFill, BsFillSuitHeartFill} from "react-icons/bs";
 import axios from "axios";
 import {toast} from "react-toastify";
@@ -35,7 +35,7 @@ export default function Profile(props) {
     const [firstName, setfirstName] = useState("");
     const [name, setName] = useState("");
     const [newPassword, setnewPassword] = useState("");
-    const [checkbox, setCheckbox] = useState("");
+    const [checkbox, setCheckbox] = useState(false);
     const [checked, setChecked] = useState(false);
 
 
@@ -60,6 +60,11 @@ export default function Profile(props) {
     //         console.log(err);
     //     });
     // }
+
+    const fileInput = useRef();
+    const selectFile = () => {
+        fileInput.current.click();
+    }
 
     const sendEmail = (sub) => {
         if(sub == "subscribe"){
@@ -133,16 +138,17 @@ export default function Profile(props) {
             setupdtProfile(resp.data.data);
             const userStored = JSON.stringify(resp.data.data);
             localStorage.setItem("user", userStored);
-            // if(checked){
-            //   subscribe(event,true);
-            // }else{
-            //     subscribe(event,false);
-            // }
+            if(checkbox == false && checked == true){
+              subscribe(event,true);
+            }else if(checkbox == true && checked == false){
+                subscribe(event,false);
+            }
             event.target.reset();
             toast.success("Profil modifié", {
                 theme: "colored",
                 position: toast.POSITION.TOP_CENTER
             });
+            window.location.reload(); //TODO: voir pk avec ça ça marche
         }).catch((err) => {
         console.log(err);
         })
@@ -170,9 +176,9 @@ export default function Profile(props) {
             params: {email : currentUser.email}
         }).then((resp) => {
             if(resp.data["status"] == "success"){
-                setCheckbox("checked");
+                setCheckbox(true);
             }else{
-                setCheckbox("");
+                setCheckbox(false);
             }
         }).catch((err) => {
             console.log(err);
@@ -185,7 +191,11 @@ export default function Profile(props) {
             <div className="welcome-zone">
                 <div className="profile-pic">
                     <img src="/love-test.png" alt= "profilePic" width={"100px;"} height={"100px;"} />
-                    <Button variant="outline-dark" size="sm" type="button"> <BsFillPencilFill/> </Button>
+                    <input
+                        style={{display: 'none'}}
+                        ref={fileInput}
+                        type="file"/>
+                    <Button variant="outline-dark" size="sm" type="button" onClick={selectFile}> <BsFillPencilFill/> </Button>
                     {/*<BsFillPencilFill/>*/}
                 </div>
                 <div className="welcome-text">

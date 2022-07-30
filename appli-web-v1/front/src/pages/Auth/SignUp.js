@@ -44,7 +44,10 @@ export default function  SignUp() {
         }).then((res) =>{
             console.log(res)
             if(res.data["status"]=="fail"){
-                alert(res.data["message"])
+                toast.error(res.data["message"], {
+                    theme: "colored",
+                    position: toast.POSITION.TOP_CENTER
+                });
             }else{
                 subSignUp();
                 handleSignUp();
