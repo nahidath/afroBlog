@@ -1,4 +1,4 @@
-appli-web-v1/front/node_modules
-appli-web-v1/back/node_modules
-appli-web-v1/back/.env
-
+front/node_modules
+back/node_modules
+back/.env
+.idea
