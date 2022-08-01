@@ -2,12 +2,12 @@ import "./About.css";
 
 
 
-export default function About{
+export default function About(){
   
   return (
     <div className="about-wrapper">
       <div className="aboutPic">
-        //<img src
+       {/*<img src*/}
       </div>
       <div className="about-content">
         <p>

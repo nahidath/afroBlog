@@ -15,11 +15,12 @@ export default function Article (props) {
     const [content, setContent] = useState("");
     const [commentArt, setCommentArt] = useState([]);
     const [isFav, setisFav] = useState(false);
-    const [favListCU, setFavListCU] = useState([]);
     const getCurrentUser = () => {
         return JSON.parse(localStorage.getItem("user"));
     };
     const currentUser = getCurrentUser();
+    // const [favListCU, setFavListCU] = useState(currentUser.favArtList);
+
 
     const history = useHistory();
     const [dataArt, setDataArt] = useState({
@@ -40,13 +41,10 @@ export default function Article (props) {
 
     }, []);
 
-    // useEffect(() => {
-    //     const usrUpdt = {
-    //         ...currentUser,
-    //         favArtList : favListCU
-    //     }
-    //     localStorage.setItem("user", JSON.stringify(usrUpdt));
-    // },[isFav])
+    // const usrUpdt = {
+    //             ...currentUser,
+    //             favArtList : favListCU}
+    // localStorage.setItem("user", JSON.stringify(usrUpdt));
 
 
     const getArticle = () => {
@@ -120,16 +118,20 @@ export default function Article (props) {
         })
     }
 
-    const getFavListCurrentUser = () => {
-        axios.get('http://localhost:5000/user/favListArt',{
-            params : {email: currentUser.email}
-        }).then((resp) => {
-            setFavListCU(resp.data.data);
-            console.log(resp.data.data)
-        }).catch((err) => {
-            console.log(err);
-        });
-    }
+    // const getFavListCurrentUser = () => {
+    //     axios.get('http://localhost:5000/user/favListArt',{
+    //         params : {email: currentUser.email}
+    //     }).then((resp) => {
+    //         const getItem = resp.data.data;
+    //         for (var item in getItem) {
+    //             favListCU.push(getItem[item]);
+    //         }
+    //         setFavListCU(favListCU);
+    //         console.log(resp.data.data);
+    //     }).catch((err) => {
+    //         console.log(err);
+    //     });
+    // }
 
     const favColorTheme = () => {
         const storedTheme = localStorage.getItem("theme");
