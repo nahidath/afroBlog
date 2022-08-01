@@ -19,7 +19,7 @@ import {ToastContainer} from "react-toastify";
 import DarkMode from "./components/Theme/DarkMode";
 import SearchPage from "./pages/SearchPage";
 import CGU from "./pages/CGU";
-
+import About from "./pages/About";
 
 function App() {
 
@@ -46,6 +46,7 @@ function App() {
               <Route path='/search?s=:word' exact
                      render={(props) =><SearchPage{...props}/>} />
               <Route path='/cgu' component={CGU}/>
+              <Route path='/about' component={About}/>
             </Switch>
           </div>
           <Footer />
