@@ -1,4 +1,7 @@
 const userModel = require('./../models/user.model');
+const jwt = require("jsonwebtoken");
+const jwtKey = 'moussestlepluscharismatique!!!!';
+
 
 exports.signup = async function (user) {
     const checkUserExists = (user) = await userModel.findOne( {
@@ -48,60 +51,94 @@ exports.signup = async function (user) {
 exports.signin = async function (user){
     const userFind = await userModel.findOne({
         email: user.email
-    });
-    // .select({
-    //     _id:0,
-    //     password: 1
-    // })
-    // .catch(err => {
-    //     return {
-    //         "status" : "fail",
-    //         "message" : err
-    //     }
-    // });
-
-
-    if(userFind == null){
-        return {
-            "status" : "fail",
-            "message" : "email incorrect"
-        }
-    }else if(userFind.password == user.password) {
-        return {
-            "status" : "success",
-            "message" : "password correct",
-            "data": userFind
-        }
-    }else {
-        return {
-            "status" : "fail",
-            "message" : "password incorrect"
-        }
-    }
-
-
-
-};
-
-exports.getUserInfos = async function (userEmail){
-    const infoUser = await userModel.findOne(
-        { email : userEmail }
-    ).catch(err => {
+    })
+    .select({
+        _id: 0,
+        name: 1,
+        firstName: 1,
+        email: 1,
+        password: 1,
+        favArtList: 1,
+    })
+    .catch(err => {
         return {
             "status" : "fail",
             "message" : err
         }
     });
 
-    if(infoUser){
+    if (userFind == null){
+        return {
+            "status" : "fail",
+            "message" : "email incorrect"
+        }
+    }
+    
+    if (userFind.password == user.password) {
+        let token = createCookie(user.email);    
+        let infos = {
+            name        : userFind.name,
+            firstName   : userFind.firstName,
+            email       : userFind.email,
+            favArtList  : userFind.favArtList,
+        };
         return {
             "status" : "success",
-            "data" : infoUser
+            "message" : "password correct",
+            "data": {
+                "informations": infos,
+                "token": token
+            }
         }
+    } else {
+        return {
+            "status" : "fail",
+            "message" : "password incorrect"
+        }
+    }
+};
+
+exports.refresh = async function (userEmail){
+    const userFind = await userModel.findOne({
+        email: userEmail
+    })
+    .select({
+        _id: 0,
+        name: 1,
+        firstName: 1,
+        email: 1,
+        password: 1,
+        favArtList: 1,
+    })
+    .catch(err => {
+        return {
+            "status" : "fail",
+            "message" : err
+        }
+    });
+
+    console.log(userFind)
+
+    if (!userFind) {
+        return {
+            "status" : "fail",
+            "message" : "Utilisateur introuvable"
+        }
+    }
+
+    let infos = {
+        name        : userFind.name,
+        firstName   : userFind.firstName,
+        email       : userFind.email,
+        favArtList  : userFind.favArtList,
+    };
+    return {
+        "status" : "success",
+        "data" : infos
     }
 }
 
-exports.updateUserProfile = async function (user){
+exports.updateProfile = async function (user){
     let params= {
         name: user.name, firstname: user.firstName, password: user.password
     };
@@ -169,28 +206,15 @@ exports.updateFavArticles = async function (mail, action, articleId){
     }
 }
 
-exports.getFavArticlesByUser = async function(emailUsr){
-    const favListArt = await userModel.findOne({
-        email: emailUsr
-    }).select({
-        _id:0,
-        favListArt: 1
-    })
-    .catch(err => {
-        return {
-            "status" : "fail",
-            "message" : err
-        }
+
+
+function createCookie (pEmail) {
+    let profile = {
+        email: pEmail
+    };
+    const token = jwt.sign({ profile }, jwtKey, {
+        algorithm: "HS256"
     });
-
-    if(favListArt){
-        return {
-            "status" : "success",
-            "data" : favListArt
-        }
-    }
-
-};
-
-
+    return token;
+}
 

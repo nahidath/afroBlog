@@ -10,6 +10,14 @@ app.use(cors({
 }));
 app.use(express.json());
 
+const cookieParser = require('cookie-parser');
+app.use(express.json());
+app.use(cookieParser('my-secret'));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+
+
 // Server initialization
 var credentials;
 var server = require('http').createServer(credentials, app);
@@ -23,6 +31,10 @@ mongoose.connect(db_url, {
 })
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 mongoose.connection.on('connected', () => console.log('Database connected'));
+
+// Middlewares
+const identificationMiddleware = require('./middlewares/identification.middleware.js');
+app.use('/', identificationMiddleware.checkCookie);
 
 // Routes
 const userRouter = require('./routes/user.route');

@@ -6,9 +6,9 @@ const userController = require('../controllers/user.controller');
 // Sign up
 router.post('/signup', userController.signup);
 router.post('/signin', userController.signin);
-router.get('/user', userController.getUserInfos);
-router.post('/updateProfile', userController.updateUserProfile);
+router.get('/refresh', userController.refresh);
+router.get('/logout', userController.logout);
+router.post('/updateProfile', userController.updateProfile);
 router.post('/updateFavArticles', userController.updateFavArticles);
-router.get('/favListArt', userController.getFavArticlesByUser);
 
 module.exports = router;

@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import {ToastContainer} from "react-toastify";
+import axios from 'axios';
 
 import Home   from './pages/Home/Home';
 import SignIn from './pages/Auth/SignIn';
@@ -15,21 +14,37 @@ import Profile from "./pages/Profile/Profile";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import ContactForm from "./pages/ContactForm";
-import {ToastContainer} from "react-toastify";
-import DarkMode from "./components/Theme/DarkMode";
+
 import SearchPage from "./pages/SearchPage";
 import CGU from "./pages/CGU";
 import About from "./pages/About";
 
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+axios.defaults.withCredentials = true;
+
 function App() {
 
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/user/refresh', {
+    }).then((res) => {
+      if (res.data.status === 'success') {
+        setUser(res.data.data);
+      }
+    }).catch((err) => {
+      console.log(err);
+    })
+  }, []);
 
   return (
     <>
     <Header />
     <div id="app">
       <Router forceRefresh={false}>
-          <NavBar />
+          <NavBar user={user} setUser={setUser}/>
           <div className='section-central'>
             <ToastContainer hideProgressBar={true} />
             <Switch>
@@ -38,7 +53,8 @@ function App() {
               <Route path="/articles/:filters" exact 
                 render={(props) => <Articles {...props}/>} />
               <Route path='/' exact component={Home} />
-              <Route path='/sign-in' component={SignIn} />
+              <Route path="/sign-in"  
+                render={() => <SignIn setUser={setUser}/>} />
               <Route path='/sign-up' component={SignUp} />
               <Route path='/profile' exact
                      render={(props) => <Profile {...props}/>}/>

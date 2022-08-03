@@ -21,8 +21,6 @@ export default function NavBar (props) {
     const history = useHistory();
 
     const [isResearchDisplay, setResearchDisplay] = useState(false);
-    const [user, setUser] = useState("");
-    const [isLogged, setisLogged] = useState(false);
     const researchRef = useRef();
     const [searchText, setSearchText] = useState("");
 
@@ -54,9 +52,6 @@ export default function NavBar (props) {
     }, [positionNav, top]);
 
 
-    useEffect(() => {
-        checkLogged();
-    },[]);
 
     const handleScroll = () => {
         if (positionNav !== "fixed" && window.pageYOffset > 450) {
@@ -70,21 +65,20 @@ export default function NavBar (props) {
         }
     };
 
-    const checkLogged = () => {
-        const loggedInUser = localStorage.getItem("user");
-        if (loggedInUser) {
-            const foundUser = JSON.parse(loggedInUser);
-            setUser(foundUser);
-            setisLogged(true);
-        }
-    }
     const handleLogout = () => {
-        localStorage.clear();
-        window.location = "/";
-        toast.success("Déconnexion réussie", {
-            theme: "colored",
-            position: toast.POSITION.TOP_RIGHT
-        });
+        axios.get('http://localhost:5000/user/logout', {
+        }).then((res) => {
+            console.log(res)
+            if (res.data.status === 'success') {
+                props.setUser({});
+                toast.success("Déconnexion réussie", {
+                    theme: "colored",
+                    position: toast.POSITION.TOP_RIGHT
+                });
+            }
+        }).catch((err) => {
+            console.log(err);
+        })
     };
 
     const handleSearch = (event) => {
@@ -141,7 +135,7 @@ export default function NavBar (props) {
                                         onClick={() => {setResearchDisplay(!isResearchDisplay); handleSearch();}}  size="medium"><ImSearch className="bs-search"/></IconButton>
                         </Form>
                         {
-                            (isLogged) ? <NavDropdown title={user.name} id="navbarScrollingDropdown" className="signupLink">
+                            (props.user.name) ? <NavDropdown title={props.user.name} id="navbarScrollingDropdown" className="signupLink">
                         <NavDropdown.Item onClick={goToProfile}>Profile</NavDropdown.Item>
                         <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
                         </NavDropdown>:<Nav.Link className="signupLink" onClick={handleSignIn}>
