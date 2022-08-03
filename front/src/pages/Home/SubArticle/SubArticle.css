@@ -31,6 +31,19 @@
     height: 420px;
     border : none;
     margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+.displaySubArt .card-body {
+    padding : 1.25rem 0 0 0 !important;
+}
+
+.displaySubArt .card-title {
+    font-size : 18px;
+}
+
+.displaySubArt .card-text {
+    font-size: 15px;
 }
 
 @media screen and (max-width: 850px) { 

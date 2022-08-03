@@ -50,7 +50,7 @@ export default function Hair(){
                     {dataArt.map((elt, index) =>
                             <Row key={index} className="g-4" xs={1} md={4}>
                                 <Col xs={1} md={4}>
-                                    <Card style={{width: '210px', height:'420px'}}>
+                                    <Card>
                                         <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>
                                         {/*<Card.Img variant="top" src={['./articles', props.article.id, props.article.image].join('/')} />*/}
                                         <Card.Body>
@@ -70,7 +70,7 @@ export default function Hair(){
                     {dataArt.map((elt, index) =>
                             <Row key={index} className="g-4" xs={1} md={4}>
                                 <Col xs={1} md={4}>
-                                    <Card style={{width: '210px', height:'420px'}}>
+                                    <Card>
                                         <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>
                                         {/*<Card.Img variant="top" src={['./articles', props.article.id, props.article.image].join('/')} />*/}
                                         <Card.Body>
@@ -90,7 +90,7 @@ export default function Hair(){
                     {dataArt.map((elt, index) =>
                             <Row key={index} className="g-4" xs={1} md={4}>
                                 <Col xs={1} md={4}>
-                                    <Card style={{width: '210px', height:'420px'}}>
+                                    <Card>
                                         <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>
                                         {/*<Card.Img variant="top" src={['./articles', props.article.id, props.article.image].join('/')} />*/}
                                         <Card.Body>
@@ -110,7 +110,7 @@ export default function Hair(){
                     {dataArt.map((elt, index) =>
                             <Row key={index} className="g-4" xs={1} md={4}>
                                 <Col xs={1} md={4}>
-                                    <Card style={{width: '210px', height:'420px'}}>
+                                    <Card>
                                         <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>
                                         {/*<Card.Img variant="top" src={['./articles', props.article.id, props.article.image].join('/')} />*/}
                                         <Card.Body>
