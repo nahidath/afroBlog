@@ -105,7 +105,6 @@ export default function Article (props) {
     const handleFavAddClick = () => {
         let action = !isFav ? "add" : "delete";
         axios.post('http://localhost:5000/user/updateFavArticles', {
-            mail: currentUser.email,
             action: action,
             articleID : props.match.params.id
         }).then((res) =>{

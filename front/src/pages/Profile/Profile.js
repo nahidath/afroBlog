@@ -129,7 +129,6 @@ export default function Profile(props) {
         axios.post('http://localhost:5000/user/updateProfile',{
             withCredentials: true,
             data : {
-                email : currentUser.email,
                 name : name,
                 firstName : firstName,
                 password : newPassword

@@ -11,45 +11,66 @@ exports.signup = async function (req, res, next) {
 
 exports.signin = async function (req, res, next) {
     try {
-        res.json(await userService.signin(req.body.data));
+        let login = await userService.signin(req.body);
+        if (login["status"] === "success") {
+            let token = login["data"]["token"];
+            res
+                .cookie("token", token, { 
+                    sameSite: 'strict',
+                    path: '/',
+                    httpOnly: true,
+                    signed: true
+                })
+                .json({
+                    "status" : "success",
+                    "data" : login["data"]["informations"]
+                });
+        } else {
+            res.json(login);
+        }
     } catch (err) {
         console.error('Error while sign in', err.message);
         next(err);
     }
 }
 
-exports.getUserInfos = async function (req, res, next) {
+exports.refresh = async function (req, res, next) {
     try{
-        res.json(await userService.getUserInfos(req.query.email));
+        res.json(await userService.refresh(req.email));
     } catch (err) {
-        console.error('Error while getUserInfos :', err.message);
+        console.error('Error while refresh :', err.message);
         next(err);
     }
 }
 
-exports.updateUserProfile = async function (req, res, next) {
-    try {
-        res.json(await userService.updateUserProfile(req.body.data));
+exports.logout = async function (req, res, next) {
+    try{
+        res
+            .clearCookie("token")
+            .json({
+                "status" : "success",
+                "data" : "Logout succeed"
+            });
     } catch (err) {
-        console.error('Error while updateUserProfile :', err.message);
+        console.error('Error while logout :', err.message);
+        next(err);
+    }
+}
+
+exports.updateProfile = async function (req, res, next) {
+    try {
+        res.json(await userService.updateProfile(req.email, req.body.data));
+    } catch (err) {
+        console.error('Error while updateProfile :', err.message);
         next(err);
     }
 }
 
 exports.updateFavArticles = async function (req, res, next) {
     try {
-        res.json(await userService.updateFavArticles(req.body.mail, req.body.action, req.body.articleID));
+        res.json(await userService.updateFavArticles(req.email, req.body.action, req.body.articleID));
     } catch (err) {
         console.error('Error while updateFavArticles :', err.message);
-        next(err);
-    }
-}
-
-exports.getFavArticlesByUser = async function (req, res, next) {
-    try {
-        res.json(await userService.getFavArticlesByUser(req.query.email));
-    } catch (err) {
-        console.error('Error while getFavArticlesByUser :', err.message);
         next(err);
     }
 }
