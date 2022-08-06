@@ -117,8 +117,6 @@ exports.refresh = async function (userEmail){
         }
     });
 
-    console.log(userFind)
-
     if (!userFind) {
         return {
             "status" : "fail",
@@ -138,18 +136,23 @@ exports.refresh = async function (userEmail){
     }
 }
 
-exports.updateProfile = async function (user){
-    let params= {
-        name: user.name, firstname: user.firstName, password: user.password
+exports.updateProfile = async function (mail, data){
+    let params = {
+        name: data.name, 
+        firstName: data.firstName, 
+        password: data.password
     };
-    for(let prop in params){ //it will remove fields who are undefined or null
+    
+    // Remove fields who are undefined or null
+    for (let prop in params){ 
         if(!params[prop]){
             delete params[prop];
         }
     }
+
     const updateInfos = await userModel.updateOne(
-        { email: user.email},
-        params
+        { email: mail},
+        { $set: params }
     ).catch(err => {
         return {
             "status" : "fail",
@@ -157,22 +160,48 @@ exports.updateProfile = async function (user){
         }
     });
 
-    if(updateInfos){
-        const infoUser = await userModel.findOne(
-            { email : user.email  }
-        ).catch(err => {
-            return {
-                "status" : "fail",
-                "message" : err
-            }
-        });
-
-        if(infoUser){
-            return {
-                "status" : "success",
-                "data" : infoUser
-            }
+    if (!updateInfos) {
+        return {
+            "status" : "fail",
+            "message" : "La mise à jour du profile a échoué"
         }
+    }
+
+    const infoUser = await userModel.findOne(
+        { email : mail }
+    ).select({
+        _id: 0,
+        name: 1,
+        firstName: 1,
+        email: 1,
+        password: 1,
+        favArtList: 1,
+    }).catch(err => {
+        return {
+            "status" : "fail",
+            "message" : err
+        }
+    });
+
+    if(!infoUser) {
+        return {
+            "status" : "fail",
+            "message" : "La mise à jour du profile a échoué"
+        }
+    }
+
+    let infos = {
+        name        : infoUser.name,
+        firstName   : infoUser.firstName,
+        email       : infoUser.email,
+        favArtList  : infoUser.favArtList,
+    };
+
+    
+
+    return {
+        "status" : "success",
+        "data" : infos
     }
 }
 

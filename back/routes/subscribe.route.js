@@ -8,6 +8,6 @@ router.post("/subscribe", subscribeController.subscribe);
 //unsubscribe
 router.post("/unsubscribe", subscribeController.updateSubscription);
 //check subscriber
-router.get("/check",subscribeController.checkSubscribed);
+router.get("/check", subscribeController.checkSubscribed);
 
 module.exports = router;

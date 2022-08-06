@@ -20,7 +20,7 @@ exports.updateSubscription = async function (req, res, next) {
 
 exports.checkSubscribed = async function (req, res, next) {
     try {
-        res.json(await subscribeService.checkSubscribed(req.query.email));
+        res.json(await subscribeService.checkSubscribed(req.email));
     } catch (err) {
         console.error('Error while checkSubscribed:', err.message);
         next(err);

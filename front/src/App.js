@@ -31,6 +31,7 @@ function App() {
   useEffect(() => {
     axios.get('http://localhost:5000/user/refresh', {
     }).then((res) => {
+      console.log(res)
       if (res.data.status === 'success') {
         setUser(res.data.data);
       }
@@ -57,7 +58,7 @@ function App() {
                 render={() => <SignIn setUser={setUser}/>} />
               <Route path='/sign-up' component={SignUp} />
               <Route path='/profile' exact
-                     render={(props) => <Profile {...props}/>}/>
+                     render={(props) => <Profile user={user} setUser={setUser} />}/>
               <Route path='/contact' component={ContactForm} />
               <Route path='/search?s=:word' exact
                      render={(props) =><SearchPage{...props}/>} />
