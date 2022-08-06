@@ -80,7 +80,7 @@
 }
 
 .tab-content>.active {
-    display: flex;
+    display: flex !important;
     flex-direction: row;
     gap : 35px;
     flex-wrap :wrap;

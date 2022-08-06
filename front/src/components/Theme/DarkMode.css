@@ -7,6 +7,7 @@
     --bg-footer : #B25D3E;
     --input-color: white;
     --btn-color-hover:black;
+    --navBar-color : white;
 
 }
 
@@ -24,7 +25,7 @@
 }
 
 /* 3 */
-body, #home, .card-body,.article, .search-page{
+body, #home, .card-body,.article, .search-page, .section-central, .navbar{
     background-color: var(--background-color);
     color: var(--font-color);
 }
@@ -44,10 +45,10 @@ h1, .subHeaderTitle{
 }
 
 .bg-white{
-    background-color: var(--navBar-color, white)!important;
+    background-color: var(--navBar-color)!important;
     color: var(--font-color);
 }
-.bs-search, .tabsCustom .nav-link, #navBar .nav-link {
+.bs-search, .tabsCustom .nav-link, #navBar .nav-link, .about-content h1 {
     color: var(--font-color);
 }
 
@@ -62,7 +63,7 @@ input, textarea{
 }
 
 .form-control, .form-control:focus{
-    background-color: var(--input-color);
+    background-color: var(--input-color) !important;
     color: var(--font-color)!important;
 
 }

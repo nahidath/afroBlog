@@ -31,9 +31,9 @@ export default function SubArticle (props) {
                                     <Card.Text>
                                         {props.article.description}
                                     </Card.Text>
-                                    <Button variant="dark" onClick={handleGoArticle}>Lire la suite</Button>
                                 </Card.Body>
                             </Card>
+                            <Button variant="dark" onClick={handleGoArticle}>Lire la suite</Button>
                         </Col>
                 </Row>
             </div>

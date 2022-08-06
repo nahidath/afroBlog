@@ -28,8 +28,8 @@
 
 .displaySubArt{
     width: 210px;
-    height: 420px;
-    border : none;
+    height: 380px;
+    border : none !important;
     margin-top: 10px;
     margin-bottom: 50px;
 }
@@ -44,6 +44,10 @@
 
 .displaySubArt .card-text {
     font-size: 15px;
+}
+
+.displaySubArt .card-subtitle{
+    font-size: 12px;
 }
 
 @media screen and (max-width: 850px) { 
