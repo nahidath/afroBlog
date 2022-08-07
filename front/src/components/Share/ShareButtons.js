@@ -13,28 +13,28 @@ import {
     RedditIcon
 } from 'react-share'
 
-const ShareButtons = ({title, url}) => {
+const ShareButtons = ({title, url, size}) => {
 
     return(
         <div>
             <FacebookShareButton url={url} title={title}>
-                <FacebookIcon  size={40} round={true}/>
+                <FacebookIcon  size={size} round={true}/>
             </FacebookShareButton>
 
             <TwitterShareButton url={url} title={title} >
-                <TwitterIcon  size={40} round={true} />
+                <TwitterIcon  size={size} round={true} />
             </TwitterShareButton>
 
             <LinkedinShareButton url={url} title={title}>
-                <LinkedinIcon  size={40} round={true}/>
+                <LinkedinIcon  size={size} round={true}/>
             </LinkedinShareButton>
 
             <RedditShareButton url={url} title={title} >
-                <RedditIcon  size={40} round={true} />
+                <RedditIcon  size={size} round={true} />
             </RedditShareButton>
 
             <WhatsappShareButton url={url} title={title}>
-                <WhatsappIcon  size={40} round={true}/>
+                <WhatsappIcon  size={size} round={true}/>
             </WhatsappShareButton>
         </div>
     )

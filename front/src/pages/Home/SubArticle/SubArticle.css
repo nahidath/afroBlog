@@ -50,6 +50,39 @@
     font-size: 12px;
 }
 
+.displaySubArt .card-img-top{
+    transition: transform .2s; /* Animation */
+}
+
+.displaySubArt .card-img-top:hover{
+    transform: scale(1.1);
+}
+
+.dropdown-share .dropdown-item{
+    display: flex !important;
+    flex-direction: row !important;
+}
+
+.dropdown-share{
+    position: absolute !important;
+    bottom : 1px;
+    margin-left: 150px;
+    background-color: transparent;
+}
+
+.dropdown-share .dropdown-toggle{
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.dropdown-share .dropdown-toggle::after{
+    display:none;
+}
+
+.dropdown-share .dropdown-menu{
+    min-width: 0.5rem !important;
+}
+
 @media screen and (max-width: 850px) { 
     #subArticle {width: calc(85% / 2)}
 }

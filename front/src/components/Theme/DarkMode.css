@@ -8,6 +8,7 @@
     --input-color: white;
     --btn-color-hover:black;
     --navBar-color : white;
+    --border-color-cadre : 2px solid #B25D3E;
 
 }
 
@@ -22,6 +23,7 @@
     --nav-link-active-color:#ca9b52;
     --bg-footer : #421e13;
     --btn-color-hover:#ca9b52;
+    --border-color-cadre: 2px solid #ca9b52 ;
 }
 
 /* 3 */
@@ -48,7 +50,7 @@ h1, .subHeaderTitle{
     background-color: var(--navBar-color)!important;
     color: var(--font-color);
 }
-.bs-search, .tabsCustom .nav-link, #navBar .nav-link, .about-content h1 {
+.bs-search, .tabsCustom .nav-link, #navBar .nav-link, .about-content h1, .dropdown-share .dropdown-toggle {
     color: var(--font-color);
 }
 
@@ -91,6 +93,11 @@ input, textarea{
 a {
     color: var(--link-color);
 }
+
+.displaySubArt .card-img-top:hover, .tabFilter .card-img-top:hover {
+    border: var(--border-color-cadre) ;
+}
+
 /* Custom Dark Mode Toggle Element */
 .toggle-theme-wrapper {
     display: flex;

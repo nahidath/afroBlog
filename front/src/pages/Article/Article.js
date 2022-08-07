@@ -154,7 +154,7 @@ export default function Article (props) {
 
                 <div className='articleDateInfo'>Ecrit par {dataArt.author} Publié le {dataArt.date}</div>
                 <div>
-                    <ShareButtons title={dataArt.title} url={window.location.href}/>
+                    <ShareButtons title={dataArt.title} url={window.location.href} size={40}/>
                 </div>
             </div>
             <div className='contentPart'>
