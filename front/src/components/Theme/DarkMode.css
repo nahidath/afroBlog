@@ -9,7 +9,7 @@
     --btn-color-hover:black;
     --navBar-color : white;
     --border-color-cadre : 2px solid #B25D3E;
-
+    --share-toogle : #B25D3E;
 }
 
 /* 2 */
@@ -24,6 +24,7 @@
     --bg-footer : #421e13;
     --btn-color-hover:#ca9b52;
     --border-color-cadre: 2px solid #ca9b52 ;
+    --share-toogle : #ca9b52;
 }
 
 /* 3 */
@@ -50,7 +51,7 @@ h1, .subHeaderTitle{
     background-color: var(--navBar-color)!important;
     color: var(--font-color);
 }
-.bs-search, .tabsCustom .nav-link, #navBar .nav-link, .about-content h1, .dropdown-share .dropdown-toggle {
+.bs-search, .tabsCustom .nav-link, #navBar .nav-link, .about-content h1 {
     color: var(--font-color);
 }
 
@@ -96,6 +97,10 @@ a {
 
 .displaySubArt .card-img-top:hover, .tabFilter .card-img-top:hover {
     border: var(--border-color-cadre) ;
+}
+
+.displaySubArt .dropdown-share .dropdown-toggle{
+    color: var(--share-toogle);
 }
 
 /* Custom Dark Mode Toggle Element */

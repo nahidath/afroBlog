@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom';
 import {BsShareFill} from 'react-icons/bs';
 import './SubArticle.css';
@@ -21,6 +21,13 @@ export default function SubArticle (props) {
         history.push({ pathname:'/article/' + props.article._id});
     }
 
+    const [show, setShow] = useState(false);
+    const showDropdown = (e)=>{
+        setShow(!show);
+    }
+    const hideDropdown = e => {
+        setShow(false);
+    }
     return (
         <div id='subArticle'>
             {/*<img */}
@@ -48,20 +55,24 @@ export default function SubArticle (props) {
                                 </Card.Body>
                             </Card>
                             <Button variant="dark" onClick={handleGoArticle}>Lire la suite</Button>
-                            <Dropdown className="dropdown-share">
-                                <Dropdown.Toggle>
+                            <Dropdown className="dropdown-share"
+                                      show={show}
+                                      onMouseEnter={showDropdown}
+                                      onMouseLeave={hideDropdown}
+                            >
+                                <Dropdown.Toggle >
                                     <BsShareFill/>
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu>
                                     <Dropdown.Item><FacebookShareButton title={props.article.title} url={window.location.href + 'article/' + props.article._id}>
-                                        <FacebookIcon  size={25} round={true}/>
+                                        <FacebookIcon  size={32} round={true}/>
                                     </FacebookShareButton></Dropdown.Item>
                                     <Dropdown.Item><TwitterShareButton title={props.article.title} url={window.location.href + 'article/' + props.article._id}>
-                                        <TwitterIcon  size={25} round={true}/>
+                                        <TwitterIcon  size={32} round={true}/>
                                     </TwitterShareButton></Dropdown.Item>
                                     <Dropdown.Item><WhatsappShareButton title={props.article.title} url={window.location.href + 'article/' + props.article._id}>
-                                        <WhatsappIcon  size={25} round={true}/>
+                                        <WhatsappIcon  size={32} round={true}/>
                                     </WhatsappShareButton></Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>

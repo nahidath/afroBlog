@@ -36,7 +36,13 @@ export default function Hair(){
     const handleGoArticle = (ia) => {
         history.push({ pathname:'/article/'+ ia});
     }
-
+    const [show, setShow] = useState(false);
+    const showDropdown = (e)=>{
+        setShow(!show);
+    }
+    const hideDropdown = e => {
+        setShow(false);
+    }
 
     return (
         <>
@@ -69,7 +75,11 @@ export default function Hair(){
                                                 {elt.description}
                                             </Card.Text>
                                             <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
-                                            <Dropdown className="dropdown-share">
+                                            <Dropdown className="dropdown-share"
+                                                      show={show}
+                                                      onMouseEnter={showDropdown}
+                                                      onMouseLeave={hideDropdown}
+                                            >
                                                 <Dropdown.Toggle>
                                                     <BsShareFill/>
                                                 </Dropdown.Toggle>
@@ -106,7 +116,10 @@ export default function Hair(){
                                                 {elt.description}
                                             </Card.Text>
                                             <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
-                                            <Dropdown className="dropdown-share">
+                                            <Dropdown className="dropdown-share"
+                                                      show={show}
+                                                      onMouseEnter={showDropdown}
+                                                      onMouseLeave={hideDropdown}>
                                                 <Dropdown.Toggle>
                                                     <BsShareFill/>
                                                 </Dropdown.Toggle>
@@ -143,7 +156,10 @@ export default function Hair(){
                                                 {elt.description}
                                             </Card.Text>
                                             <Button variant="dark" onClick={() =>handleGoArticle(elt._id)}>Lire la suite</Button>
-                                            <Dropdown className="dropdown-share">
+                                            <Dropdown className="dropdown-share"
+                                                      show={show}
+                                                      onMouseEnter={showDropdown}
+                                                      onMouseLeave={hideDropdown}>
                                                 <Dropdown.Toggle>
                                                     <BsShareFill/>
                                                 </Dropdown.Toggle>
@@ -180,7 +196,10 @@ export default function Hair(){
                                                 {elt.description}
                                             </Card.Text>
                                             <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
-                                            <Dropdown className="dropdown-share">
+                                            <Dropdown className="dropdown-share"
+                                                      show={show}
+                                                      onMouseEnter={showDropdown}
+                                                      onMouseLeave={hideDropdown}>
                                                 <Dropdown.Toggle>
                                                     <BsShareFill/>
                                                 </Dropdown.Toggle>
