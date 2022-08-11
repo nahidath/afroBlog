@@ -99,7 +99,7 @@ a {
     border: var(--border-color-cadre) ;
 }
 
-.displaySubArt .dropdown-share .dropdown-toggle{
+.dropdown-share .dropdown-toggle{
     color: var(--share-toogle);
 }
 

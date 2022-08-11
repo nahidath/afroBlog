@@ -101,15 +101,17 @@
 }
 
 .tabFilter .dropdown-share{
-    position: absolute !important;
-    margin-left: 150px;
-    background-color: transparent;
-    bottom: 1px;
+    bottom: 246px !important;
+    margin-left: 133px !important;
 }
 
-.tabFilter .dropdown-share .dropdown-menu{
-    background-color: transparent !important;
-    border: none;
-    min-width: 0.5rem !important;
-    transform: translate3d(0px, -26.6px, 0px) !important;
+.tabFilter .btn{
+    width: 107px;
 }
+
+/*.tabFilter .dropdown-share .dropdown-menu{*/
+/*    background-color: transparent !important;*/
+/*    border: none;*/
+/*    min-width: 0.5rem !important;*/
+/*    transform: translate3d(0px, -26.6px, 0px) !important;*/
+/*}*/

@@ -77,29 +77,29 @@ export default function Makeup(){
                                                 <Card.Text>
                                                     {elt.description}
                                                 </Card.Text>
-                                                <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
-                                                <Dropdown className="dropdown-share"
-                                                          show={show}
-                                                          onMouseEnter={showDropdown}
-                                                          onMouseLeave={hideDropdown}>
-                                                    <Dropdown.Toggle>
-                                                        <BsShareFill/>
-                                                    </Dropdown.Toggle>
-
-                                                    <Dropdown.Menu>
-                                                        <Dropdown.Item><FacebookShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
-                                                            <FacebookIcon  size={25} round={true}/>
-                                                        </FacebookShareButton></Dropdown.Item>
-                                                        <Dropdown.Item><TwitterShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
-                                                            <TwitterIcon  size={25} round={true}/>
-                                                        </TwitterShareButton></Dropdown.Item>
-                                                        <Dropdown.Item><WhatsappShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
-                                                            <WhatsappIcon  size={25} round={true}/>
-                                                        </WhatsappShareButton></Dropdown.Item>
-                                                    </Dropdown.Menu>
-                                                </Dropdown>
                                             </Card.Body>
                                         </Card>
+                                        <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
+                                        <Dropdown className="dropdown-share"
+                                                  show={show}
+                                                  onMouseEnter={showDropdown}
+                                                  onMouseLeave={hideDropdown}>
+                                            <Dropdown.Toggle>
+                                                <BsShareFill/>
+                                            </Dropdown.Toggle>
+
+                                            <Dropdown.Menu>
+                                                <Dropdown.Item><FacebookShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <FacebookIcon  size={25} round={true}/>
+                                                </FacebookShareButton></Dropdown.Item>
+                                                <Dropdown.Item><TwitterShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <TwitterIcon  size={25} round={true}/>
+                                                </TwitterShareButton></Dropdown.Item>
+                                                <Dropdown.Item><WhatsappShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <WhatsappIcon  size={25} round={true}/>
+                                                </WhatsappShareButton></Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown>
                                     </Col>
                                 </Row>
                             );
@@ -119,29 +119,29 @@ export default function Makeup(){
                                                 <Card.Text>
                                                     {elt.description}
                                                 </Card.Text>
-                                                <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
-                                                <Dropdown className="dropdown-share"
-                                                          show={show}
-                                                          onMouseEnter={showDropdown}
-                                                          onMouseLeave={hideDropdown}>
-                                                    <Dropdown.Toggle>
-                                                        <BsShareFill/>
-                                                    </Dropdown.Toggle>
-
-                                                    <Dropdown.Menu>
-                                                        <Dropdown.Item><FacebookShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
-                                                            <FacebookIcon  size={25} round={true}/>
-                                                        </FacebookShareButton></Dropdown.Item>
-                                                        <Dropdown.Item><TwitterShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
-                                                            <TwitterIcon  size={25} round={true}/>
-                                                        </TwitterShareButton></Dropdown.Item>
-                                                        <Dropdown.Item><WhatsappShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
-                                                            <WhatsappIcon  size={25} round={true}/>
-                                                        </WhatsappShareButton></Dropdown.Item>
-                                                    </Dropdown.Menu>
-                                                </Dropdown>
                                             </Card.Body>
                                         </Card>
+                                        <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
+                                        <Dropdown className="dropdown-share"
+                                                  show={show}
+                                                  onMouseEnter={showDropdown}
+                                                  onMouseLeave={hideDropdown}>
+                                            <Dropdown.Toggle>
+                                                <BsShareFill/>
+                                            </Dropdown.Toggle>
+
+                                            <Dropdown.Menu>
+                                                <Dropdown.Item><FacebookShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <FacebookIcon  size={25} round={true}/>
+                                                </FacebookShareButton></Dropdown.Item>
+                                                <Dropdown.Item><TwitterShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <TwitterIcon  size={25} round={true}/>
+                                                </TwitterShareButton></Dropdown.Item>
+                                                <Dropdown.Item><WhatsappShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <WhatsappIcon  size={25} round={true}/>
+                                                </WhatsappShareButton></Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown>
                                     </Col>
                                 </Row>
                             );
@@ -161,29 +161,29 @@ export default function Makeup(){
                                                 <Card.Text>
                                                     {elt.description}
                                                 </Card.Text>
-                                                <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
-                                                <Dropdown className="dropdown-share"
-                                                          show={show}
-                                                          onMouseEnter={showDropdown}
-                                                          onMouseLeave={hideDropdown}>
-                                                    <Dropdown.Toggle>
-                                                        <BsShareFill/>
-                                                    </Dropdown.Toggle>
-
-                                                    <Dropdown.Menu>
-                                                        <Dropdown.Item><FacebookShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
-                                                            <FacebookIcon  size={25} round={true}/>
-                                                        </FacebookShareButton></Dropdown.Item>
-                                                        <Dropdown.Item><TwitterShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
-                                                            <TwitterIcon  size={25} round={true}/>
-                                                        </TwitterShareButton></Dropdown.Item>
-                                                        <Dropdown.Item><WhatsappShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
-                                                            <WhatsappIcon  size={25} round={true}/>
-                                                        </WhatsappShareButton></Dropdown.Item>
-                                                    </Dropdown.Menu>
-                                                </Dropdown>
                                             </Card.Body>
                                         </Card>
+                                        <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
+                                        <Dropdown className="dropdown-share"
+                                                  show={show}
+                                                  onMouseEnter={showDropdown}
+                                                  onMouseLeave={hideDropdown}>
+                                            <Dropdown.Toggle>
+                                                <BsShareFill/>
+                                            </Dropdown.Toggle>
+
+                                            <Dropdown.Menu>
+                                                <Dropdown.Item><FacebookShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <FacebookIcon  size={25} round={true}/>
+                                                </FacebookShareButton></Dropdown.Item>
+                                                <Dropdown.Item><TwitterShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <TwitterIcon  size={25} round={true}/>
+                                                </TwitterShareButton></Dropdown.Item>
+                                                <Dropdown.Item><WhatsappShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <WhatsappIcon  size={25} round={true}/>
+                                                </WhatsappShareButton></Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown>
                                     </Col>
                                 </Row>
                             );
@@ -203,29 +203,29 @@ export default function Makeup(){
                                                 <Card.Text>
                                                     {elt.description}
                                                 </Card.Text>
-                                                <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
-                                                <Dropdown className="dropdown-share"
-                                                          show={show}
-                                                          onMouseEnter={showDropdown}
-                                                          onMouseLeave={hideDropdown}>
-                                                    <Dropdown.Toggle>
-                                                        <BsShareFill/>
-                                                    </Dropdown.Toggle>
-
-                                                    <Dropdown.Menu>
-                                                        <Dropdown.Item><FacebookShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
-                                                            <FacebookIcon  size={25} round={true}/>
-                                                        </FacebookShareButton></Dropdown.Item>
-                                                        <Dropdown.Item><TwitterShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
-                                                            <TwitterIcon  size={25} round={true}/>
-                                                        </TwitterShareButton></Dropdown.Item>
-                                                        <Dropdown.Item><WhatsappShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
-                                                            <WhatsappIcon  size={25} round={true}/>
-                                                        </WhatsappShareButton></Dropdown.Item>
-                                                    </Dropdown.Menu>
-                                                </Dropdown>
                                             </Card.Body>
                                         </Card>
+                                        <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
+                                        <Dropdown className="dropdown-share"
+                                                  show={show}
+                                                  onMouseEnter={showDropdown}
+                                                  onMouseLeave={hideDropdown}>
+                                            <Dropdown.Toggle>
+                                                <BsShareFill/>
+                                            </Dropdown.Toggle>
+
+                                            <Dropdown.Menu>
+                                                <Dropdown.Item><FacebookShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <FacebookIcon  size={25} round={true}/>
+                                                </FacebookShareButton></Dropdown.Item>
+                                                <Dropdown.Item><TwitterShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <TwitterIcon  size={25} round={true}/>
+                                                </TwitterShareButton></Dropdown.Item>
+                                                <Dropdown.Item><WhatsappShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <WhatsappIcon  size={25} round={true}/>
+                                                </WhatsappShareButton></Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown>
                                     </Col>
                                 </Row>
                             );
@@ -245,29 +245,29 @@ export default function Makeup(){
                                                 <Card.Text>
                                                     {elt.description}
                                                 </Card.Text>
-                                                <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
-                                                <Dropdown className="dropdown-share"
-                                                          show={show}
-                                                          onMouseEnter={showDropdown}
-                                                          onMouseLeave={hideDropdown}>
-                                                    <Dropdown.Toggle>
-                                                        <BsShareFill/>
-                                                    </Dropdown.Toggle>
-
-                                                    <Dropdown.Menu>
-                                                        <Dropdown.Item><FacebookShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
-                                                            <FacebookIcon  size={25} round={true}/>
-                                                        </FacebookShareButton></Dropdown.Item>
-                                                        <Dropdown.Item><TwitterShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
-                                                            <TwitterIcon  size={25} round={true}/>
-                                                        </TwitterShareButton></Dropdown.Item>
-                                                        <Dropdown.Item><WhatsappShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
-                                                            <WhatsappIcon  size={25} round={true}/>
-                                                        </WhatsappShareButton></Dropdown.Item>
-                                                    </Dropdown.Menu>
-                                                </Dropdown>
                                             </Card.Body>
                                         </Card>
+                                        <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
+                                        <Dropdown className="dropdown-share"
+                                                  show={show}
+                                                  onMouseEnter={showDropdown}
+                                                  onMouseLeave={hideDropdown}>
+                                            <Dropdown.Toggle>
+                                                <BsShareFill/>
+                                            </Dropdown.Toggle>
+
+                                            <Dropdown.Menu>
+                                                <Dropdown.Item><FacebookShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <FacebookIcon  size={25} round={true}/>
+                                                </FacebookShareButton></Dropdown.Item>
+                                                <Dropdown.Item><TwitterShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <TwitterIcon  size={25} round={true}/>
+                                                </TwitterShareButton></Dropdown.Item>
+                                                <Dropdown.Item><WhatsappShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <WhatsappIcon  size={25} round={true}/>
+                                                </WhatsappShareButton></Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown>
                                     </Col>
                                 </Row>
                             );

@@ -58,12 +58,12 @@
     transform: scale(1.1);
 }
 
- .dropdown-share .dropdown-item{
+.dropdown-share .dropdown-item{
     display: flex !important;
     flex-direction: row !important;
 }
 
-.displaySubArt .dropdown-share{
+.dropdown-share{
     position: absolute !important;
     margin-left: 166px;
     background-color: transparent;
@@ -92,7 +92,7 @@
     border-radius: 60px !important;
 }
 
- .dropdown-share .dropdown-item {
+.dropdown-share .dropdown-item {
     padding: 0.25rem 0.5rem;
 }
 
