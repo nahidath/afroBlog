@@ -55,7 +55,7 @@ h1, .subHeaderTitle{
     color: var(--font-color);
 }
 
-.nav-tabs, .btn, .navbar-light .navbar-toggler, hr{
+.nav-tabs, .btn, .navbar-light .navbar-toggler, .article hr{
     border-color: var(--font-color);
 }
 
@@ -95,7 +95,7 @@ a {
     color: var(--link-color);
 }
 
-.displaySubArt .card-img-top:hover, .tabFilter .card-img-top:hover {
+.displaySubArt .card-img-top:hover, .tabFilter .card-img-top:hover, .artList .card-img-top:hover {
     border: var(--border-color-cadre) ;
 }
 

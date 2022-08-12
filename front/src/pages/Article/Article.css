@@ -54,6 +54,7 @@
 
 .categoryArt{
     margin-top: 50px;
+    text-transform: capitalize;
 }
 
 .categoryArt a {
@@ -87,9 +88,17 @@
     border: none
 }
 
+.artList .card-body{
+    text-align: justify;
+}
+
 .artList .card-title a{
     text-decoration: none;
     color: black;
+}
+
+.artList .card-title{
+    font-size: 17px;
     margin-left: -20px;
 }
 
@@ -98,6 +107,15 @@
     font-weight: normal;
     font-size: 12px;
 }
+
+.artList .card-img-top{
+    transition: transform .2s; /* Animation */
+}
+
+.artList .card-img-top:hover{
+    transform: scale(1.1);
+}
+
 
 .article hr {
     width:75%;

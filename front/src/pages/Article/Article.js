@@ -170,19 +170,17 @@ export default function Article (props) {
                 <span>VOUS POURRIEZ AUSSI AIMER</span>
                 <div className='artList'>
                     {randArt.map((elt, index) =>
-                            <Row key={index} className="g-4 miniature">
-                                {Array.from({length: 1}).map((_, idx) => (
-                                    <Col key={idx}>
-                                        <Card style={{width: '210px', height:'350px'}}>
-                                            <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>
-                                            {/*<Card.Img variant="top" src={['./articles', props.article.id, props.article.image].join('/')} />*/}
-                                            <Card.Body>
-                                                <Card.Title><a href={elt._id} onClick={() => handleGoArticle(elt._id)}>{elt.title}</a></Card.Title>
-                                                <Card.Subtitle className="mb-2 text-muted">{elt.category} - {elt.date}</Card.Subtitle>
-                                            </Card.Body>
-                                        </Card>
-                                    </Col>
-                                ))}
+                            <Row key={index} className="g-4 miniature" xs={1} md={4}>
+                                <Col xs={1} md={4}>
+                                    <Card style={{width: '210px', height:'350px'}}>
+                                        <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>
+                                        {/*<Card.Img variant="top" src={['./articles', props.article.id, props.article.image].join('/')} />*/}
+                                        <Card.Body>
+                                            <Card.Title><a href={elt._id} onClick={() => handleGoArticle(elt._id)}>{elt.title}</a></Card.Title>
+                                            <Card.Subtitle className="mb-2 text-muted">{elt.category} - {elt.date}</Card.Subtitle>
+                                        </Card.Body>
+                                    </Card>
+                                </Col>
                             </Row>
                     )}
                 </div>
