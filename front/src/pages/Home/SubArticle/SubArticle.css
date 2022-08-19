@@ -28,8 +28,8 @@
 
 .displaySubArt{
     width: 210px;
-    height: 420px;
-    border : none;
+    height: 380px;
+    border : none !important;
     margin-top: 10px;
     margin-bottom: 50px;
 }
@@ -44,6 +44,56 @@
 
 .displaySubArt .card-text {
     font-size: 15px;
+}
+
+.displaySubArt .card-subtitle{
+    font-size: 12px;
+}
+
+.displaySubArt .card-img-top{
+    transition: transform .2s; /* Animation */
+}
+
+.displaySubArt .card-img-top:hover{
+    transform: scale(1.1);
+}
+
+.dropdown-share .dropdown-item{
+    display: flex !important;
+    flex-direction: row !important;
+}
+
+.dropdown-share{
+    position: absolute !important;
+    margin-left: 166px;
+    background-color: transparent;
+    bottom: 266px;
+}
+
+.dropdown-share .dropdown-toggle{
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.dropdown-share .dropdown-toggle::after{
+    display:none;
+}
+
+.dropdown-share .dropdown-menu{
+    background-color: transparent !important;
+    border: none;
+    min-width: 0.5rem !important;
+    transform: translate3d(0px, -130.6px, 0px) !important;
+}
+
+.dropdown-share .dropdown-item:hover{
+    background-color: transparent !important;
+    border: 1px solid white;
+    border-radius: 60px !important;
+}
+
+.dropdown-share .dropdown-item {
+    padding: 0.25rem 0.5rem;
 }
 
 @media screen and (max-width: 850px) { 

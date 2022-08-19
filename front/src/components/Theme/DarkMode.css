@@ -7,7 +7,9 @@
     --bg-footer : #B25D3E;
     --input-color: white;
     --btn-color-hover:black;
-
+    --navBar-color : white;
+    --border-color-cadre : 2px solid #B25D3E;
+    --share-toogle : #B25D3E;
 }
 
 /* 2 */
@@ -21,10 +23,12 @@
     --nav-link-active-color:#ca9b52;
     --bg-footer : #421e13;
     --btn-color-hover:#ca9b52;
+    --border-color-cadre: 2px solid #ca9b52 ;
+    --share-toogle : #ca9b52;
 }
 
 /* 3 */
-body, #home, .card-body,.article, .search-page{
+body, #home, .card-body,.article, .search-page, .section-central, .navbar{
     background-color: var(--background-color);
     color: var(--font-color);
 }
@@ -44,14 +48,14 @@ h1, .subHeaderTitle{
 }
 
 .bg-white{
-    background-color: var(--navBar-color, white)!important;
+    background-color: var(--navBar-color)!important;
     color: var(--font-color);
 }
-.bs-search, .tabsCustom .nav-link, #navBar .nav-link {
+.bs-search, .tabsCustom .nav-link, #navBar .nav-link, .about-content h1 {
     color: var(--font-color);
 }
 
-.nav-tabs, .btn, .navbar-light .navbar-toggler, hr{
+.nav-tabs, .btn, .navbar-light .navbar-toggler, .article hr{
     border-color: var(--font-color);
 }
 
@@ -62,7 +66,7 @@ input, textarea{
 }
 
 .form-control, .form-control:focus{
-    background-color: var(--input-color);
+    background-color: var(--input-color) !important;
     color: var(--font-color)!important;
 
 }
@@ -90,6 +94,15 @@ input, textarea{
 a {
     color: var(--link-color);
 }
+
+.displaySubArt .card-img-top:hover, .tabFilter .card-img-top:hover, .artList .card-img-top:hover {
+    border: var(--border-color-cadre) ;
+}
+
+.dropdown-share .dropdown-toggle{
+    color: var(--share-toogle);
+}
+
 /* Custom Dark Mode Toggle Element */
 .toggle-theme-wrapper {
     display: flex;

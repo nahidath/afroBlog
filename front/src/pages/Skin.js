@@ -1,8 +1,17 @@
-import {Button, Card, Col, Row, Tab, Tabs} from "react-bootstrap";
+import {Button, Card, Col, Dropdown, Row, Tab, Tabs} from "react-bootstrap";
 import React, {useEffect, useState} from "react";
 import './Skin.css';
 import axios from "axios";
 import {useHistory} from "react-router-dom";
+import {BsShareFill} from "react-icons/bs";
+import {
+    FacebookIcon,
+    FacebookShareButton,
+    TwitterIcon,
+    TwitterShareButton,
+    WhatsappIcon,
+    WhatsappShareButton
+} from "react-share";
 
 export default function Skin(){
     const [key, setKey] = useState('all');
@@ -28,6 +37,13 @@ export default function Skin(){
 
     const handleGoArticle = (ia) => {
         history.push({ pathname:'/article/'+ ia});
+    }
+    const [show, setShow] = useState(false);
+    const showDropdown = (e)=>{
+        setShow(!show);
+    }
+    const hideDropdown = e => {
+        setShow(false);
     }
 
     return (
@@ -61,9 +77,29 @@ export default function Skin(){
                                                 <Card.Text>
                                                     {elt.description}
                                                 </Card.Text>
-                                                <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
                                             </Card.Body>
                                         </Card>
+                                        <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
+                                        <Dropdown className="dropdown-share"
+                                                  show={show}
+                                                  onMouseEnter={showDropdown}
+                                                  onMouseLeave={hideDropdown}>
+                                            <Dropdown.Toggle>
+                                                <BsShareFill/>
+                                            </Dropdown.Toggle>
+
+                                            <Dropdown.Menu>
+                                                <Dropdown.Item><FacebookShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <FacebookIcon  size={25} round={true}/>
+                                                </FacebookShareButton></Dropdown.Item>
+                                                <Dropdown.Item><TwitterShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <TwitterIcon  size={25} round={true}/>
+                                                </TwitterShareButton></Dropdown.Item>
+                                                <Dropdown.Item><WhatsappShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <WhatsappIcon  size={25} round={true}/>
+                                                </WhatsappShareButton></Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown>
                                     </Col>
                                 </Row>
                             );
@@ -83,9 +119,29 @@ export default function Skin(){
                                                 <Card.Text>
                                                     {elt.description}
                                                 </Card.Text>
-                                                <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
                                             </Card.Body>
                                         </Card>
+                                        <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
+                                        <Dropdown className="dropdown-share"
+                                                  show={show}
+                                                  onMouseEnter={showDropdown}
+                                                  onMouseLeave={hideDropdown}>
+                                            <Dropdown.Toggle>
+                                                <BsShareFill/>
+                                            </Dropdown.Toggle>
+
+                                            <Dropdown.Menu>
+                                                <Dropdown.Item><FacebookShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <FacebookIcon  size={25} round={true}/>
+                                                </FacebookShareButton></Dropdown.Item>
+                                                <Dropdown.Item><TwitterShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <TwitterIcon  size={25} round={true}/>
+                                                </TwitterShareButton></Dropdown.Item>
+                                                <Dropdown.Item><WhatsappShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <WhatsappIcon  size={25} round={true}/>
+                                                </WhatsappShareButton></Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown>
                                     </Col>
                                 </Row>
                             );
@@ -105,9 +161,29 @@ export default function Skin(){
                                                 <Card.Text>
                                                     {elt.description}
                                                 </Card.Text>
-                                                <Button variant="dark"onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
                                             </Card.Body>
                                         </Card>
+                                        <Button variant="dark"onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
+                                        <Dropdown className="dropdown-share"
+                                                  show={show}
+                                                  onMouseEnter={showDropdown}
+                                                  onMouseLeave={hideDropdown}>
+                                            <Dropdown.Toggle>
+                                                <BsShareFill/>
+                                            </Dropdown.Toggle>
+
+                                            <Dropdown.Menu>
+                                                <Dropdown.Item><FacebookShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <FacebookIcon  size={25} round={true}/>
+                                                </FacebookShareButton></Dropdown.Item>
+                                                <Dropdown.Item><TwitterShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <TwitterIcon  size={25} round={true}/>
+                                                </TwitterShareButton></Dropdown.Item>
+                                                <Dropdown.Item><WhatsappShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <WhatsappIcon  size={25} round={true}/>
+                                                </WhatsappShareButton></Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown>
                                     </Col>
                                 </Row>
                             );
@@ -127,9 +203,29 @@ export default function Skin(){
                                                 <Card.Text>
                                                     {elt.description}
                                                 </Card.Text>
-                                                <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
                                             </Card.Body>
                                         </Card>
+                                        <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
+                                        <Dropdown className="dropdown-share"
+                                                  show={show}
+                                                  onMouseEnter={showDropdown}
+                                                  onMouseLeave={hideDropdown}>
+                                            <Dropdown.Toggle>
+                                                <BsShareFill/>
+                                            </Dropdown.Toggle>
+
+                                            <Dropdown.Menu>
+                                                <Dropdown.Item><FacebookShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <FacebookIcon  size={25} round={true}/>
+                                                </FacebookShareButton></Dropdown.Item>
+                                                <Dropdown.Item><TwitterShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <TwitterIcon  size={25} round={true}/>
+                                                </TwitterShareButton></Dropdown.Item>
+                                                <Dropdown.Item><WhatsappShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <WhatsappIcon  size={25} round={true}/>
+                                                </WhatsappShareButton></Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown>
                                     </Col>
                                 </Row>
                             );
@@ -149,9 +245,29 @@ export default function Skin(){
                                                 <Card.Text>
                                                     {elt.description}
                                                 </Card.Text>
-                                                <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
                                             </Card.Body>
                                         </Card>
+                                        <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
+                                        <Dropdown className="dropdown-share"
+                                                  show={show}
+                                                  onMouseEnter={showDropdown}
+                                                  onMouseLeave={hideDropdown}>
+                                            <Dropdown.Toggle>
+                                                <BsShareFill/>
+                                            </Dropdown.Toggle>
+
+                                            <Dropdown.Menu>
+                                                <Dropdown.Item><FacebookShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <FacebookIcon  size={25} round={true}/>
+                                                </FacebookShareButton></Dropdown.Item>
+                                                <Dropdown.Item><TwitterShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <TwitterIcon  size={25} round={true}/>
+                                                </TwitterShareButton></Dropdown.Item>
+                                                <Dropdown.Item><WhatsappShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <WhatsappIcon  size={25} round={true}/>
+                                                </WhatsappShareButton></Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown>
                                     </Col>
                                 </Row>
                             );
@@ -171,9 +287,29 @@ export default function Skin(){
                                                 <Card.Text>
                                                     {elt.description}
                                                 </Card.Text>
-                                                <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
                                             </Card.Body>
                                         </Card>
+                                        <Button variant="dark" onClick={() => handleGoArticle(elt._id)}>Lire la suite</Button>
+                                        <Dropdown className="dropdown-share"
+                                                  show={show}
+                                                  onMouseEnter={showDropdown}
+                                                  onMouseLeave={hideDropdown}>
+                                            <Dropdown.Toggle>
+                                                <BsShareFill/>
+                                            </Dropdown.Toggle>
+
+                                            <Dropdown.Menu>
+                                                <Dropdown.Item><FacebookShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <FacebookIcon  size={25} round={true}/>
+                                                </FacebookShareButton></Dropdown.Item>
+                                                <Dropdown.Item><TwitterShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <TwitterIcon  size={25} round={true}/>
+                                                </TwitterShareButton></Dropdown.Item>
+                                                <Dropdown.Item><WhatsappShareButton title={elt.title} url={window.location.href + 'article/' + elt._id}>
+                                                    <WhatsappIcon  size={25} round={true}/>
+                                                </WhatsappShareButton></Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown>
                                     </Col>
                                 </Row>
                             );

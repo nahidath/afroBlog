@@ -73,15 +73,45 @@
 .tabFilter .card{
     width: 210px;
     min-height: 100px;
+    border : none !important;
 }
 
 .tabFilter .card-text{
     font-size: 15px;
 }
 
+.tabFilter .card-body {
+    padding : 1.25rem 0 0 0 !important;
+    text-align: justify;
+}
+
+.tabFilter .card-img-top{
+    transition: transform .2s; /* Animation */
+}
+
+.tabFilter .card-img-top:hover{
+    transform: scale(1.1);
+}
+
 .tab-content>.active {
-    display: flex;
+    display: flex !important;
     flex-direction: row;
     gap : 35px;
     flex-wrap :wrap;
 }
+
+.tabFilter .dropdown-share{
+    bottom: 246px !important;
+    margin-left: 133px !important;
+}
+
+.tabFilter .btn{
+    width: 107px;
+}
+
+/*.tabFilter .dropdown-share .dropdown-menu{*/
+/*    background-color: transparent !important;*/
+/*    border: none;*/
+/*    min-width: 0.5rem !important;*/
+/*    transform: translate3d(0px, -26.6px, 0px) !important;*/
+/*}*/

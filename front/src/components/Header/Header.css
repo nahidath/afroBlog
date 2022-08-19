@@ -18,7 +18,7 @@
     font-size:100px;
 }
 
-.headerTitle a{
+.headerTitle a, .headerTitle a:hover{
     text-decoration: none;
     color: #111111;
 }
