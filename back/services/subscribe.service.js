@@ -3,7 +3,10 @@ const subscribersModel = require('./../models/subscribe.model')
 exports.subscribe = async function (email) {
     const checkSubscribe = await subscribersModel.findOne( {
         email : email,
-    }).select({_id:0, email: 1}).catch(err => {
+    }).select({
+        _id: 0, 
+        email: 1
+    }).catch(err => {
         return {
             "status" : "fail",
             "message" : err

@@ -11,7 +11,6 @@ import emailjs from "@emailjs/browser";
 
 
 
-
 export default function Profile(props) {
 
     const history = useHistory();
@@ -33,7 +32,14 @@ export default function Profile(props) {
             setFirstName(props.user.firstName);
             setPassword(props.user.password);
             setFavArtList(props.user.favArtList);
-            setIsSubscribe(props.user.isSubscribe) ;
+            setIsSubscribe(props.user.isSubscribe);
+        } else {
+            setIsConnected(false);
+            setName("");
+            setFirstName("");
+            setPassword("");
+            setFavArtList([]);
+            setIsSubscribe(false);
         }
     }, [props.user]);
 

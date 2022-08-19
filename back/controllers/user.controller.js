@@ -12,23 +12,32 @@ exports.signup = async function (req, res, next) {
 
 exports.signin = async function (req, res, next) {
     try {
+        // Get user informations
         let login = await userService.signin(req.body);
-        if (login.status === "success") {
-            let token = login.data.token;
-            res
-                .cookie("token", token, { 
-                    sameSite: 'strict',
-                    path: '/',
-                    httpOnly: true,
-                    signed: true
-                })
-                .json({
-                    "status" : "success",
-                    "data" : login.data.informations
-                });
-        } else {
+        if (login.status === "fail") {
             res.json(login);
         }
+
+        // Check subscription
+        let checkSubscribe = await subscribeService.checkSubscribed(req.body.email);
+        if (checkSubscribe.status === "fail") {
+            res.json(checkSubscribe);
+        }
+        
+        // Return cookie and informations
+        let userInfos = {...login.data.informations, isSubscribe: checkSubscribe.data};
+        let token = login.data.token;
+        res
+            .cookie("token", token, { 
+                sameSite: 'strict',
+                path: '/',
+                httpOnly: true,
+                signed: true
+            })
+            .json({
+                "status" : "success",
+                "data" : userInfos
+            });
     } catch (err) {
         console.error('Error while sign in', err.message);
         next(err);
@@ -40,13 +49,13 @@ exports.refresh = async function (req, res, next) {
         // Get user informations
         let refreshProfile = await userService.refresh(req.email);
         if (refreshProfile.status === "fail") {
-            return refreshProfile; 
+            res.json(refreshProfile);
         }
 
         // Check subscription
         let checkSubscribe = await subscribeService.checkSubscribed(req.email);
         if (checkSubscribe.status === "fail") {
-            return checkSubscribe; 
+            res.json(checkSubscribe);
         }
 
         // Return informations
@@ -81,7 +90,7 @@ exports.updateProfile = async function (req, res, next) {
         // Update profile
         let updateProfile = await userService.updateProfile(req.email, req.body.data);
         if (updateProfile.status === "fail") {
-            return updateProfile; 
+            res.json(updateProfile);
         }
 
         // Update subscription
@@ -92,7 +101,7 @@ exports.updateProfile = async function (req, res, next) {
             updateSubscribe = await subscribeService.unsubscribe(req.email);
         }
         if (updateSubscribe.status === "fail") {
-            return updateSubscribe; 
+            res.json(updateSubscribe);
         }
 
         res.json({
