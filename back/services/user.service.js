@@ -4,26 +4,33 @@ const jwtKey = 'moussestlepluscharismatique!!!!';
 
 
 exports.signup = async function (user) {
-    const checkUserExists = (user) = await userModel.findOne( {
+    // Get the user from database
+    const userFind = (user) = await userModel.findOne( {
         email : user.email,
-    }).select({_id:0, email: 1}).catch(err => {
+    })
+    .select({
+        _id:0, 
+        email: 1
+    })
+    .catch(err => {
         return {
             "status" : "fail",
             "message" : err
         }
     });
 
-    if(checkUserExists){
+    if(userFind){
         return {
             "status" : "fail",
             "message" : "Cet utilisateur existe déjà"
         }
     }
+
+    // Add the user in database
     const userInsertion = await userModel.create({
             name: user.name,
             firstName: user.firstName,
             email: user.email,
-            // username: user.username,
             password: user.password,
             favArtList: []
     })
@@ -49,6 +56,7 @@ exports.signup = async function (user) {
 };
 
 exports.signin = async function (user){
+    // Get the user from database
     const userFind = await userModel.findOne({
         email: user.email
     })
@@ -67,38 +75,44 @@ exports.signin = async function (user){
         }
     });
 
-    if (userFind == null){
+    // Check if the user exists
+    if (!userFind){
         return {
             "status" : "fail",
             "message" : "email incorrect"
         }
     }
     
-    if (userFind.password == user.password) {
-        let token = createCookie(user.email);    
-        let infos = {
-            name        : userFind.name,
-            firstName   : userFind.firstName,
-            email       : userFind.email,
-            favArtList  : userFind.favArtList,
-        };
-        return {
-            "status" : "success",
-            "message" : "password correct",
-            "data": {
-                "informations": infos,
-                "token": token
-            }
-        }
-    } else {
+    // Check the password
+    if (userFind.password !== user.password) {
         return {
             "status" : "fail",
             "message" : "password incorrect"
         }
     }
+
+    // Create the cookie
+    let token = createCookie(user.email);  
+    
+    // Return informations
+    let infos = {
+        name        : userFind.name,
+        firstName   : userFind.firstName,
+        email       : userFind.email,
+        favArtList  : userFind.favArtList
+    };
+    return {
+        "status" : "success",
+        "message" : "password correct",
+        "data": {
+            "informations": infos,
+            "token": token
+        }
+    }
 };
 
 exports.refresh = async function (userEmail){
+    // Get the user from database
     const userFind = await userModel.findOne({
         email: userEmail
     })
@@ -117,8 +131,6 @@ exports.refresh = async function (userEmail){
         }
     });
 
-    console.log(userFind)
-
     if (!userFind) {
         return {
             "status" : "fail",
@@ -126,11 +138,12 @@ exports.refresh = async function (userEmail){
         }
     }
 
+    // Return informations
     let infos = {
         name        : userFind.name,
         firstName   : userFind.firstName,
         email       : userFind.email,
-        favArtList  : userFind.favArtList,
+        favArtList  : userFind.favArtList
     };
     return {
         "status" : "success",
@@ -138,18 +151,24 @@ exports.refresh = async function (userEmail){
     }
 }
 
-exports.updateProfile = async function (user){
-    let params= {
-        name: user.name, firstname: user.firstName, password: user.password
+exports.updateProfile = async function (mail, data) {
+    let params = {
+        name: data.name, 
+        firstName: data.firstName, 
+        password: data.password
     };
-    for(let prop in params){ //it will remove fields who are undefined or null
+    
+    // Remove fields who are undefined or null
+    for (let prop in params){ 
         if(!params[prop]){
             delete params[prop];
         }
     }
+
+    // Update user informations
     const updateInfos = await userModel.updateOne(
-        { email: user.email},
-        params
+        { email: mail},
+        { $set: params }
     ).catch(err => {
         return {
             "status" : "fail",
@@ -157,22 +176,16 @@ exports.updateProfile = async function (user){
         }
     });
 
-    if(updateInfos){
-        const infoUser = await userModel.findOne(
-            { email : user.email  }
-        ).catch(err => {
-            return {
-                "status" : "fail",
-                "message" : err
-            }
-        });
-
-        if(infoUser){
-            return {
-                "status" : "success",
-                "data" : infoUser
-            }
+    if (!updateInfos) {
+        return {
+            "status" : "fail",
+            "message" : "La mise à jour du profile a échoué"
         }
+    }
+
+    return {
+        "status" : "success",
+        "data" : "La mise à jour du profile a réussie"
     }
 }
 

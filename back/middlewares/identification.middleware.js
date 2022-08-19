@@ -4,16 +4,15 @@ const jwtKey = 'moussestlepluscharismatique!!!!';
 
 // Secure the node connection
 exports.checkCookie = function (req, res, next) {
-    console.log('Check cookie', req.path);
     try {
         // Pas de checkin pour certains paths
         let unautorizedPaths = [
             '/user/updateProfile',
             '/user/updateFavArticles',
-            '/user/refresh'
+            '/user/refresh',
+            '/sub/check'
         ];
         if (!unautorizedPaths.includes(req.path)) {
-            console.log("Path authorized")
             return next();
         }
 
@@ -38,7 +37,7 @@ exports.checkCookie = function (req, res, next) {
 
         req.email = payload.profile.email;
 
-        console.log("Cookie décrypté : ", req.email);
+        // console.log("Cookie décrypté : ", req.email);
         next();
     } catch (error) {
         console.error(error);

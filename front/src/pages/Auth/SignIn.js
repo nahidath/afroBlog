@@ -24,6 +24,7 @@ export default function SignIn(props) {
             email: email,
             password: password
         }).then((res) => {
+            console.log(res.data)
             if (res.data["status"] === "fail") {
                 toast.error(res.data["message"], {
                     theme: "colored",

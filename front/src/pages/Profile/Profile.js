@@ -1,5 +1,5 @@
 import './Profile.css';
-import {Button, Card, Col, Form, FormControl, FormGroup, Row} from "react-bootstrap";
+import {Button, Card, Col, Form, FormControl, FormGroup, FormLabel, Row} from "react-bootstrap";
 import {React, useEffect, useRef, useState} from "react";
 import {BsFillPencilFill, BsFillSuitHeartFill} from "react-icons/bs";
 import axios from "axios";
@@ -11,181 +11,97 @@ import emailjs from "@emailjs/browser";
 
 
 
-
 export default function Profile(props) {
-    const getCurrentUser = () => {
-        return JSON.parse(localStorage.getItem("user"));
-    };
-    const currentUser = getCurrentUser();
 
     const history = useHistory();
 
-    // const [profile, setProfile] = useState({
-    //     name : "",
-    //     firstName : "",
-    //     email : "",
-    //     password : "",
-    //     favArtList : []
-    // });
-    const [updtProfile, setupdtProfile] = useState({
-        name : ""
-    });
+    const fileInput = useRef();
 
-    const [listArt, setListArt] = useState([]);
-    const [firstName, setfirstName] = useState("");
     const [name, setName] = useState("");
-    const [newPassword, setnewPassword] = useState("");
-    const [checkbox, setCheckbox] = useState(false);
-    const [checked, setChecked] = useState(false);
-
+    const [firstName, setFirstName] = useState("");
+    const [password, setPassword] = useState("");
+    const [favArtList, setFavArtList] = useState([]);
+    const [isSubscribe, setIsSubscribe] = useState(false);
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [isConnected, setIsConnected] = useState(false);
 
     useEffect(() => {
-        // getUserProfile();
-        displayFavArtUsr();
-        setCheckboxSub();
-    }, [])
-
-    // useEffect(() => {
-    //     localStorage.setItem("user", JSON.stringify(profile));
-    // },[profile])
-    //
-    // const getUserProfile = () => {
-    //     axios.get('http://localhost:5000/user/user',{
-    //         params : {email : currentUser}
-    //     }).then((resp) => {
-    //         // const userUpdt = JSON.stringify(resp.data.data);
-    //         // localStorage.setItem("user", userUpdt);
-    //         setProfile(resp.data.data);
-    //     }).catch((err) => {
-    //         console.log(err);
-    //     });
-    // }
-
-    const fileInput = useRef();
-    const selectFile = () => {
-        fileInput.current.click();
-    }
-
-    const sendEmail = (sub) => {
-        if(sub == "subscribe"){
-            emailjs.send('service_ck55iw9', 'template_k4xib47', {email:currentUser.email, subject:"Bienvenue sur notre newsletter !!", message:"\n" +
-                    "BIENVENUE CHEZ AFROBLOG !\n" +
-                    "\n" +
-                    "MERCI DE T'ÊTRE ABONNÉ(E) À LA NEWSLETTER D' AFROBLOG. DÈS AUJOURD'HUI, TU RECEVRAS PAR MAIL DES INFORMATIONS SUR LES TENDANCES, LA MODE ET LES NOUVEAUTÉS D' AFROBLOG. TU SERAS INFORMÉ(E) À TOUT MOMENT !\n" +
-                    "\n" +
-                    "À BIENTÔT ET PROFITE BIEN DE NOTRE BLOG !\n" +
-                    "\n" +
-                    "www.afroblog.com"},'4efi92eRP81rtkqUk')
-                .then(function(response) {
-                    console.log('SUCCESS!', response.status, response.text);
-                }, function(error) {
-                    console.log('FAILED...', error);
-                });
-
-        }else{
-            emailjs.send('service_ck55iw9', 'template_k4xib47', {email:currentUser.email, subject: "Oh non vous partez !", message:"Oh non, vous vous êtes désabonné de la newsletter!\nMais c'est pas grave tu continueras à avoir accès à tous les articles du blog.\n\nA très vite !!!\n\n\nwww.afroblog.com"},'4efi92eRP81rtkqUk')
-                .then(function(response) {
-                    console.log('SUCCESS!', response.status, response.text);
-                }, function(error) {
-                    console.log('FAILED...', error);
-                });
+        if (props.user.name) {
+            setIsConnected(true);
+            setName(props.user.name);
+            setFirstName(props.user.firstName);
+            setPassword(props.user.password);
+            setFavArtList(props.user.favArtList);
+            setIsSubscribe(props.user.isSubscribe);
+        } else {
+            setIsConnected(false);
+            setName("");
+            setFirstName("");
+            setPassword("");
+            setFavArtList([]);
+            setIsSubscribe(false);
         }
+    }, [props.user]);
 
-    }
-
-    const subscribe = (event, check) => {
-        if(check == true){
-            axios.post('http://localhost:5000/sub/subscribe', {
-                withCredentials: true,
-                data: {
-                    email: currentUser.email
-                }
-            }).then((res) =>{
-                toast.success(res.data["message"], {
-                    theme: "colored",
-                    position: toast.POSITION.TOP_CENTER
-                });
-                sendEmail("subscribe");
-            }).catch((err) => {
-                console.log(err);
-            })
-        }else{
-            axios.post('http://localhost:5000/sub/unsubscribe', {
-                withCredentials: true,
-                data: {
-                    email: currentUser.email
-                }
-            }).then((res) =>{
-                sendEmail("unsubscribe");
-            }).catch((err) => {
-                console.log(err);
-            })
-        }
-
-
-    }
-
-    const updateProfile = (event) => {
-        axios.post('http://localhost:5000/user/updateProfile',{
-            withCredentials: true,
-            data : {
-                name : name,
-                firstName : firstName,
-                password : newPassword
-            }
-        }).then((resp) => {
-            setupdtProfile(resp.data.data);
-            const userStored = JSON.stringify(resp.data.data);
-            localStorage.setItem("user", userStored);
-            if(checkbox == false && checked == true){
-              subscribe(event,true);
-            }else if(checkbox == true && checked == false){
-                subscribe(event,false);
-            }
-            event.target.reset();
-            toast.success("Profil modifié", {
-                theme: "colored",
-                position: toast.POSITION.TOP_CENTER
-            });
-            window.location.reload(); //TODO: voir pk avec ça ça marche
-        }).catch((err) => {
-        console.log(err);
-        })
-
-    }
-
-    const displayFavArtUsr = () => {
-        const currentUserList = currentUser.favArtList;
-        axios.get('http://localhost:5000/articles/favArticles',{
-            params : {list: currentUserList}
-        }).then((resp) => {
-            setListArt(resp.data.data)
-        }).catch((err) => {
-            console.log(err);
-        });
-
+    const handleGoSignIn = () => {
+        history.push({ pathname:'/sign-in'});
     }
 
     const handleGoArticle = (article_id) => {
         history.push({ pathname:'/article/' + article_id});
     }
 
-    const setCheckboxSub = () => {
-        axios.get('http://localhost:5000/sub/check',{
-            params: {email : currentUser.email}
+    const selectFile = () => {
+        fileInput.current.click();
+    }
+
+    const handleUpdateProfile = (event) => {
+        axios.post('http://localhost:5000/user/updateProfile',{
+            withCredentials: true,
+            data : {
+                name : name,
+                firstName : firstName,
+                password : password,
+                isSubscribe : isSubscribe
+            }
         }).then((resp) => {
-            if(resp.data["status"] == "success"){
-                setCheckbox(true);
-            }else{
-                setCheckbox(false);
+            if (resp.data.status === "fail") {
+                toast.error("Profil modifié", {
+                    theme: "colored",
+                    position: resp.data.message
+                });
+            } else {
+                let userInfos = {...props.user};
+                let fields = {
+                    'name': name, 
+                    'firstName': firstName, 
+                    'password': password, 
+                    'isSubscribe': isSubscribe
+                };
+                Object.keys(fields).forEach(field => {
+                    if (fields[field] !== props.user[field] && fields[field] !== '') {
+                        userInfos[field] = fields[field]
+                    }
+                });
+                props.setUser(userInfos);
+                toast.success("Profil modifié", {
+                    theme: "colored",
+                    position: toast.POSITION.TOP_CENTER
+                });
             }
         }).catch((err) => {
             console.log(err);
-        });
+        })
     }
 
-
-    return(
+    return (
+        (!isConnected) ?
+        <div className="profile-wrapper">
+            <div className='text-center'>
+                <p>Vous devez être connecté pour accéder à cette page</p>
+                <Button onClick={handleGoSignIn}>Se connecter</Button>
+            </div> 
+        </div> :
         <div className="profile-wrapper">
             <div className="welcome-zone">
                 <div className="profile-pic">
@@ -194,48 +110,55 @@ export default function Profile(props) {
                         style={{display: 'none'}}
                         ref={fileInput}
                         type="file"/>
-                    <Button variant="outline-dark" size="sm" type="button" onClick={selectFile}> <BsFillPencilFill/> </Button>
-                    {/*<BsFillPencilFill/>*/}
+                    <Button variant="outline-dark" size="sm" type="button" onClick={selectFile}> 
+                        <BsFillPencilFill/>
+                    </Button>
                 </div>
                 <div className="welcome-text">
-                    Welcome {currentUser.name}
+                    Welcome {props.user.name}
                 </div>
             </div>
             <div className="edit-profile-zone">
                 Edit your profile
                 <hr/>
-                <Form horizontal onSubmit={updateProfile}>
+                <Form>
                     <FormGroup controlId="changeName">
-                        <Col componentClass={Form.Label}>
-                            New Name
+                        <Col>
+                            Name
                         </Col>
                         <Col sm={10}>
                             <FormControl
                                 type="text"
+                                value={name}
+                                placeholder={props.user.name}
                                 onChange={(e) => setName(e.target.value)}
                             />
                         </Col>
                     </FormGroup>
 
                     <FormGroup controlId="changeFirstName">
-                        <Col componentClass={Form.Label} >
-                            New Firstname
+                        <Col>
+                            Firstname
                         </Col>
                         <Col sm={10}>
                             <FormControl
                                 type="text"
-                                onChange={(e) => setfirstName(e.target.value)}
+                                value={firstName}
+                                placeholder={props.user.firstName}
+                                onChange={(e) => setFirstName(e.target.value)}
                             />
                         </Col>
                     </FormGroup>
                     <FormGroup controlId="getNewPassword">
-                        <Col componentClass={Form.Label}>
-                            New Password
+                        <Col>
+                            Password
                         </Col>
                         <Col sm={10}>
                             <FormControl
                                 type="password"
-                                onChange={(e) => setnewPassword(e.target.value)}
+                                value={password}
+                                placeholder='**********'
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                         </Col>
                     </FormGroup>
@@ -244,13 +167,19 @@ export default function Profile(props) {
                             type='checkbox'
                             id="subscribeBox"
                             label="S'abonner à la newsletter"
-                            onChange={(e) =>setChecked(e.target.checked)}
-                            checked={checkbox}
+                            onChange={(e) =>setIsSubscribe(e.target.checked)}
+                            checked={isSubscribe}
                         />
                     </Form.Group>
                     <FormGroup>
-                        <Col smOffset={2} sm={10}>
-                            <Button type="submit">Save</Button>
+                        <Col sm={10}>
+                            <Button 
+                                onClick={handleUpdateProfile}
+                                disabled={
+                                    (name === '' && firstName === '' && password === '' && isSubscribe === props.user.isSubscribe) || 
+                                    (name === props.user.name && firstName === props.user.firstName && password === props.user.password && isSubscribe === props.user.isSubscribe)}>
+                                    Save
+                            </Button>
                         </Col>
                     </FormGroup>
                 </Form>
@@ -258,7 +187,7 @@ export default function Profile(props) {
                 <div className="fav-zone">
                     <span>Vos articles favoris <BsFillSuitHeartFill/></span>
                     <div className="fav-zone-art">
-                        {listArt.map((elt, index) =>
+                        {favArtList.map((elt, index) =>
                             <Row key={index} className="g-4 miniature" xs={1} md={4}>
                                 <Col xs={1} md={4}>
                                     <Card style={{width: '210px', height:'350px'}}>
@@ -275,7 +204,6 @@ export default function Profile(props) {
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }
