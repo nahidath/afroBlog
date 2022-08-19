@@ -81,7 +81,7 @@ export default function  SignUp() {
                     email: email
                 }
             }).then((res) =>{
-                    sendEmail();
+                sendEmail();
             }).catch((err) => {
                 console.log(err);
             })

@@ -4,26 +4,33 @@ const jwtKey = 'moussestlepluscharismatique!!!!';
 
 
 exports.signup = async function (user) {
-    const checkUserExists = (user) = await userModel.findOne( {
+    // Get the user from database
+    const userFind = (user) = await userModel.findOne( {
         email : user.email,
-    }).select({_id:0, email: 1}).catch(err => {
+    })
+    .select({
+        _id:0, 
+        email: 1
+    })
+    .catch(err => {
         return {
             "status" : "fail",
             "message" : err
         }
     });
 
-    if(checkUserExists){
+    if(userFind){
         return {
             "status" : "fail",
             "message" : "Cet utilisateur existe déjà"
         }
     }
+
+    // Add the user in database
     const userInsertion = await userModel.create({
             name: user.name,
             firstName: user.firstName,
             email: user.email,
-            // username: user.username,
             password: user.password,
             favArtList: []
     })
@@ -49,6 +56,7 @@ exports.signup = async function (user) {
 };
 
 exports.signin = async function (user){
+    // Get the user from database
     const userFind = await userModel.findOne({
         email: user.email
     })
@@ -67,38 +75,44 @@ exports.signin = async function (user){
         }
     });
 
-    if (userFind == null){
+    // Check if the user exists
+    if (!userFind){
         return {
             "status" : "fail",
             "message" : "email incorrect"
         }
     }
     
-    if (userFind.password == user.password) {
-        let token = createCookie(user.email);    
-        let infos = {
-            name        : userFind.name,
-            firstName   : userFind.firstName,
-            email       : userFind.email,
-            favArtList  : userFind.favArtList,
-        };
-        return {
-            "status" : "success",
-            "message" : "password correct",
-            "data": {
-                "informations": infos,
-                "token": token
-            }
-        }
-    } else {
+    // Check the password
+    if (userFind.password !== user.password) {
         return {
             "status" : "fail",
             "message" : "password incorrect"
         }
     }
+
+    // Create the cookie
+    let token = createCookie(user.email);  
+    
+    // Return informations
+    let infos = {
+        name        : userFind.name,
+        firstName   : userFind.firstName,
+        email       : userFind.email,
+        favArtList  : userFind.favArtList
+    };
+    return {
+        "status" : "success",
+        "message" : "password correct",
+        "data": {
+            "informations": infos,
+            "token": token
+        }
+    }
 };
 
 exports.refresh = async function (userEmail){
+    // Get the user from database
     const userFind = await userModel.findOne({
         email: userEmail
     })
@@ -124,11 +138,12 @@ exports.refresh = async function (userEmail){
         }
     }
 
+    // Return informations
     let infos = {
         name        : userFind.name,
         firstName   : userFind.firstName,
         email       : userFind.email,
-        favArtList  : userFind.favArtList,
+        favArtList  : userFind.favArtList
     };
     return {
         "status" : "success",
@@ -136,7 +151,7 @@ exports.refresh = async function (userEmail){
     }
 }
 
-exports.updateProfile = async function (mail, data){
+exports.updateProfile = async function (mail, data) {
     let params = {
         name: data.name, 
         firstName: data.firstName, 
@@ -150,6 +165,7 @@ exports.updateProfile = async function (mail, data){
         }
     }
 
+    // Update user informations
     const updateInfos = await userModel.updateOne(
         { email: mail},
         { $set: params }
@@ -167,41 +183,9 @@ exports.updateProfile = async function (mail, data){
         }
     }
 
-    const infoUser = await userModel.findOne(
-        { email : mail }
-    ).select({
-        _id: 0,
-        name: 1,
-        firstName: 1,
-        email: 1,
-        password: 1,
-        favArtList: 1,
-    }).catch(err => {
-        return {
-            "status" : "fail",
-            "message" : err
-        }
-    });
-
-    if(!infoUser) {
-        return {
-            "status" : "fail",
-            "message" : "La mise à jour du profile a échoué"
-        }
-    }
-
-    let infos = {
-        name        : infoUser.name,
-        firstName   : infoUser.firstName,
-        email       : infoUser.email,
-        favArtList  : infoUser.favArtList,
-    };
-
-    
-
     return {
         "status" : "success",
-        "data" : infos
+        "data" : "La mise à jour du profile a réussie"
     }
 }
 

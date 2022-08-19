@@ -1,4 +1,5 @@
 const userService = require('../services/user.service');
+const subscribeService = require('../services/subscribe.service');
 
 exports.signup = async function (req, res, next) {
     try {
@@ -12,8 +13,8 @@ exports.signup = async function (req, res, next) {
 exports.signin = async function (req, res, next) {
     try {
         let login = await userService.signin(req.body);
-        if (login["status"] === "success") {
-            let token = login["data"]["token"];
+        if (login.status === "success") {
+            let token = login.data.token;
             res
                 .cookie("token", token, { 
                     sameSite: 'strict',
@@ -23,7 +24,7 @@ exports.signin = async function (req, res, next) {
                 })
                 .json({
                     "status" : "success",
-                    "data" : login["data"]["informations"]
+                    "data" : login.data.informations
                 });
         } else {
             res.json(login);
@@ -36,7 +37,25 @@ exports.signin = async function (req, res, next) {
 
 exports.refresh = async function (req, res, next) {
     try{
-        res.json(await userService.refresh(req.email));
+        // Get user informations
+        let refreshProfile = await userService.refresh(req.email);
+        if (refreshProfile.status === "fail") {
+            return refreshProfile; 
+        }
+
+        // Check subscription
+        let checkSubscribe = await subscribeService.checkSubscribed(req.email);
+        if (checkSubscribe.status === "fail") {
+            return checkSubscribe; 
+        }
+
+        // Return informations
+        let userInfos = {...refreshProfile.data, isSubscribe: checkSubscribe.data};
+        console.log(userInfos)
+        res.json({
+            "status" : "success",
+            "data" : userInfos
+        });
     } catch (err) {
         console.error('Error while refresh :', err.message);
         next(err);
@@ -59,7 +78,27 @@ exports.logout = async function (req, res, next) {
 
 exports.updateProfile = async function (req, res, next) {
     try {
-        res.json(await userService.updateProfile(req.email, req.body.data));
+        // Update profile
+        let updateProfile = await userService.updateProfile(req.email, req.body.data);
+        if (updateProfile.status === "fail") {
+            return updateProfile; 
+        }
+
+        // Update subscription
+        let updateSubscribe;
+        if (req.body.data.isSubscribe) {
+            updateSubscribe = await subscribeService.subscribe(req.email);
+        } else {
+            updateSubscribe = await subscribeService.unsubscribe(req.email);
+        }
+        if (updateSubscribe.status === "fail") {
+            return updateSubscribe; 
+        }
+
+        res.json({
+            "status" : "success",
+            "data" : "Update succeed"
+        });
     } catch (err) {
         console.error('Error while updateProfile :', err.message);
         next(err);

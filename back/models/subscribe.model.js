@@ -7,12 +7,7 @@ let subscribers = new Schema(
         email: {
             type: String,
             required: true
-        },
-        subscribed: {
-            type: Boolean,
-            required: true
         }
-
     },
     {
         collection: "Subscribers",

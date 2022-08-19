@@ -6,7 +6,7 @@ const subscribeController = require('../controllers/subscribe.controller');
 //subscribe
 router.post("/subscribe", subscribeController.subscribe);
 //unsubscribe
-router.post("/unsubscribe", subscribeController.updateSubscription);
+router.post("/unsubscribe", subscribeController.unsubscribe);
 //check subscriber
 router.get("/check", subscribeController.checkSubscribed);
 
