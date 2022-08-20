@@ -1,6 +1,6 @@
 import './Profile.css';
 import {Button, Card, Col, Form, FormControl, FormGroup, FormLabel, Row} from "react-bootstrap";
-import {React, useEffect, useRef, useState} from "react";
+import {React, useEffect, useRef, useState, useCallback} from "react";
 import {BsFillPencilFill, BsFillSuitHeartFill} from "react-icons/bs";
 import {BsTrash} from "react-icons/bs";
 import axios from "axios";
@@ -25,31 +25,36 @@ export default function Profile(props) {
     const [isSubscribe, setIsSubscribe] = useState(false);
     const [selectedFile, setSelectedFile] = useState(null);
     const [isConnected, setIsConnected] = useState(false);
-    const [favArtListDesc, setFavArtListDesc] = useState([]);
 
+    const updateFavArtList = useCallback(() => {
+        axios.get('http://localhost:5000/articles/favArticles',{
+            params : {list: props.user.favArtList}
+        }).then((resp) => {
+            if (resp.data.status === "success") {
+                console.log(resp.data.data)
+                setFavArtList(resp.data.data)
+            }
+        }).catch((err) => {
+            console.log(err);
+        });
+    }, [props.user.favArtList]);
+    
     useEffect(() => {
         if (props.user.name) {
             setIsConnected(true);
             setName(props.user.name);
             setFirstName(props.user.firstName);
             setPassword(props.user.password);
-            setFavArtList(props.user.favArtList);
             setIsSubscribe(props.user.isSubscribe);
+            updateFavArtList()
         } else {
             setIsConnected(false);
             setName("");
             setFirstName("");
             setPassword("");
-            setFavArtList([]);
             setIsSubscribe(false);
         }
-    }, [props.user]);
-
-    useEffect(() => {
-        if (props.user.favArtList) {
-            updateFavArtListDec(props.user.favArtList)
-        }
-    }, [props.user]);
+    }, [props.user, updateFavArtList]);
 
     const handleGoSignIn = () => {
         history.push({ pathname:'/sign-in'});
@@ -100,19 +105,6 @@ export default function Profile(props) {
         }).catch((err) => {
             console.log(err);
         })
-    }
-
-    const updateFavArtListDec = (listId) => {
-        axios.get('http://localhost:5000/articles/favArticles',{
-            params : {list: listId}
-        }).then((resp) => {
-            if (resp.data.status === "success") {
-                console.log(resp.data.data)
-                setFavArtListDesc(resp.data.data)
-            }
-        }).catch((err) => {
-            console.log(err);
-        });
     }
 
     const deleteFav = (id) => {
@@ -227,7 +219,7 @@ export default function Profile(props) {
                 <div className="fav-zone">
                     <span>Vos articles favoris <BsFillSuitHeartFill/></span>
                     <div className="fav-zone-art">
-                        {favArtListDesc.map((elt, index) =>
+                        {favArtList.map((elt, index) =>
                             <Row key={index} className="g-4 miniature" xs={1} md={4}>
                                 <Col xs={1} md={4}>
                                     <Card style={{width: '210px', height:'350px'}}>

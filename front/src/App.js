@@ -50,7 +50,7 @@ function App() {
             <ToastContainer hideProgressBar={true} />
             <Switch>
               <Route path="/article/:id" exact 
-                render={(props) => <Article {...props}/>} />
+                render={(props) => <Article {...props} user={user} setUser={setUser} />} />
               <Route path="/articles/:filters" exact 
                 render={(props) => <Articles {...props}/>} />
               <Route path='/' exact component={Home} />
