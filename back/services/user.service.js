@@ -166,10 +166,12 @@ exports.updateProfile = async function (mail, data, image) {
 
     // Remove fields who are undefined or null
     for (let prop in params){ 
-        if(!params[prop]){
+        if(!params[prop] || params[prop] === ''){
             delete params[prop];
         }
     }
+
+    console.log(params)
 
     // Update user informations
     const updateInfos = await userModel.updateOne(
@@ -224,7 +226,34 @@ exports.updateFavArticles = async function (mail, action, articleId){
     }
 }
 
+exports.getOldImage = async function (email) {
+    // Get the user from database
+    const userFind = (user) = await userModel.findOne({
+        email : email,
+    })
+    .select({
+        _id: 0, 
+        image: 1
+    })
+    .catch(err => {
+        return {
+            "status" : "fail",
+            "message" : err
+        }
+    });
 
+    if (!userFind){
+        return {
+            "status" : "fail",
+            "message" : "Impossible de récupérer l'ancienne image"
+        }
+    }
+
+    return {
+        "status" : "success",
+        "data" : userFind.image
+    }
+}
 
 function createCookie (pEmail) {
     let profile = {

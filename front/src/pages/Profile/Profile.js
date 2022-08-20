@@ -32,7 +32,6 @@ export default function Profile(props) {
             params : {list: props.user.favArtList}
         }).then((resp) => {
             if (resp.data.status === "success") {
-                console.log(resp.data.data)
                 setFavArtList(resp.data.data)
             }
         }).catch((err) => {
@@ -47,7 +46,7 @@ export default function Profile(props) {
             setFirstName(props.user.firstName);
             setPassword(props.user.password);
             setIsSubscribe(props.user.isSubscribe);
-            setImage(props.user.image);
+            setImage("http://localhost:5000/img/" + props.user.image);
             updateFavArtList()
         } else {
             setIsConnected(false);
@@ -82,18 +81,20 @@ export default function Profile(props) {
 
     const handleUpdateProfile = async () => {
         const formData = new FormData();
-        if (image !== '') {
+        
+        // Add image to form
+        if (image !== '' && image !== "http://localhost:5000/img/" + props.user.image) {
             let base64Response = await fetch(image);
             let blob = await base64Response.blob();
             formData.append('myImage', blob);
         }
 
+        // Add other fields to form
         let fields = {
             'name': name, 
             'firstName': firstName, 
             'password': password, 
-            'isSubscribe': isSubscribe,
-            'image': image
+            'isSubscribe': isSubscribe
         };
         Object.keys(fields).forEach(field => {
             if (fields[field] !== props.user[field] && fields[field] !== '') {
@@ -101,6 +102,7 @@ export default function Profile(props) {
             }
         });
 
+        // Http request
         axios({
             method: 'post',
             url: 'http://localhost:5000/user/updateProfile',
@@ -113,13 +115,7 @@ export default function Profile(props) {
                     position: resp.data.message
                 });
             } else {
-                let userInfos = {...props.user};
-                Object.keys(fields).forEach(field => {
-                    if (fields[field] !== props.user[field] && fields[field] !== '') {
-                        userInfos[field] = fields[field]
-                    }
-                });
-                props.setUser(userInfos);
+                props.refresh();
                 toast.success("Profil modifié", {
                     theme: "colored",
                     position: toast.POSITION.TOP_CENTER
@@ -160,7 +156,7 @@ export default function Profile(props) {
         <div className="profile-wrapper">
             <div className="welcome-zone">
                 <div className="profile-pic">
-                    <img src={image === '' ? "/love-test.png" : "http://localhost:5000/img/" + image} alt= "profilePic" width={"100px;"} height={"100px;"} />
+                    <img src={image === '' ? "/love-test.png" : image} alt= "profilePic" width={"100px;"} height={"100px;"} />
                     <input
                         style={{display: 'none'}}
                         ref={fileInput}
@@ -232,8 +228,9 @@ export default function Profile(props) {
                             <Button 
                                 onClick={handleUpdateProfile}
                                 disabled={
-                                    (name === '' && firstName === '' && password === '' && isSubscribe === props.user.isSubscribe) || 
-                                    (name === props.user.name && firstName === props.user.firstName && password === props.user.password && isSubscribe === props.user.isSubscribe)}>
+                                    (name === '' && firstName === '' && password === '' && isSubscribe === props.user.isSubscribe && image === '') || 
+                                    (name === props.user.name && firstName === props.user.firstName && password === props.user.password 
+                                    && isSubscribe === props.user.isSubscribe && image === "http://localhost:5000/img/" + props.user.image)}>
                                     Save
                             </Button>
                         </Col>

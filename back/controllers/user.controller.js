@@ -93,12 +93,16 @@ exports.updateProfile = async function (req, res, next) {
     try {
 
         // Get filenames 
-        if(!req.file) {
-            console.error('Added failed - Images insertion fails');
-            res.end("Added failed");
-            return;
+        let filename = req.file ? req.file.filename : '';
+
+        // Update profile
+        if (req.file) {
+            let getOldImage = await userService.getOldImage(req.email);
+            if (getOldImage.status === "fail") {
+                res.json(getOldImage);
+            }
+            await unlinkAsync('images/' + getOldImage.data);
         }
-        let filename = req.file.filename;
 
         // Update profile
         let updateProfile = await userService.updateProfile(req.email, req.body, filename);
