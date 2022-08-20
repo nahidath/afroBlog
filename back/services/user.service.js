@@ -28,11 +28,12 @@ exports.signup = async function (user) {
 
     // Add the user in database
     const userInsertion = await userModel.create({
-            name: user.name,
-            firstName: user.firstName,
-            email: user.email,
-            password: user.password,
-            favArtList: []
+        name: user.name,
+        firstName: user.firstName,
+        email: user.email,
+        password: user.password,
+        favArtList: [],
+        image: ''
     })
     .catch(err => {
         return {
@@ -67,6 +68,7 @@ exports.signin = async function (user){
         email: 1,
         password: 1,
         favArtList: 1,
+        image: 1
     })
     .catch(err => {
         return {
@@ -99,7 +101,8 @@ exports.signin = async function (user){
         name        : userFind.name,
         firstName   : userFind.firstName,
         email       : userFind.email,
-        favArtList  : userFind.favArtList
+        favArtList  : userFind.favArtList,
+        image       : userFind.image
     };
     return {
         "status" : "success",
@@ -123,6 +126,7 @@ exports.refresh = async function (userEmail){
         email: 1,
         password: 1,
         favArtList: 1,
+        image: 1
     })
     .catch(err => {
         return {
@@ -143,7 +147,8 @@ exports.refresh = async function (userEmail){
         name        : userFind.name,
         firstName   : userFind.firstName,
         email       : userFind.email,
-        favArtList  : userFind.favArtList
+        favArtList  : userFind.favArtList,
+        image       : userFind.image
     };
     return {
         "status" : "success",
@@ -197,7 +202,6 @@ exports.updateFavArticles = async function (mail, action, articleId){
     }
     let mongoAction = {};
     mongoAction[actions[action]] = { favArtList: articleId };
-    console.log(mongoAction)
 
     const updateFavorite = await userModel.updateOne({ "email": mail }, mongoAction )
     .catch(err => {

@@ -65,7 +65,6 @@ exports.refresh = async function (req, res, next) {
 
         // Return informations
         let userInfos = {...refreshProfile.data, isSubscribe: checkSubscribe.data};
-        console.log(userInfos)
         res.json({
             "status" : "success",
             "data" : userInfos
@@ -95,7 +94,7 @@ exports.updateProfile = async function (req, res, next) {
 
         // Get filenames 
         if(!req.file) {
-            console.log('Added failed - Images insertion fails');
+            console.error('Added failed - Images insertion fails');
             res.end("Added failed");
             return;
         }

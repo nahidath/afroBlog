@@ -47,6 +47,7 @@ export default function Profile(props) {
             setFirstName(props.user.firstName);
             setPassword(props.user.password);
             setIsSubscribe(props.user.isSubscribe);
+            setImage(props.user.image);
             updateFavArtList()
         } else {
             setIsConnected(false);
@@ -54,6 +55,7 @@ export default function Profile(props) {
             setFirstName("");
             setPassword("");
             setIsSubscribe(false);
+            setImage('');
         }
     }, [props.user, updateFavArtList]);
 
@@ -158,7 +160,7 @@ export default function Profile(props) {
         <div className="profile-wrapper">
             <div className="welcome-zone">
                 <div className="profile-pic">
-                    <img src={image === '' ? "/love-test.png" : image} alt= "profilePic" width={"100px;"} height={"100px;"} />
+                    <img src={image === '' ? "/love-test.png" : "http://localhost:5000/img/" + image} alt= "profilePic" width={"100px;"} height={"100px;"} />
                     <input
                         style={{display: 'none'}}
                         ref={fileInput}
