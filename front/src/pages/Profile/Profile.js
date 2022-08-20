@@ -10,6 +10,7 @@ import SignIn from "../Auth/SignIn";
 import {forEach} from "react-bootstrap/ElementChildren";
 import emailjs from "@emailjs/browser";
 
+axios.defaults.withCredentials = true;
 
 
 export default function Profile(props) {
@@ -23,7 +24,7 @@ export default function Profile(props) {
     const [password, setPassword] = useState("");
     const [favArtList, setFavArtList] = useState([]);
     const [isSubscribe, setIsSubscribe] = useState(false);
-    const [selectedFile, setSelectedFile] = useState(null);
+    const [image, setImage] = useState('');
     const [isConnected, setIsConnected] = useState(false);
 
     const updateFavArtList = useCallback(() => {
@@ -64,19 +65,45 @@ export default function Profile(props) {
         history.push({ pathname:'/article/' + article_id});
     }
 
-    const selectFile = () => {
+    const handleFileClick = () => {
         fileInput.current.click();
     }
 
-    const handleUpdateProfile = (event) => {
-        axios.post('http://localhost:5000/user/updateProfile',{
-            withCredentials: true,
-            data : {
-                name : name,
-                firstName : firstName,
-                password : password,
-                isSubscribe : isSubscribe
+    const handleFileChange = event => {
+        const fileObj = event.target.files && event.target.files[0];
+        if (!fileObj) {
+          return;
+        }
+        let url = URL.createObjectURL(event.target.files[0]);
+        setImage(url);
+    };
+
+    const handleUpdateProfile = async () => {
+        const formData = new FormData();
+        if (image !== '') {
+            let base64Response = await fetch(image);
+            let blob = await base64Response.blob();
+            formData.append('myImage', blob);
+        }
+
+        let fields = {
+            'name': name, 
+            'firstName': firstName, 
+            'password': password, 
+            'isSubscribe': isSubscribe,
+            'image': image
+        };
+        Object.keys(fields).forEach(field => {
+            if (fields[field] !== props.user[field] && fields[field] !== '') {
+                formData.append(field, fields[field]);
             }
+        });
+
+        axios({
+            method: 'post',
+            url: 'http://localhost:5000/user/updateProfile',
+            data: formData,
+            headers: {'content-type': 'multipart/form-data' }
         }).then((resp) => {
             if (resp.data.status === "fail") {
                 toast.error("Profil modifié", {
@@ -85,12 +112,6 @@ export default function Profile(props) {
                 });
             } else {
                 let userInfos = {...props.user};
-                let fields = {
-                    'name': name, 
-                    'firstName': firstName, 
-                    'password': password, 
-                    'isSubscribe': isSubscribe
-                };
                 Object.keys(fields).forEach(field => {
                     if (fields[field] !== props.user[field] && fields[field] !== '') {
                         userInfos[field] = fields[field]
@@ -137,12 +158,13 @@ export default function Profile(props) {
         <div className="profile-wrapper">
             <div className="welcome-zone">
                 <div className="profile-pic">
-                    <img src="/love-test.png" alt= "profilePic" width={"100px;"} height={"100px;"} />
+                    <img src={image === '' ? "/love-test.png" : image} alt= "profilePic" width={"100px;"} height={"100px;"} />
                     <input
                         style={{display: 'none'}}
                         ref={fileInput}
-                        type="file"/>
-                    <Button variant="outline-dark" size="sm" type="button" onClick={selectFile}> 
+                        type="file"
+                        onChange={handleFileChange}/>
+                    <Button variant="outline-dark" size="sm" type="button" onClick={handleFileClick}> 
                         <BsFillPencilFill/>
                     </Button>
                 </div>

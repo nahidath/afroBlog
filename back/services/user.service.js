@@ -151,13 +151,16 @@ exports.refresh = async function (userEmail){
     }
 }
 
-exports.updateProfile = async function (mail, data) {
+exports.updateProfile = async function (mail, data, image) {
     let params = {
         name: data.name, 
         firstName: data.firstName, 
-        password: data.password
+        password: data.password,
+        image: image
     };
     
+    console.log(params)
+
     // Remove fields who are undefined or null
     for (let prop in params){ 
         if(!params[prop]){
@@ -165,16 +168,18 @@ exports.updateProfile = async function (mail, data) {
         }
     }
 
+    console.log(params)
+
     // Update user informations
-    const updateInfos = await userModel.updateOne(
-        { email: mail},
-        { $set: params }
-    ).catch(err => {
-        return {
-            "status" : "fail",
-            "message" : err
-        }
-    });
+    // const updateInfos = await userModel.updateOne(
+    //     { email: mail},
+    //     { $set: params }
+    // ).catch(err => {
+    //     return {
+    //         "status" : "fail",
+    //         "message" : err
+    //     }
+    // });
 
     if (!updateInfos) {
         return {

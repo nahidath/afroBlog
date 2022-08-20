@@ -28,7 +28,11 @@ let user = new Schema(
         favArtList: [{
             type: String,
             required: true
-        }]
+        }],
+        image: {
+            type: String,
+            required: true
+        }
     },
     { 
         collection: "Users",

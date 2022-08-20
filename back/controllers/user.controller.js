@@ -87,15 +87,26 @@ exports.logout = async function (req, res, next) {
 
 exports.updateProfile = async function (req, res, next) {
     try {
+        // Get filenames 
+        if(!req.files) {
+            console.log('Added failed - Images insertion fails');
+            res.end("Added failed");
+            return;
+        }
+        let filename;
+        req.files.forEach((file) => {
+            filename = file.filename;
+        })
+
         // Update profile
-        let updateProfile = await userService.updateProfile(req.email, req.body.data);
+        let updateProfile = await userService.updateProfile(req.email, req.body, filename);
         if (updateProfile.status === "fail") {
             res.json(updateProfile);
         }
 
         // Update subscription
         let updateSubscribe;
-        if (req.body.data.isSubscribe) {
+        if (req.body.isSubscribe) {
             updateSubscribe = await subscribeService.subscribe(req.email);
         } else {
             updateSubscribe = await subscribeService.unsubscribe(req.email);
