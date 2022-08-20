@@ -34,7 +34,7 @@ router.post('/signup', userController.signup);
 router.post('/signin', userController.signin);
 router.get('/refresh', userController.refresh);
 router.get('/logout', userController.logout);
-router.post('/updateProfile', uploadImages.array('myImage'), userController.updateProfile);
+router.post('/updateProfile', uploadImages.single('myImage'), userController.updateProfile);
 router.post('/updateFavArticles', userController.updateFavArticles);
 
 module.exports = router;

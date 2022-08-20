@@ -158,8 +158,6 @@ exports.updateProfile = async function (mail, data, image) {
         password: data.password,
         image: image
     };
-    
-    console.log(params)
 
     // Remove fields who are undefined or null
     for (let prop in params){ 
@@ -168,18 +166,16 @@ exports.updateProfile = async function (mail, data, image) {
         }
     }
 
-    console.log(params)
-
     // Update user informations
-    // const updateInfos = await userModel.updateOne(
-    //     { email: mail},
-    //     { $set: params }
-    // ).catch(err => {
-    //     return {
-    //         "status" : "fail",
-    //         "message" : err
-    //     }
-    // });
+    const updateInfos = await userModel.updateOne(
+        { email: mail},
+        { $set: params }
+    ).catch(err => {
+        return {
+            "status" : "fail",
+            "message" : err
+        }
+    });
 
     if (!updateInfos) {
         return {
