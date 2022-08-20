@@ -46,6 +46,12 @@ app.use('/articles', articleRouter);
 app.use('/comments', commentRouter);
 app.use('/sub', subscribeRouter);
 
+// static repo
+console.log(__dirname)
+var publicDir = __dirname + '/images';
+console.log(publicDir)
+app.use('/img', express.static(publicDir)); 
+
 // Run the server
 server.listen(5000);
 

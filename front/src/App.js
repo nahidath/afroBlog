@@ -29,6 +29,10 @@ function App() {
   const [user, setUser] = useState({});
 
   useEffect(() => {
+    refresh();
+  }, []);
+
+  const refresh = () => {
     axios.get('http://localhost:5000/user/refresh', {
     }).then((res) => {
       console.log(res)
@@ -38,7 +42,7 @@ function App() {
     }).catch((err) => {
       console.log(err);
     })
-  }, []);
+  }
 
   return (
     <>
@@ -50,7 +54,7 @@ function App() {
             <ToastContainer hideProgressBar={true} />
             <Switch>
               <Route path="/article/:id" exact 
-                render={(props) => <Article {...props}/>} />
+                render={(props) => <Article {...props} user={user} setUser={setUser} />} />
               <Route path="/articles/:filters" exact 
                 render={(props) => <Articles {...props}/>} />
               <Route path='/' exact component={Home} />
@@ -58,7 +62,7 @@ function App() {
                 render={() => <SignIn setUser={setUser}/>} />
               <Route path='/sign-up' component={SignUp} />
               <Route path='/profile' exact
-                     render={(props) => <Profile user={user} setUser={setUser} />}/>
+                     render={(props) => <Profile user={user} setUser={setUser} refresh={refresh}/>}/>
               <Route path='/contact' component={ContactForm} />
               <Route path='/search?s=:word' exact
                      render={(props) =><SearchPage{...props}/>} />

@@ -28,11 +28,12 @@ exports.signup = async function (user) {
 
     // Add the user in database
     const userInsertion = await userModel.create({
-            name: user.name,
-            firstName: user.firstName,
-            email: user.email,
-            password: user.password,
-            favArtList: []
+        name: user.name,
+        firstName: user.firstName,
+        email: user.email,
+        password: user.password,
+        favArtList: [],
+        image: ''
     })
     .catch(err => {
         return {
@@ -67,6 +68,7 @@ exports.signin = async function (user){
         email: 1,
         password: 1,
         favArtList: 1,
+        image: 1
     })
     .catch(err => {
         return {
@@ -99,7 +101,8 @@ exports.signin = async function (user){
         name        : userFind.name,
         firstName   : userFind.firstName,
         email       : userFind.email,
-        favArtList  : userFind.favArtList
+        favArtList  : userFind.favArtList,
+        image       : userFind.image
     };
     return {
         "status" : "success",
@@ -123,6 +126,7 @@ exports.refresh = async function (userEmail){
         email: 1,
         password: 1,
         favArtList: 1,
+        image: 1
     })
     .catch(err => {
         return {
@@ -143,7 +147,8 @@ exports.refresh = async function (userEmail){
         name        : userFind.name,
         firstName   : userFind.firstName,
         email       : userFind.email,
-        favArtList  : userFind.favArtList
+        favArtList  : userFind.favArtList,
+        image       : userFind.image
     };
     return {
         "status" : "success",
@@ -151,19 +156,22 @@ exports.refresh = async function (userEmail){
     }
 }
 
-exports.updateProfile = async function (mail, data) {
+exports.updateProfile = async function (mail, data, image) {
     let params = {
         name: data.name, 
         firstName: data.firstName, 
-        password: data.password
+        password: data.password,
+        image: image
     };
-    
+
     // Remove fields who are undefined or null
     for (let prop in params){ 
-        if(!params[prop]){
+        if(!params[prop] || params[prop] === ''){
             delete params[prop];
         }
     }
+
+    console.log(params)
 
     // Update user informations
     const updateInfos = await userModel.updateOne(
@@ -196,7 +204,6 @@ exports.updateFavArticles = async function (mail, action, articleId){
     }
     let mongoAction = {};
     mongoAction[actions[action]] = { favArtList: articleId };
-    console.log(mongoAction)
 
     const updateFavorite = await userModel.updateOne({ "email": mail }, mongoAction )
     .catch(err => {
@@ -219,7 +226,34 @@ exports.updateFavArticles = async function (mail, action, articleId){
     }
 }
 
+exports.getOldImage = async function (email) {
+    // Get the user from database
+    const userFind = (user) = await userModel.findOne({
+        email : email,
+    })
+    .select({
+        _id: 0, 
+        image: 1
+    })
+    .catch(err => {
+        return {
+            "status" : "fail",
+            "message" : err
+        }
+    });
 
+    if (!userFind){
+        return {
+            "status" : "fail",
+            "message" : "Impossible de récupérer l'ancienne image"
+        }
+    }
+
+    return {
+        "status" : "success",
+        "data" : userFind.image
+    }
+}
 
 function createCookie (pEmail) {
     let profile = {

@@ -1,5 +1,10 @@
 const userService = require('../services/user.service');
 const subscribeService = require('../services/subscribe.service');
+const fs = require('fs');
+const { promisify } = require('util');
+
+// fonction to delete the uploaded file
+const unlinkAsync = promisify(fs.unlink) 
 
 exports.signup = async function (req, res, next) {
     try {
@@ -60,7 +65,6 @@ exports.refresh = async function (req, res, next) {
 
         // Return informations
         let userInfos = {...refreshProfile.data, isSubscribe: checkSubscribe.data};
-        console.log(userInfos)
         res.json({
             "status" : "success",
             "data" : userInfos
@@ -87,15 +91,29 @@ exports.logout = async function (req, res, next) {
 
 exports.updateProfile = async function (req, res, next) {
     try {
+
+        // Get filenames 
+        let filename = req.file ? req.file.filename : '';
+
         // Update profile
-        let updateProfile = await userService.updateProfile(req.email, req.body.data);
+        if (req.file) {
+            let getOldImage = await userService.getOldImage(req.email);
+            if (getOldImage.status === "fail") {
+                res.json(getOldImage);
+            }
+            await unlinkAsync('images/' + getOldImage.data);
+        }
+
+        // Update profile
+        let updateProfile = await userService.updateProfile(req.email, req.body, filename);
         if (updateProfile.status === "fail") {
+            await unlinkAsync(req.file.path);
             res.json(updateProfile);
         }
 
         // Update subscription
         let updateSubscribe;
-        if (req.body.data.isSubscribe) {
+        if (req.body.isSubscribe) {
             updateSubscribe = await subscribeService.subscribe(req.email);
         } else {
             updateSubscribe = await subscribeService.unsubscribe(req.email);

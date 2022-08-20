@@ -1,7 +1,8 @@
 import './Profile.css';
 import {Button, Card, Col, Form, FormControl, FormGroup, FormLabel, Row} from "react-bootstrap";
-import {React, useEffect, useRef, useState} from "react";
+import {React, useEffect, useRef, useState, useCallback} from "react";
 import {BsFillPencilFill, BsFillSuitHeartFill} from "react-icons/bs";
+import {BsTrash} from "react-icons/bs";
 import axios from "axios";
 import {toast} from "react-toastify";
 import {useHistory} from "react-router-dom";
@@ -9,6 +10,7 @@ import SignIn from "../Auth/SignIn";
 import {forEach} from "react-bootstrap/ElementChildren";
 import emailjs from "@emailjs/browser";
 
+axios.defaults.withCredentials = true;
 
 
 export default function Profile(props) {
@@ -22,26 +24,39 @@ export default function Profile(props) {
     const [password, setPassword] = useState("");
     const [favArtList, setFavArtList] = useState([]);
     const [isSubscribe, setIsSubscribe] = useState(false);
-    const [selectedFile, setSelectedFile] = useState(null);
+    const [image, setImage] = useState('');
     const [isConnected, setIsConnected] = useState(false);
 
+    const updateFavArtList = useCallback(() => {
+        axios.get('http://localhost:5000/articles/favArticles',{
+            params : {list: props.user.favArtList}
+        }).then((resp) => {
+            if (resp.data.status === "success") {
+                setFavArtList(resp.data.data)
+            }
+        }).catch((err) => {
+            console.log(err);
+        });
+    }, [props.user.favArtList]);
+    
     useEffect(() => {
         if (props.user.name) {
             setIsConnected(true);
             setName(props.user.name);
             setFirstName(props.user.firstName);
             setPassword(props.user.password);
-            setFavArtList(props.user.favArtList);
             setIsSubscribe(props.user.isSubscribe);
+            setImage("http://localhost:5000/img/" + props.user.image);
+            updateFavArtList()
         } else {
             setIsConnected(false);
             setName("");
             setFirstName("");
             setPassword("");
-            setFavArtList([]);
             setIsSubscribe(false);
+            setImage('');
         }
-    }, [props.user]);
+    }, [props.user, updateFavArtList]);
 
     const handleGoSignIn = () => {
         history.push({ pathname:'/sign-in'});
@@ -51,19 +66,48 @@ export default function Profile(props) {
         history.push({ pathname:'/article/' + article_id});
     }
 
-    const selectFile = () => {
+    const handleFileClick = () => {
         fileInput.current.click();
     }
 
-    const handleUpdateProfile = (event) => {
-        axios.post('http://localhost:5000/user/updateProfile',{
-            withCredentials: true,
-            data : {
-                name : name,
-                firstName : firstName,
-                password : password,
-                isSubscribe : isSubscribe
+    const handleFileChange = event => {
+        const fileObj = event.target.files && event.target.files[0];
+        if (!fileObj) {
+          return;
+        }
+        let url = URL.createObjectURL(event.target.files[0]);
+        setImage(url);
+    };
+
+    const handleUpdateProfile = async () => {
+        const formData = new FormData();
+        
+        // Add image to form
+        if (image !== '' && image !== "http://localhost:5000/img/" + props.user.image) {
+            let base64Response = await fetch(image);
+            let blob = await base64Response.blob();
+            formData.append('myImage', blob);
+        }
+
+        // Add other fields to form
+        let fields = {
+            'name': name, 
+            'firstName': firstName, 
+            'password': password, 
+            'isSubscribe': isSubscribe
+        };
+        Object.keys(fields).forEach(field => {
+            if (fields[field] !== props.user[field] && fields[field] !== '') {
+                formData.append(field, fields[field]);
             }
+        });
+
+        // Http request
+        axios({
+            method: 'post',
+            url: 'http://localhost:5000/user/updateProfile',
+            data: formData,
+            headers: {'content-type': 'multipart/form-data' }
         }).then((resp) => {
             if (resp.data.status === "fail") {
                 toast.error("Profil modifié", {
@@ -71,23 +115,30 @@ export default function Profile(props) {
                     position: resp.data.message
                 });
             } else {
-                let userInfos = {...props.user};
-                let fields = {
-                    'name': name, 
-                    'firstName': firstName, 
-                    'password': password, 
-                    'isSubscribe': isSubscribe
-                };
-                Object.keys(fields).forEach(field => {
-                    if (fields[field] !== props.user[field] && fields[field] !== '') {
-                        userInfos[field] = fields[field]
-                    }
-                });
-                props.setUser(userInfos);
+                props.refresh();
                 toast.success("Profil modifié", {
                     theme: "colored",
                     position: toast.POSITION.TOP_CENTER
                 });
+            }
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
+
+    const deleteFav = (id) => {
+        axios.post('http://localhost:5000/user/updateFavArticles', {
+            action: "delete",
+            articleID : id
+        }).then((res) =>{
+            console.log(res);
+            if (res.data.status === "success") {
+                let userInfos = {...props.user};
+                let index = userInfos.favArtList.indexOf(id);
+                if (index > -1) {
+                    userInfos.favArtList.splice(index, 1);
+                }
+                props.setUser(userInfos);
             }
         }).catch((err) => {
             console.log(err);
@@ -105,12 +156,13 @@ export default function Profile(props) {
         <div className="profile-wrapper">
             <div className="welcome-zone">
                 <div className="profile-pic">
-                    <img src="/love-test.png" alt= "profilePic" width={"100px;"} height={"100px;"} />
+                    <img src={image === '' ? "/love-test.png" : image} alt= "profilePic" width={"100px;"} height={"100px;"} />
                     <input
                         style={{display: 'none'}}
                         ref={fileInput}
-                        type="file"/>
-                    <Button variant="outline-dark" size="sm" type="button" onClick={selectFile}> 
+                        type="file"
+                        onChange={handleFileChange}/>
+                    <Button variant="outline-dark" size="sm" type="button" onClick={handleFileClick}> 
                         <BsFillPencilFill/>
                     </Button>
                 </div>
@@ -176,8 +228,9 @@ export default function Profile(props) {
                             <Button 
                                 onClick={handleUpdateProfile}
                                 disabled={
-                                    (name === '' && firstName === '' && password === '' && isSubscribe === props.user.isSubscribe) || 
-                                    (name === props.user.name && firstName === props.user.firstName && password === props.user.password && isSubscribe === props.user.isSubscribe)}>
+                                    (name === '' && firstName === '' && password === '' && isSubscribe === props.user.isSubscribe && image === '') || 
+                                    (name === props.user.name && firstName === props.user.firstName && password === props.user.password 
+                                    && isSubscribe === props.user.isSubscribe && image === "http://localhost:5000/img/" + props.user.image)}>
                                     Save
                             </Button>
                         </Col>
@@ -191,6 +244,7 @@ export default function Profile(props) {
                             <Row key={index} className="g-4 miniature" xs={1} md={4}>
                                 <Col xs={1} md={4}>
                                     <Card style={{width: '210px', height:'350px'}}>
+                                        <BsTrash className='delete-icon' onClick={() => deleteFav(elt._id)}/>
                                         <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>
                                         {/*<Card.Img variant="top" src={['./articles', props.article.id, props.article.image].join('/')} />*/}
                                         <Card.Body>

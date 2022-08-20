@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import './Article.css';
 import {Button, Card, Col, Row} from "react-bootstrap";
 import axios from "axios";
@@ -11,18 +11,12 @@ axios.withCredentials = true;
 
 export default function Article (props) {
 
+    const history = useHistory();
+
     const [name,setName] = useState("");
     const [content, setContent] = useState("");
     const [commentArt, setCommentArt] = useState([]);
     const [isFav, setisFav] = useState(false);
-    const getCurrentUser = () => {
-        return JSON.parse(localStorage.getItem("user"));
-    };
-    const currentUser = getCurrentUser();
-    // const [favListCU, setFavListCU] = useState(currentUser.favArtList);
-
-
-    const history = useHistory();
     const [dataArt, setDataArt] = useState({
         author: "",
         category : "",
@@ -33,21 +27,8 @@ export default function Article (props) {
         content : ""
     });
     const [randArt, setRandArt] =  useState([]);
-    useEffect(() => {
-        getArticle();
-        displayRandomArticle();
-        getCommentsArticle();
-        // getFavListCurrentUser();
 
-    }, []);
-
-    // const usrUpdt = {
-    //             ...currentUser,
-    //             favArtList : favListCU}
-    // localStorage.setItem("user", JSON.stringify(usrUpdt));
-
-
-    const getArticle = () => {
+    const getArticle = useCallback(() => {
         axios.get('http://localhost:5000/articles/article',{
             params : {_id : props.match.params.id}
         }).then((resp) => {
@@ -56,7 +37,29 @@ export default function Article (props) {
         }).catch((err) => {
             console.log(err);
         });
-    }
+    }, [props.match.params.id]);
+
+    const getCommentsArticle = useCallback(() => {
+        axios.get('http://localhost:5000/comments/allComments',{
+            params : {articleID : props.match.params.id}
+        }).then((resp) => {
+            setCommentArt(resp.data.data);
+        }).catch((err) => {
+            console.log(err);
+        });
+    }, [props.match.params.id]);
+    
+    useEffect(() => {
+        getArticle();
+        displayRandomArticle();
+        getCommentsArticle();
+    }, [getArticle, getCommentsArticle]);
+
+    useEffect(() => {
+        if (props.user.favArtList) {
+            setisFav(props.user.favArtList.includes(props.match.params.id))
+        }
+    }, [props.user, props.match.params.id]);
 
     const displayRandomArticle = () => {
         axios.get('http://localhost:5000/articles/randoms').then((resp) => {
@@ -66,7 +69,6 @@ export default function Article (props) {
             console.log(err);
         })
     }
-
 
     const postComment = (event) => {
         const getCurrentID = window.location.pathname.split('/');
@@ -88,16 +90,6 @@ export default function Article (props) {
         })
     }
 
-    const getCommentsArticle = () => {
-        axios.get('http://localhost:5000/comments/allComments',{
-            params : {articleID : props.match.params.id}
-        }).then((resp) => {
-            setCommentArt(resp.data.data);
-        }).catch((err) => {
-            console.log(err);
-        });
-    }
-
     const handleGoArticle = (article_id) => {
         history.push({ pathname:'/article/' + article_id});
     }
@@ -107,30 +99,23 @@ export default function Article (props) {
         axios.post('http://localhost:5000/user/updateFavArticles', {
             action: action,
             articleID : props.match.params.id
-        }).then((res) =>{
-            console.log(res);
+        }).then((res) => {
             if (res.data.status === "success") {
-                setisFav(!isFav);
+                let userInfos = {...props.user};
+                if (action === "delete") {
+                    let index = userInfos.favArtList.indexOf(props.match.params.id);
+                    if (index > -1) {
+                        userInfos.favArtList.splice(index, 1);
+                    }
+                } else {
+                    userInfos.favArtList.push(props.match.params.id);
+                }
+                props.setUser(userInfos);
             }
         }).catch((err) => {
             console.log(err);
         })
     }
-
-    // const getFavListCurrentUser = () => {
-    //     axios.get('http://localhost:5000/user/favListArt',{
-    //         params : {email: currentUser.email}
-    //     }).then((resp) => {
-    //         const getItem = resp.data.data;
-    //         for (var item in getItem) {
-    //             favListCU.push(getItem[item]);
-    //         }
-    //         setFavListCU(favListCU);
-    //         console.log(resp.data.data);
-    //     }).catch((err) => {
-    //         console.log(err);
-    //     });
-    // }
 
     const favColorTheme = () => {
         const storedTheme = localStorage.getItem("theme");
@@ -139,8 +124,6 @@ export default function Article (props) {
         }
         return "black";
     }
-
-
 
     return (
         <>
