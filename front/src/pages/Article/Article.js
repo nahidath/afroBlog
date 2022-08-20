@@ -99,10 +99,18 @@ export default function Article (props) {
         axios.post('http://localhost:5000/user/updateFavArticles', {
             action: action,
             articleID : props.match.params.id
-        }).then((res) =>{
-            console.log(res);
+        }).then((res) => {
             if (res.data.status === "success") {
-                setisFav(!isFav);
+                let userInfos = {...props.user};
+                if (action === "delete") {
+                    let index = userInfos.favArtList.indexOf(props.match.params.id);
+                    if (index > -1) {
+                        userInfos.favArtList.splice(index, 1);
+                    }
+                } else {
+                    userInfos.favArtList.push(props.match.params.id);
+                }
+                props.setUser(userInfos);
             }
         }).catch((err) => {
             console.log(err);
