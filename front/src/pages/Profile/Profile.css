@@ -78,3 +78,11 @@
     flex-flow: row wrap;
     gap:15px;
 }
+
+.fav-zone .delete-icon {
+    position: absolute;
+    cursor: pointer;
+    margin: 10px;
+    right: 0;
+    top: 0;
+}

@@ -2,6 +2,7 @@ import './Profile.css';
 import {Button, Card, Col, Form, FormControl, FormGroup, FormLabel, Row} from "react-bootstrap";
 import {React, useEffect, useRef, useState} from "react";
 import {BsFillPencilFill, BsFillSuitHeartFill} from "react-icons/bs";
+import {BsTrash} from "react-icons/bs";
 import axios from "axios";
 import {toast} from "react-toastify";
 import {useHistory} from "react-router-dom";
@@ -24,6 +25,7 @@ export default function Profile(props) {
     const [isSubscribe, setIsSubscribe] = useState(false);
     const [selectedFile, setSelectedFile] = useState(null);
     const [isConnected, setIsConnected] = useState(false);
+    const [favArtListDesc, setFavArtListDesc] = useState([]);
 
     useEffect(() => {
         if (props.user.name) {
@@ -40,6 +42,12 @@ export default function Profile(props) {
             setPassword("");
             setFavArtList([]);
             setIsSubscribe(false);
+        }
+    }, [props.user]);
+
+    useEffect(() => {
+        if (props.user.favArtList) {
+            updateFavArtListDec(props.user.favArtList)
         }
     }, [props.user]);
 
@@ -88,6 +96,38 @@ export default function Profile(props) {
                     theme: "colored",
                     position: toast.POSITION.TOP_CENTER
                 });
+            }
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
+
+    const updateFavArtListDec = (listId) => {
+        axios.get('http://localhost:5000/articles/favArticles',{
+            params : {list: listId}
+        }).then((resp) => {
+            if (resp.data.status === "success") {
+                console.log(resp.data.data)
+                setFavArtListDesc(resp.data.data)
+            }
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
+
+    const deleteFav = (id) => {
+        axios.post('http://localhost:5000/user/updateFavArticles', {
+            action: "delete",
+            articleID : id
+        }).then((res) =>{
+            console.log(res);
+            if (res.data.status === "success") {
+                let userInfos = {...props.user};
+                let index = userInfos.favArtList.indexOf(id);
+                if (index > -1) {
+                    userInfos.favArtList.splice(index, 1);
+                }
+                props.setUser(userInfos);
             }
         }).catch((err) => {
             console.log(err);
@@ -187,10 +227,11 @@ export default function Profile(props) {
                 <div className="fav-zone">
                     <span>Vos articles favoris <BsFillSuitHeartFill/></span>
                     <div className="fav-zone-art">
-                        {favArtList.map((elt, index) =>
+                        {favArtListDesc.map((elt, index) =>
                             <Row key={index} className="g-4 miniature" xs={1} md={4}>
                                 <Col xs={1} md={4}>
                                     <Card style={{width: '210px', height:'350px'}}>
+                                        <BsTrash className='delete-icon' onClick={() => deleteFav(elt._id)}/>
                                         <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>
                                         {/*<Card.Img variant="top" src={['./articles', props.article.id, props.article.image].join('/')} />*/}
                                         <Card.Body>

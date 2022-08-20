@@ -57,15 +57,32 @@ exports.getArticleByID = async function (id){
 }
 
 exports.getFavArticleByID = async function (listID){
-    const favArticles = await articleModel.find(
-        {_id: { $in: listID } }
-    )
-
-    if(favArticles){
-        return{
-            "status" : "success",
-            "data" : favArticles
+    const favArticles = await articleModel.find({
+        _id: { $in: listID } 
+    })
+    .select({
+        _id: 1,
+        title: 1,
+        category: 1,
+        date: 1
+    })
+    .catch(err => {
+        return {
+            "status" : "fail",
+            "message" : err
         }
+    });
+
+    if(!favArticles){
+        return{
+            "status" : "fail",
+            "message" : "La récupération des articles favoris a échouché"
+        }
+    }
+
+    return{
+        "status" : "success",
+        "data" : favArticles
     }
 }
 
