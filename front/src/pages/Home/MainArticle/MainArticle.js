@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 import './MainArticle.css';
+import {Carousel} from "react-bootstrap";
 
 
 export default function MainArticle (props) {
@@ -20,13 +21,26 @@ export default function MainArticle (props) {
             {/*    className="mainArticleImg" */}
             {/*/>*/}
             <div className="mainArticleText">
-                <h2>
-                    {props.article.title}
-                </h2>
-                <p>
-                    {props.article.description}
-                </p>
-                <h5 onClick={handleGoArticle}>Lire la suite</h5>
+                <Carousel.Item>
+                    {/*<img*/}
+                    {/*    className="d-block w-100"*/}
+                    {/*    src="holder.js/800x400?text=First slide&bg=373940"*/}
+                    {/*    alt="First slide"*/}
+                    {/*/>*/}
+                    <Carousel.Caption>
+                        <h3>{props.article.title}</h3>
+                        <p>{props.article.description}</p>
+                        <h5 onClick={handleGoArticle}>Lire la suite</h5>
+                    </Carousel.Caption>
+                </Carousel.Item>
+
+                {/*<h2>*/}
+                {/*    {props.article.title}*/}
+                {/*</h2>*/}
+                {/*<p>*/}
+                {/*    {props.article.description}*/}
+                {/*</p>*/}
+                {/*<h5 onClick={handleGoArticle}>Lire la suite</h5>*/}
             </div>
             
         </div>

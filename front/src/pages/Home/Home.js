@@ -9,6 +9,7 @@ import {
 } from '../../articles';
 import axios from "axios";
 import {map} from "react-bootstrap/ElementChildren";
+import {Carousel} from "react-bootstrap";
 
 
 export default function Home() {
@@ -31,11 +32,13 @@ export default function Home() {
             {dataArt.map((elt, index) => {
                 return (
                     <div key={index}>
+                        <Carousel>
                         {
-                            (index === 0) ?<MainArticle article={elt}/>:<></>
+                            (index <= 2) ? <MainArticle article={elt}/>:<></>
                         }
+                        </Carousel>
                         {
-                            (index != 0) ? <SubArticle  article={elt}/> : <></>
+                            (index > 2) ? <SubArticle  article={elt}/> : <></>
                         }
                     </div>
                 );

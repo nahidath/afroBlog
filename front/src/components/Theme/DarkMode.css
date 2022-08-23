@@ -10,12 +10,13 @@
     --navBar-color : white;
     --border-color-cadre : 2px solid #B25D3E;
     --share-toogle : #B25D3E;
+    --navbar-bg-color : white;
 }
 
 /* 2 */
 [data-theme="dark"] {
     --font-color: #eee;
-    --background-color: #222222;
+    --background-color: #1A1C20;
     --link-color: lightblue;
     --art-bg-color: white;
     --input-color: #333333;
@@ -25,13 +26,20 @@
     --btn-color-hover:#ca9b52;
     --border-color-cadre: 2px solid #ca9b52 ;
     --share-toogle : #ca9b52;
+    --navbar-bg-color : #0A0B0C;
 }
 
 /* 3 */
-body, #home, .card-body,.article, .search-page, .section-central, .navbar{
+body, #home, .card-body,.article, .search-page, .section-central{
     background-color: var(--background-color);
     color: var(--font-color);
 }
+
+.navbar{
+    background-color: var(--navbar-bg-color);
+    color: var(--font-color);
+}
+
 .categoryArt a,.cgu-content h1 {
     color: var(--font-color);
 }
@@ -55,7 +63,7 @@ h1, .subHeaderTitle{
     color: var(--font-color);
 }
 
-.nav-tabs, .btn, .navbar-light .navbar-toggler, .article hr{
+.nav-tabs, .btn, .navbar-light .navbar-toggler, .article hr, #home hr{
     border-color: var(--font-color);
 }
 
