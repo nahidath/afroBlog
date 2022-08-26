@@ -20,19 +20,19 @@ export default function MainArticle (props) {
             {/*    alt="mainArticle"  */}
             {/*    className="mainArticleImg" */}
             {/*/>*/}
-            <div className="mainArticleText">
-                <Carousel.Item>
-                    {/*<img*/}
-                    {/*    className="d-block w-100"*/}
-                    {/*    src="holder.js/800x400?text=First slide&bg=373940"*/}
-                    {/*    alt="First slide"*/}
-                    {/*/>*/}
-                    <Carousel.Caption>
-                        <h3>{props.article.title}</h3>
-                        <p>{props.article.description}</p>
-                        <h5 onClick={handleGoArticle}>Lire la suite</h5>
-                    </Carousel.Caption>
-                </Carousel.Item>
+            {/*<div className="mainArticleText">*/}
+            <Carousel.Item>
+                <img
+                    className="d-block w-100"
+                    src="https://media.geeksforgeeks.org/wp-content/uploads/20210425122739/2-300x115.png"
+                    alt="First slide"
+                />
+                <Carousel.Caption>
+                    <h3>{props.article.title}</h3>
+                    <p>{props.article.description}</p>
+                    <h5 onClick={handleGoArticle}>Lire la suite</h5>
+                </Carousel.Caption>
+            </Carousel.Item>
 
                 {/*<h2>*/}
                 {/*    {props.article.title}*/}
@@ -41,7 +41,7 @@ export default function MainArticle (props) {
                 {/*    {props.article.description}*/}
                 {/*</p>*/}
                 {/*<h5 onClick={handleGoArticle}>Lire la suite</h5>*/}
-            </div>
+            {/*</div>*/}
             
         </div>
     );
