@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@100;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 
 .header{
     background: url("../../../public/logoHNew_bis.jpg") no-repeat center !important;
@@ -13,8 +14,8 @@
 }
 
 .headerTitle{
-    padding-left: 80px;
-    font-family: 'Kalam';
+    padding-left: 60px;
+    font-family: 'Trebuchet MS';
     font-size:100px;
 }
 

@@ -10,6 +10,7 @@ import {
 import axios from "axios";
 import {map} from "react-bootstrap/ElementChildren";
 import {Carousel} from "react-bootstrap";
+import {useHistory} from "react-router-dom";
 
 
 export default function Home() {
@@ -27,44 +28,35 @@ export default function Home() {
             console.log(err);
         });
     };
+
+    //special carousel
+    const carouselArt = dataArt.slice(0,3);
+
+    const history = useHistory();
+
+    const handleGoArticle = (ia) => {
+        history.push({ pathname:'/article/' + ia});
+    }
+
+
     return (
         <div id='home'>
             <div className="carrousel">
                 <Carousel>
-                    {dataArt.map((elt, index) => {
-                        return(
-                            <div key={index}>
-                                {
-                                    (index <= 1) ? <MainArticle article={elt}/>:<></>
-                                }
-                            </div>
-                        );
-                    })}
+                    {carouselArt.map((elt, index) => (
+                        <Carousel.Item key={index} onClick={() => handleGoArticle(elt._id)}>
+                            <img
+                                className="d-block w-100"
+                                src="https://media.geeksforgeeks.org/wp-content/uploads/20210425122739/2-300x115.png"
+                                alt="First slide"
+                            />
+                            <Carousel.Caption>
+                                <h3>{elt.title}</h3>
+                                <h5 >Lire la suite</h5>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                    ))}
                 </Carousel>
-                {/*<Carousel>*/}
-                {/*    <Carousel.Item interval={1500}>*/}
-                {/*        <img*/}
-                {/*            className="d-block w-100"*/}
-                {/*            src="https://media.geeksforgeeks.org/wp-content/uploads/20210425122739/2-300x115.png"*/}
-                {/*            alt="Image One"*/}
-                {/*        />*/}
-                {/*        <Carousel.Caption>*/}
-                {/*            <h3>Label for first slide</h3>*/}
-                {/*            <p>Sample Text for Image One</p>*/}
-                {/*        </Carousel.Caption>*/}
-                {/*    </Carousel.Item>*/}
-                {/*    <Carousel.Item interval={500}>*/}
-                {/*        <img*/}
-                {/*            className="d-block w-100"*/}
-                {/*            src="https://media.geeksforgeeks.org/wp-content/uploads/20210425122716/1-300x115.png"*/}
-                {/*            alt="Image Two"*/}
-                {/*        />*/}
-                {/*        <Carousel.Caption>*/}
-                {/*            <h3>Label for second slide</h3>*/}
-                {/*            <p>Sample Text for Image Two</p>*/}
-                {/*        </Carousel.Caption>*/}
-                {/*    </Carousel.Item>*/}
-                {/*</Carousel>*/}
             </div>
             {dataArt.map((elt, index) => {
                 return (

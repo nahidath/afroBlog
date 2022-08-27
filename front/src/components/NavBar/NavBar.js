@@ -94,7 +94,7 @@ export default function NavBar (props) {
 
     return (
         <div id='navBar' >
-            <Navbar  expand="lg" style={{top: top, position: positionNav}}>
+            <Navbar  expand="lg" style={{top: top, position: positionNav}} variant={localStorage.getItem("theme") == "dark" ? "dark" : "light"} bg={localStorage.getItem("theme") == "dark" ? "dark" : "light"}>
                 <Container fluid>
                     {/*<Navbar.Brand onClick={handleHome}>*/}
                     {/*    <img src="/logo2.png" alt= "Afro Blog" />*/}
