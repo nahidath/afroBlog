@@ -35,6 +35,8 @@
 #navBar .rightPart {
     margin-left: auto;
     margin-right: 20px;
+    display: flex;
+    flex-direction: row;
 }
 
 .dropdown-menu{
@@ -56,12 +58,9 @@
     color: #CA9B52;
 }
 
-/* .bs-search:hover{
-    width: 50%;
-    -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.74);
-    box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.74);
-    border: 4px solid #00adb5; 
-} */
+/*.navbar-toggler-icon{*/
+/*    background : url(../../../public/menu-logo-white.png) no-repeat center !important;*/
+/*}*/
 
 #navBar .bs-search{
     margin-right: 10px;
@@ -80,4 +79,5 @@
 
 .signupLink{
     border-left: 1px solid rgb(88, 88, 88);
+    border-spacing: 5px;
 }

@@ -94,23 +94,25 @@ export default function NavBar (props) {
 
     return (
         <div id='navBar' >
-            <Navbar  expand="lg" style={{top: top, position: positionNav}} variant={localStorage.getItem("theme") == "dark" ? "dark" : "light"} bg={localStorage.getItem("theme") == "dark" ? "dark" : "light"}>
+            <Navbar id="navnav" expand="lg" style={{top: top, position: positionNav}}>
                 <Container fluid>
                     {/*<Navbar.Brand onClick={handleHome}>*/}
                     {/*    <img src="/logo2.png" alt= "Afro Blog" />*/}
                     {/*</Navbar.Brand>*/}
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
-                    <DarkMode />
+                    {/*<DarkMode />*/}
                     <Nav
                         className="me-auto my-2 my-lg-0"
                         id="navItems"
                         style={{ maxHeight: '200px' }}
                         navbarScroll
                     >
+                        <DarkMode />
                         <Nav.Link onClick={() => handleSetFilter('cheveux')}>Cheveux</Nav.Link>
                         <Nav.Link onClick={() => handleSetFilter('maquillage')}>Maquillage</Nav.Link>
                         <Nav.Link onClick={() => handleSetFilter('peau')}>Peau</Nav.Link>
+
                         {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
                         <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
                         <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
