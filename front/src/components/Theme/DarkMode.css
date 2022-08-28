@@ -7,10 +7,11 @@
     --bg-footer : #B25D3E;
     --input-color: white;
     --btn-color-hover:black;
-    --navBar-color : white;
+    --navBar-color : #F8F9FA;
     --border-color-cadre : 2px solid #B25D3E;
     --share-toogle : #B25D3E;
     --navbar-bg-color : white;
+    --navbar-toogle-img : url(../../../public/menu-logo-black.png) no-repeat center;
 }
 
 /* 2 */
@@ -27,6 +28,7 @@
     --border-color-cadre: 2px solid #ca9b52 ;
     --share-toogle : #ca9b52;
     --navbar-bg-color : #0A0B0C;
+    --navbar-toogle-img: url(../../../public/menu-logo-white.png) no-repeat center;
 }
 
 /* 3 */
@@ -35,10 +37,11 @@ body, #home, .card-body,.article, .search-page, .section-central{
     color: var(--font-color);
 }
 
-.navbar{
+#navBar .navbar {
     background-color: var(--navbar-bg-color) !important;
     color: var(--font-color);
 }
+
 
 .categoryArt a,.cgu-content h1 {
     color: var(--font-color);
@@ -63,8 +66,16 @@ h1, .subHeaderTitle{
     color: var(--font-color);
 }
 
-.nav-tabs, .btn, .navbar-light .navbar-toggler, .article hr, #home hr{
+.nav-tabs, .btn, .article hr, #home hr{
     border-color: var(--font-color);
+}
+
+.navbar-toggler{
+    border-color: var(--font-color) !important;
+}
+
+.navbar-toggler-icon{
+    background: var(--navbar-toogle-img) !important;
 }
 
 input, textarea{
@@ -117,6 +128,7 @@ a {
     flex-direction: row;
     gap: 4px;
     margin-top: 5px;
+    margin-right: 26px;
 }
 
 .toggle-theme-wrapper span {
