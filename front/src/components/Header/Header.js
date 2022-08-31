@@ -1,16 +1,10 @@
 import './Header.css';
-import {useHistory} from "react-router-dom";
-
 
 export default function Header(){
 
-    // const history = useHistory();
-    // const handleHome = () => {
-    //     history.push({ pathname:'/'});
-    // }
-
     return(
-        <div className="header">
+        <div className="header" id="header">
+            <img src="./logoHNew_bis.jpg" alt="headerPicture"/>
             <div className="headerTitle">
                 <a href='/'>My Afro Blog</a>
             </div>
