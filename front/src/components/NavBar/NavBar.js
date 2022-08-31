@@ -112,39 +112,29 @@ export default function NavBar (props) {
                         <Nav.Link onClick={() => handleSetFilter('cheveux')}>Cheveux</Nav.Link>
                         <Nav.Link onClick={() => handleSetFilter('maquillage')}>Maquillage</Nav.Link>
                         <Nav.Link onClick={() => handleSetFilter('peau')}>Peau</Nav.Link>
-
-                        {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
-                        <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action5">
-                            Something else here
-                        </NavDropdown.Item>
-                        </NavDropdown> */}
-                    </Nav>
-                    <Nav className='rightPart'>
-                        <Form className="d-flex" onSubmit={handleSearch}>
-                            <FormControl
-                                type="search"
-                                placeholder="Search"
-                                className="me-2 mr-2 searchBar"
-                                aria-label="Search"
-                                ref={researchRef} 
-                                style={{ display: isResearchDisplay ? "block" : "none" }}
-                                onChange={(e)=> setSearchText(e.target.value)}
-                            />
-                            <IconButton aria-label="Search"
-                                        onClick={() => {setResearchDisplay(!isResearchDisplay); handleSearch();}}  size="medium"><ImSearch className="bs-search"/></IconButton>
-                        </Form>
-                        {
-                            (props.user.name) ? <NavDropdown title={props.user.name} id="navbarScrollingDropdown" className="signupLink">
-                        <NavDropdown.Item onClick={goToProfile}>Profile</NavDropdown.Item>
-                        <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
-                        </NavDropdown>:<Nav.Link className="signupLink" onClick={handleSignIn}>
-                                Sign In
-                            </Nav.Link>
-                        }
-
+                        <div className='rightPart'>
+                            <Form className="d-flex" onSubmit={handleSearch}>
+                                <FormControl
+                                    type="search"
+                                    placeholder="Search"
+                                    className="me-2 mr-2 searchBar"
+                                    aria-label="Search"
+                                    ref={researchRef}
+                                    style={{ display: isResearchDisplay ? "block" : "none" }}
+                                    onChange={(e)=> setSearchText(e.target.value)}
+                                />
+                                <IconButton aria-label="Search"
+                                            onClick={() => {setResearchDisplay(!isResearchDisplay); handleSearch();}}  size="medium"><ImSearch className="bs-search"/></IconButton>
+                            </Form>
+                            {
+                                (props.user.name) ? <NavDropdown title={props.user.name} id="navbarScrollingDropdown" className="signupLink">
+                                    <NavDropdown.Item onClick={goToProfile}>Profile</NavDropdown.Item>
+                                    <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+                                </NavDropdown>:<Nav.Link className="signupLink" onClick={handleSignIn}>
+                                    Sign In
+                                </Nav.Link>
+                            }
+                        </div>
                     </Nav>
                     </Navbar.Collapse>
                 </Container>

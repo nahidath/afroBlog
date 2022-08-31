@@ -1,11 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@100;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 
 .header{
-    background: url("../../../public/logoHNew_bis.jpg") no-repeat center !important;
-    height:500px;
+    /*background: url("../../../public/logoHNew_bis.jpg") no-repeat center !important;*/
+    /*height:500px;*/
     display: flex;
     align-items: center;
     justify-content: center;
@@ -13,7 +10,12 @@
     text-align: center;
 }
 
+.header img {
+    width: 100%;
+}
+
 .headerTitle{
+    position: absolute;
     padding-left: 60px;
     font-family: 'Trebuchet MS';
     font-size:100px;
@@ -30,3 +32,11 @@
     left:45%;
     font-family: 'Open Sans';
 }
+
+@media screen and (min-width: 960px) and (max-width: 1120px) {
+    #header {width: 960px;}
+}
+
+/*@media screen and (max-width: 1000px) {*/
+/*    #header {width: 90%}*/
+/*}*/
