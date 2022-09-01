@@ -14,7 +14,8 @@ import axios from "axios";
 import SearchPage from "../../pages/SearchPage";
 
 
-
+const a = 0.435;
+const b = -115.86;
 
 export default function NavBar (props) {
 
@@ -41,26 +42,35 @@ export default function NavBar (props) {
         history.push({ pathname: '/articles/' + pFilter});
     }
 
-    const [top, setTop] = useState("450px");
+    const initialTop = a * window.innerWidth + b;
+    console.log(window.innerWidth, initialTop);
+    const [top, setTop] = useState(initialTop.toString() + "px");
     const [positionNav, setPositionNav] = useState("absolute");
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
-
+        window.addEventListener('resize', handleResize);
         return () => {
             window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('resize', handleResize);
         };
+
     }, [positionNav, top]);
 
 
+    const handleResize = () => {
+        const newTop = Math.max(a * window.innerWidth + b, 450);
+        setTop(newTop.toString() + "px");
+    }
 
     const handleScroll = () => {
-        if (positionNav !== "fixed" && window.pageYOffset > 450) {
+        const newTop = a * window.innerWidth + b;
+        if (positionNav !== "fixed" && window.pageYOffset > newTop) {
             setTop("0");
             setPositionNav("fixed");
         }
 
-        if (positionNav === "fixed" && window.pageYOffset < 450) {
-            setTop("450px");
+        if (positionNav === "fixed" && window.pageYOffset < newTop) {
+            setTop(newTop.toString() + "px");
             setPositionNav("absolute");
         }
     };
