@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 
 .header{
-    /*background: url("../../../public/logoHNew_bis.jpg") no-repeat center !important;*/
-    /*height:500px;*/
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,7 +16,7 @@
     position: absolute;
     padding-left: 60px;
     font-family: 'Trebuchet MS';
-    font-size:100px;
+    font-size:7vw;
 }
 
 .headerTitle a, .headerTitle a:hover{
@@ -33,10 +31,10 @@
     font-family: 'Open Sans';
 }
 
-@media screen and (min-width: 960px) and (max-width: 1120px) {
-    #header {width: 960px;}
-}
-
-/*@media screen and (max-width: 1000px) {*/
-/*    #header {width: 90%}*/
+/*@media screen and (min-width: 960px) and (max-width: 1120px) {*/
+/*    #header {width: 960px;}*/
+/*    .headerTitle{*/
+/*        font-size : 7vw;*/
+/*        padding-left: 40px;*/
+/*    }*/
 /*}*/
