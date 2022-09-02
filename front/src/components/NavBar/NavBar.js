@@ -14,7 +14,7 @@ import axios from "axios";
 import SearchPage from "../../pages/SearchPage";
 
 
-const a = 0.435;
+const a = 100/230;
 const b = -115.86;
 
 export default function NavBar (props) {
@@ -42,8 +42,7 @@ export default function NavBar (props) {
         history.push({ pathname: '/articles/' + pFilter});
     }
 
-    const initialTop = a * window.innerWidth + b;
-    console.log(window.innerWidth, initialTop);
+    const initialTop = window.innerWidth == 1536 ? 450 : a * window.innerWidth + b;
     const [top, setTop] = useState(initialTop.toString() + "px");
     const [positionNav, setPositionNav] = useState("absolute");
     useEffect(() => {
@@ -58,8 +57,14 @@ export default function NavBar (props) {
 
 
     const handleResize = () => {
-        const newTop = Math.max(a * window.innerWidth + b, 450);
+        const newTop = Math.min(a * window.innerWidth + b, 390);
         setTop(newTop.toString() + "px");
+        if(window.innerWidth > 1344){
+            for(let i = 390; i <=450; i++){
+                const newTop = Math.min(a * window.innerWidth + b, i);
+                setTop(newTop.toString() + "px");
+            }
+        }
     }
 
     const handleScroll = () => {
@@ -104,7 +109,7 @@ export default function NavBar (props) {
 
     return (
         <div id='navBar' >
-            <Navbar id="navnav" expand="lg" style={{top: top, position: positionNav}}>
+            <Navbar expand="lg" style={{top: top, position: positionNav}}>
                 <Container fluid>
                     {/*<Navbar.Brand onClick={handleHome}>*/}
                     {/*    <img src="/logo2.png" alt= "Afro Blog" />*/}
@@ -112,22 +117,26 @@ export default function NavBar (props) {
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                     {/*<DarkMode />*/}
+                    <Nav>
+                        <DarkMode />
+                    </Nav>
                     <Nav
                         className="me-auto my-2 my-lg-0"
                         id="navItems"
                         style={{ maxHeight: '200px' }}
                         navbarScroll
                     >
-                        <DarkMode />
                         <Nav.Link onClick={() => handleSetFilter('cheveux')}>Cheveux</Nav.Link>
                         <Nav.Link onClick={() => handleSetFilter('maquillage')}>Maquillage</Nav.Link>
                         <Nav.Link onClick={() => handleSetFilter('peau')}>Peau</Nav.Link>
-                        <div className='rightPart'>
+                    </Nav>
+                    <Nav className="ml-auto">
+                        <div className="rightPart">
                             <Form className="d-flex" onSubmit={handleSearch}>
                                 <FormControl
                                     type="search"
                                     placeholder="Search"
-                                    className="me-2 mr-2 searchBar"
+                                    className="me-2 "
                                     aria-label="Search"
                                     ref={researchRef}
                                     style={{ display: isResearchDisplay ? "block" : "none" }}
@@ -145,6 +154,7 @@ export default function NavBar (props) {
                                 </Nav.Link>
                             }
                         </div>
+
                     </Nav>
                     </Navbar.Collapse>
                 </Container>
