@@ -69,6 +69,7 @@ export default function NavBar (props) {
 
     const handleScroll = () => {
         const newTop = a * window.innerWidth + b;
+        console.log(newTop);
         if (positionNav !== "fixed" && window.pageYOffset > newTop) {
             setTop("0");
             setPositionNav("fixed");
@@ -76,6 +77,7 @@ export default function NavBar (props) {
 
         if (positionNav === "fixed" && window.pageYOffset < newTop) {
             setTop(newTop.toString() + "px");
+            console.log(top);
             setPositionNav("absolute");
         }
     };
