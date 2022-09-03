@@ -45,6 +45,7 @@ export default function NavBar (props) {
     const initialTop = window.innerWidth == 1536 ? 450 : a * window.innerWidth + b;
     const [top, setTop] = useState(initialTop.toString() + "px");
     const [positionNav, setPositionNav] = useState("absolute");
+    const [expanded, setExpanded] = useState(false);
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
         window.addEventListener('resize', handleResize);
@@ -68,16 +69,13 @@ export default function NavBar (props) {
     }
 
     const handleScroll = () => {
-        const newTop = a * window.innerWidth + b;
-        console.log(newTop);
-        if (positionNav !== "fixed" && window.pageYOffset > newTop) {
+        if (positionNav !== "fixed" && window.pageYOffset > initialTop) {
             setTop("0");
             setPositionNav("fixed");
         }
 
-        if (positionNav === "fixed" && window.pageYOffset < newTop) {
-            setTop(newTop.toString() + "px");
-            console.log(top);
+        if (positionNav === "fixed" && window.pageYOffset < initialTop) {
+            setTop(initialTop.toString() + "px");
             setPositionNav("absolute");
         }
     };
@@ -111,14 +109,10 @@ export default function NavBar (props) {
 
     return (
         <div id='navBar' >
-            <Navbar expand="lg" style={{top: top, position: positionNav}}>
+            <Navbar expanded={expanded} expand="lg" style={{top: top, position: positionNav}}>
                 <Container fluid>
-                    {/*<Navbar.Brand onClick={handleHome}>*/}
-                    {/*    <img src="/logo2.png" alt= "Afro Blog" />*/}
-                    {/*</Navbar.Brand>*/}
-                    <Navbar.Toggle aria-controls="navbarScroll" />
+                    <Navbar.Toggle aria-controls="navbarScroll" onClick={() => setExpanded(expanded ? false : "expanded")} />
                     <Navbar.Collapse id="navbarScroll">
-                    {/*<DarkMode />*/}
                     <Nav>
                         <DarkMode />
                     </Nav>
@@ -128,13 +122,13 @@ export default function NavBar (props) {
                         style={{ maxHeight: '200px' }}
                         navbarScroll
                     >
-                        <Nav.Link onClick={() => handleSetFilter('cheveux')}>Cheveux</Nav.Link>
-                        <Nav.Link onClick={() => handleSetFilter('maquillage')}>Maquillage</Nav.Link>
-                        <Nav.Link onClick={() => handleSetFilter('peau')}>Peau</Nav.Link>
+                        <Nav.Link onClick={() => {handleSetFilter('cheveux'); setExpanded(false)}}>Cheveux</Nav.Link>
+                        <Nav.Link onClick={() => {handleSetFilter('maquillage'); setExpanded(false)}}>Maquillage</Nav.Link>
+                        <Nav.Link onClick={() => {handleSetFilter('peau'); setExpanded(false)}}>Peau</Nav.Link>
                     </Nav>
                     <Nav className="ml-auto">
                         <div className="rightPart">
-                            <Form className="d-flex" onSubmit={handleSearch}>
+                            <Form className="d-flex" onSubmit={(e) => {handleSearch(e); setExpanded(false)}}>
                                 <FormControl
                                     type="search"
                                     placeholder="Search"
@@ -145,13 +139,13 @@ export default function NavBar (props) {
                                     onChange={(e)=> setSearchText(e.target.value)}
                                 />
                                 <IconButton aria-label="Search"
-                                            onClick={() => {setResearchDisplay(!isResearchDisplay); handleSearch();}}  size="medium"><ImSearch className="bs-search"/></IconButton>
+                                            onClick={(e) => {setResearchDisplay(!isResearchDisplay); handleSearch(e);}}  size="medium"><ImSearch className="bs-search"/></IconButton>
                             </Form>
                             {
                                 (props.user.name) ? <NavDropdown title={props.user.name} id="navbarScrollingDropdown" className="signupLink">
                                     <NavDropdown.Item onClick={goToProfile}>Profile</NavDropdown.Item>
                                     <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
-                                </NavDropdown>:<Nav.Link className="signupLink" onClick={handleSignIn}>
+                                </NavDropdown>:<Nav.Link className="signupLink" onClick={() => {handleSignIn(); setExpanded(false)}}>
                                     Sign In
                                 </Nav.Link>
                             }
