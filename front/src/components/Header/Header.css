@@ -14,9 +14,9 @@
 
 .headerTitle{
     position: absolute;
-    padding-left: 60px;
     font-family: 'Trebuchet MS';
     font-size:7vw;
+    padding-left: 6vw;
 }
 
 .headerTitle a, .headerTitle a:hover{
@@ -26,15 +26,7 @@
 
 .subHeaderTitle{
     position: absolute;
-    top:40%;
-    left:45%;
+    margin-top: 10%;
     font-family: 'Open Sans';
+    font-size : 16px;
 }
-
-/*@media screen and (min-width: 960px) and (max-width: 1120px) {*/
-/*    #header {width: 960px;}*/
-/*    .headerTitle{*/
-/*        font-size : 7vw;*/
-/*        padding-left: 40px;*/
-/*    }*/
-/*}*/
