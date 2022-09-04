@@ -1,14 +1,20 @@
-#articles {
+.pageSection{
     width: 1080px;
-    min-height: 1000px;
-    background-color: rgb(255, 255, 255, .4);
+    height: 100%;
+    /*background-color: rgb(255, 255, 255, .4);*/
 }
 
-.textTitle{
-    width: 800px;
-    height:66px;
-    margin-bottom: 60px;
-    padding-top: 30px;
+@media screen and (min-width: 960px) {
+    .textTitle {
+        width : 800px;
+    }
+}
+
+@media screen  and (max-width: 1120px) {
+   .pageSection{width: 90%;}
+    #banner {
+        margin-top: 30px;
+    }
 }
 
 .tabsCustom{
@@ -33,10 +39,7 @@
 }
 
 #banner{
-    /*background: url("../../../public/hairBanner.png") no-repeat;*/
     margin-top : 15px;
-    height:280px;
-    width:1080px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -44,19 +47,26 @@
     text-align: center;
 }
 
+.hairBanner {
+    background: url("../../../public/hairBanner.png") no-repeat !important;
+    height: 280px;
+}
+
 #textBanner{
+    position: absolute;
     padding-left: 200px;
     font-family: "MV Boli";
 }
 
 .textTitle{
-    /*padding-bottom: 50px;*/
-    padding : 15px 0 50px 5px;
+    height:66px;
+    padding : 30px 0 80px 5px;
     font-family:"Renner*",Helvetica,sans-serif !important;
     font-size:1rem;
     line-height: 22px;
     letter-spacing: .7px;
     font-weight:bold;
+    text-align: justify;
 }
 
 .tabFilter .card-title{
@@ -75,6 +85,7 @@
     width: 210px;
     min-height: 100px;
     border : none !important;
+    margin-bottom: 10px;
 }
 
 .tabFilter .card-text{
@@ -102,17 +113,23 @@
 }
 
 .tabFilter .dropdown-share{
-    bottom: 246px !important;
+    /*position:absolute;*/
+    /*bottom: 200px !important;*/
     margin-left: 133px !important;
+}
+
+.tabFilter .dropdown-toggle:hover{
+    color: black !important;
+}
+
+.tabFilter .dropdown-menu{
+    margin-left: 30px !important;
 }
 
 .tabFilter .btn{
     width: 107px;
 }
 
-/*.tabFilter .dropdown-share .dropdown-menu{*/
-/*    background-color: transparent !important;*/
-/*    border: none;*/
-/*    min-width: 0.5rem !important;*/
-/*    transform: translate3d(0px, -26.6px, 0px) !important;*/
-/*}*/
+.tabFilter {
+    margin-top: 25px;
+}

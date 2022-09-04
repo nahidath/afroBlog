@@ -46,8 +46,7 @@ export default function Hair(){
 
     return (
         <>
-        <div id="banner">
-            <img src="../public/hairBanner.png" alt="hairBanner"/>
+        <div id="banner" className="hairBanner">
             <div id="textBanner">
                 <h1>Hair</h1>
             </div>
