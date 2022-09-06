@@ -12,6 +12,7 @@
     --share-toogle : #B25D3E;
     --navbar-bg-color : white;
     --navbar-toogle-img : url(../../../public/menu-logo-black.png) no-repeat center;
+    --nav-link-hover: 1px solid black;
 }
 
 /* 2 */
@@ -29,6 +30,7 @@
     --share-toogle : #ca9b52;
     --navbar-bg-color : #0A0B0C;
     --navbar-toogle-img: url(../../../public/menu-logo-white.png) no-repeat center;
+    --nav-link-hover: 1px solid white;
 }
 
 /* 3 */
@@ -98,6 +100,9 @@ input, textarea{
 
 .tabsCustom .nav-link:hover{
     color: var(--nav-link-active-color)!important;
+    border-top: var(--nav-link-hover) !important;
+    border-left: var(--nav-link-hover) !important;
+    border-right: var(--nav-link-hover) !important;
 
 }
 

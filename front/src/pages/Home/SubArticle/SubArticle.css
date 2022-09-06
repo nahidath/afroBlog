@@ -3,7 +3,7 @@
     margin-top: 2.5%;
     margin-bottom: 2.5%;
     float: left;
-    margin-left: 5%;
+    margin-left: 4.4%;
 }
 
 #subArticle .articleImg {
@@ -52,6 +52,7 @@
 
 .displaySubArt .card-img-top{
     transition: transform .2s; /* Animation */
+    cursor: pointer;
 }
 
 .displaySubArt .card-img-top:hover{
@@ -76,14 +77,13 @@
 }
 
 .dropdown-share .dropdown-toggle::after{
-    display:none;
+    display:none !important;
 }
 
 .dropdown-share .dropdown-menu{
     background-color: transparent !important;
     border: none;
     min-width: 0.5rem !important;
-    transform: translate3d(0px, -130.6px, 0px) !important;
 }
 
 .dropdown-share .dropdown-item:hover{
