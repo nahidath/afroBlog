@@ -30,22 +30,11 @@ export default function SubArticle (props) {
     }
     return (
         <div id='subArticle'>
-            {/*<img */}
-            {/*    src={['./articles', props.article.id, props.article.image].join('/')}*/}
-            {/*    alt="subArticle"  */}
-            {/*    className="articleImg" */}
-            {/*/>*/}
             <div className="articleText">
                 <Row className="g-4">
                         <Col>
                             <Card className="displaySubArt">
-                                {/*<div>*/}
-                                {/*    <FacebookShareButton size={15} round={true} />*/}
-                                {/*    <InstapaperShareButton size={15} round={true} />*/}
-                                {/*    <TwitterShareButton size={15} round={true} />*/}
-                                {/*    <WhatsappShareButton size={15} round={true} />*/}
-                                {/*</div>*/}
-                                <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}} />
+                                <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}} onClick={handleGoArticle} />
                                 <Card.Body>
                                     <Card.Title>{props.article.title}</Card.Title>
                                     <Card.Subtitle className="mb-2 text-muted">{props.article.category} - {props.article.date}</Card.Subtitle>
@@ -59,6 +48,7 @@ export default function SubArticle (props) {
                                       show={show}
                                       onMouseEnter={showDropdown}
                                       onMouseLeave={hideDropdown}
+                                      drop="up"
                             >
                                 <Dropdown.Toggle >
                                     <BsShareFill/>
