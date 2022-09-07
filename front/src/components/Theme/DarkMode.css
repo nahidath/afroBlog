@@ -13,6 +13,8 @@
     --navbar-bg-color : white;
     --navbar-toogle-img : url(../../../public/menu-logo-black.png) no-repeat center;
     --nav-link-hover: 1px solid black;
+    --outline-input: 2px solid #B7B7B7;
+
 }
 
 /* 2 */
@@ -31,6 +33,8 @@
     --navbar-bg-color : #0A0B0C;
     --navbar-toogle-img: url(../../../public/menu-logo-white.png) no-repeat center;
     --nav-link-hover: 1px solid white;
+    --outline-input: 2px solid #fff;
+
 }
 
 /* 3 */
@@ -125,6 +129,22 @@ a {
 
 .dropdown-share .dropdown-toggle{
     color: var(--share-toogle);
+}
+
+.login-wrapper .btn{
+    background-color: var(--bg-footer) !important;
+    border-color: var(--bg-footer) !important;
+}
+
+.input-name, .input-password{
+    border-bottom: var(--outline-input);
+}
+
+.input-name:focus+.input-label-email,
+.input-name:valid+.input-label-email,
+.input-password:focus+.input-label-password,
+.input-password:valid+.input-label-password{
+    background-color: var(--background-color);
 }
 
 /* Custom Dark Mode Toggle Element */

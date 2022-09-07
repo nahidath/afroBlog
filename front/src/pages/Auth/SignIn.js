@@ -19,6 +19,7 @@ export default function SignIn(props) {
     }
 
     const handleSubmit = (event) => {
+        console.log(email, password);
         event.preventDefault();
         axios.post('http://localhost:5000/user/signin', {
             email: email,
@@ -41,30 +42,23 @@ export default function SignIn(props) {
 
     return (
         <div className="login-wrapper">
-            <Form onSubmit={handleSubmit}>
-                <Form.Group size="lg" controlId="email">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
-                        autoFocus
-                        type="email"
-                        value={email}
-                        name="email"
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </Form.Group>
-                <Form.Group size="lg" controlId="password">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        value={password}
-                        name="password"
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </Form.Group>
+            <div className="login-title">
+                CONNEXION
+            </div>
+            <div className="login-subtitle">
+                Veuillez indiquer votre email et mot de passe :
+            </div>
+            <form onSubmit={handleSubmit}>
+                <div className="input-group">
+                    <input type="email" className="input-name" id="name" required onChange={(e) => setEmail(e.target.value)}/>
+                    <label htmlFor="name" className="input-label-email">Email</label>
+                    <input type="password" className="input-password" id="password" required onChange={(e) => setPassword(e.target.value)}/>
+                    <label htmlFor="password" className="input-label-password">Mot de passe</label>
+                </div>
                 <Button block size="lg" type="submit" disabled={!validateForm()}>
                     Login
                 </Button>
-            </Form>
+            </form>
             Pas de compte ? <a href="sign-up">Inscris-toi!</a>
         </div>
     );
