@@ -91,89 +91,39 @@ export default function  SignUp() {
 
     return (
         <div className="signup-wrapper">
-            <Form horizontal onSubmit={handleSubmit} className="signup-form">
-                <Form.Group controlId="name">
-                    <Col componentClass={Form.Label} sm={2} className="label">
-                        Nom
-                    </Col>
-                    <Col sm={10} className="inputLabel">
-                        <Form.Control
-                            autoFocus
-                            type="text"
-                            name="name"
-                            onChange={(e) => setName(e.target.value)}
-                            // placeholder="Nom"
-                        />
-                    </Col>
-                </Form.Group>
-                <Form.Group controlId="firstName">
-                    <Col componentClass={Form.Label} sm={2} className="label">
-                        Prénom
-                    </Col>
-                    <Col sm={10} className="inputLabel">
-                        <Form.Control
-                            autoFocus
-                            type="text"
-                            name="firstName"
-                            onChange={(e) => setFirstName(e.target.value)}
-                            // placeholder="Prénom"
-                        />
-                    </Col>
-                </Form.Group>
-                <Form.Group controlId="email">
-                    <Col componentClass={Form.Label} sm={2} className="label">
-                        Email
-                    </Col>
-                    <Col sm={10} className="inputLabel">
-                        <Form.Control
-                            autoFocus
-                            type="email"
-                            name="email"
-                            onChange={(e) => setEmail(e.target.value)}
-                            // placeholder="Email"
-                        />
-                    </Col>
-                </Form.Group>
-                <Form.Group controlId="password">
-                    <Col componentClass={Form.Label} className="label">
-                        Mot de passe
-                    </Col>
-                    <Col sm={10} className="inputLabel">
-                        <Form.Control
-                            type="password"
-                            name="password"
-                            onChange={(e) => setPassword(e.target.value)}
-                            // placeholder="Mot de passe"
-                        />
-                    </Col>
-                </Form.Group>
-                <Form.Group  controlId="confPwd">
-                    <Col componentClass={Form.Label} className="label">
-                        Confirmez votre mot de passe
-                    </Col>
-                    <Col sm={10} className="inputLabel">
-                        <Form.Control
-                            type="password"
-                            name="confPwd"
-                            onChange={(e) => setConfPwd(e.target.value)}
-                            // placeholder="Confirmez votre mot de passe"
-                        />
-                    </Col>
-                </Form.Group>
-                <Form.Group>
-                    <Form.Check
-                        type='checkbox'
-                        id="subscribeBox"
-                        label="S'abonner à la newsletter"
-                        onChange={(e) =>setChecked(e.target.checked)}
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Col smOffset={2} sm={10}>
-                        <Button block size="lg" type="submit" onClick={handleSubmit}>Sign Up</Button>
-                    </Col>
-                </Form.Group>
-            </Form>
+            <div className="signup-title">
+                INSCRIPTION
+            </div>
+            <div className="signup-subtitle">
+                Veuillez remplir les champs suivants :
+            </div>
+            <form onSubmit={handleSubmit}>
+                <div className="input-group-signup">
+                    <input type="text" className="input-name-set" id="name" required onChange={(e) => setName(e.target.value)}/>
+                    <label for="name" className="input-label-name">Nom</label>
+                    <input type="text" className="input-prenom" id="prenom" required onChange={(e) => setFirstName(e.target.value)}/>
+                    <label for="prenom" className="input-label-prenom">Prénom</label>
+
+                    <input type="email" className="input-email" id="email" required
+                           onChange={(e) => setEmail(e.target.value)}/>
+                    <label for="email" className="input-label-email-set">Email</label>
+
+                    <input type="password" className="input-password-set" id="password-set" required
+                           onChange={(e) => setPassword(e.target.value)}/>
+                    <label for="password" className="input-label-password-set">Mot de passe</label>
+
+                    <input type="password" className="input-password-confirm" id="password-confirm" required
+                           onChange={(e) => setConfPwd(e.target.value)}/>
+                    <label for="password" className="input-label-password-confirm">Confirmez votre mot de passe</label>
+
+                    <input type="checkbox" className="subscribeBox" id="subscribeBox" onChange={(e) =>setChecked(e.target.checked)} />
+                    <label for="checkbox" className="subscribeBox-label">S'abonner à la newsletter</label>
+
+                </div>
+                <Button block size="lg" type="submit" onClick={handleSubmit}>
+                    Sign up
+                </Button>
+            </form>
             <span>Déjà inscrit ? <a href="sign-in">Connecte-toi!</a></span>
         </div>
     );

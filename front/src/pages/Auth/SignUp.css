@@ -1,45 +1,159 @@
-#signup {
-
-    background-color: blue;
-}
-
 .signup-wrapper{
-    width: 50%;
+    width: 30%;
     height: auto;
     border: 1px solid #b7b7b7;
     padding: 2rem;
-    margin: 40px 0 40px 0;
+    /*margin: 40px 0 40px 0;*/
     background-color: white;
     box-shadow: 0 6px 6px rgba(0,0,0, 0.2);
     border-radius: 10px;
 
 }
 
-.signup-form{
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    margin-left: 50px;
-    width: 100%;
-
+@media screen and (min-width: 960px){
+    .signup-wrapper{
+        margin-top: 80px;
+    }
 }
 
-.signup-form .form-group{
+@media screen  and (max-width: 1120px){
+    .signup-wrapper{
+        margin-top: 80px;
+    }
+}
+
+    /*.signup-form{*/
+/*    display: flex !important;*/
+/*    flex-direction: column !important;*/
+/*    justify-content: center !important;*/
+/*    margin-left: 50px;*/
+/*    width: 100%;*/
+
+/*}*/
+
+/*.signup-form .form-group{*/
+/*    position: relative;*/
+/*}*/
+
+/*.signup-form .form-control{*/
+/*    padding: 10px;*/
+/*    border-radius: 4px;*/
+/*    font: inherit;*/
+/*    color: black;*/
+/*    background-color: transparent;*/
+/*}*/
+
+/*.signup-wrapper span {*/
+/*    margin-left: 60px;*/
+/*}*/
+
+/*#subscribeBox{*/
+/*    margin-top: 7px;*/
+/*}*/
+
+.signup-title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom : 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.signup-subtitle{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom : 20px;
+    font-size : 15px;
+}
+
+.input-group-signup{
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
-.signup-form .form-control{
+
+.input-name-set,.input-prenom, .input-email,
+.input-password-set, .input-password-confirm{
     padding: 10px;
-    border-radius: 4px;
     font: inherit;
-    color: black;
     background-color: transparent;
+    border-top:none;
+    border-left: none;
+    border-right: none;
+    margin-bottom: 20px;
+    height: 35px;
 }
 
-.signup-wrapper span {
-    margin-left: 60px;
+.input-label-name{
+    position: absolute;
+    top:0;
+    left: 0;
+    transform: translate(10px,10px);
+    transition: transform .25s;
+}
+.input-label-prenom{
+    position: absolute;
+    top:55px;
+    left: 0;
+    transform: translate(10px,10px);
+    transition: transform .25s;
 }
 
-#subscribeBox{
-    margin-top: 7px;
+.input-label-email-set{
+    position: absolute;
+    top:110px;
+    left: 0;
+    transform: translate(10px,10px);
+    transition: transform .25s;
+}
+
+.input-label-password-set{
+    position: absolute;
+    top:165px;
+    left: 0;
+    transform: translate(10px,10px);
+    transition: transform .25s;
+}
+
+.input-label-password-confirm{
+    position: absolute;
+    top:220px;
+    left: 0;
+    transform: translate(10px,10px);
+    transition: transform .25s;
+}
+
+.input-name-set:focus+.input-label-name,
+.input-prenom:focus+.input-label-prenom,
+.input-email:focus+.input-label-email-set,
+.input-password-set:focus+.input-label-password-set,
+.input-password-confirm:focus+.input-label-password-confirm{
+    transform: translate(10px , -14px) scale(.8);
+    color: #ca9b52;
+    padding-inline: 5px;
+}
+
+.input-name-set:is(:focus, :valid),.input-prenom:is(:focus, :valid),
+.input-email:is(:focus, :valid), .input-password-set:is(:focus, :valid), .input-password-confirm:is(:focus, :valid){
+    border: 2px solid #C39A7E;
+    border-radius: 4px;
+    outline: none;
+}
+
+.subscribeBox{
+    position: relative;
+    /*margin-right: 5px;*/
+    top: 20px;
+}
+
+.signup-wrapper a{
+    color: #ca9b52;
+}
+
+.signup-wrapper .btn{
+    margin-top: 30px;
+    margin-bottom: 10px;
 }

@@ -131,7 +131,7 @@ a {
     color: var(--share-toogle);
 }
 
-.login-wrapper .btn{
+.login-wrapper .btn, .signup-wrapper .btn{
     background-color: var(--bg-footer) !important;
     border-color: var(--bg-footer) !important;
 }
@@ -143,7 +143,12 @@ a {
 .input-name:focus+.input-label-email,
 .input-name:valid+.input-label-email,
 .input-password:focus+.input-label-password,
-.input-password:valid+.input-label-password{
+.input-password:valid+.input-label-password,
+.input-name-set:focus+.input-label-name,
+.input-prenom:focus+.input-label-prenom,
+.input-email:focus+.input-label-email-set,
+.input-password-set:focus+.input-label-password-set,
+.input-password-confirm:focus+.input-label-password-confirm{
     background-color: var(--background-color);
 }
 
