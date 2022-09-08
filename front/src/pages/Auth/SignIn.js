@@ -19,13 +19,11 @@ export default function SignIn(props) {
     }
 
     const handleSubmit = (event) => {
-        console.log(email, password);
         event.preventDefault();
         axios.post('http://localhost:5000/user/signin', {
             email: email,
             password: password
         }).then((res) => {
-            console.log(res.data)
             if (res.data["status"] === "fail") {
                 toast.error(res.data["message"], {
                     theme: "colored",
