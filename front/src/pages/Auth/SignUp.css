@@ -14,49 +14,32 @@
     .signup-wrapper{
         margin-top: 80px;
     }
+    .input-group-signup label, .signup-subtitle, .signup-wrapper span{
+        font-size : 16px;
+    }
+    .signup-title, .signup-wrapper .btn{
+        font-size : 20px;
+    }
 }
 
 @media screen  and (max-width: 1120px){
     .signup-wrapper{
         margin-top: 80px;
     }
+    .input-group-signup label, .signup-subtitle, .signup-wrapper span{
+        font-size : 14px;
+    }
+    .signup-title, .signup-wrapper .btn{
+        font-size : 17px;
+    }
+
 }
-
-    /*.signup-form{*/
-/*    display: flex !important;*/
-/*    flex-direction: column !important;*/
-/*    justify-content: center !important;*/
-/*    margin-left: 50px;*/
-/*    width: 100%;*/
-
-/*}*/
-
-/*.signup-form .form-group{*/
-/*    position: relative;*/
-/*}*/
-
-/*.signup-form .form-control{*/
-/*    padding: 10px;*/
-/*    border-radius: 4px;*/
-/*    font: inherit;*/
-/*    color: black;*/
-/*    background-color: transparent;*/
-/*}*/
-
-/*.signup-wrapper span {*/
-/*    margin-left: 60px;*/
-/*}*/
-
-/*#subscribeBox{*/
-/*    margin-top: 7px;*/
-/*}*/
 
 .signup-title{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom : 20px;
-    font-size: 20px;
     font-weight: bold;
 }
 
@@ -65,7 +48,6 @@
     flex-direction: column;
     align-items: center;
     margin-bottom : 20px;
-    font-size : 15px;
 }
 
 .input-group-signup{
@@ -78,7 +60,6 @@
 .input-name-set,.input-prenom, .input-email,
 .input-password-set, .input-password-confirm{
     padding: 10px;
-    font: inherit;
     background-color: transparent;
     border-top:none;
     border-left: none;
@@ -137,16 +118,17 @@
 }
 
 .input-name-set:is(:focus, :valid),.input-prenom:is(:focus, :valid),
-.input-email:is(:focus, :valid), .input-password-set:is(:focus, :valid), .input-password-confirm:is(:focus, :valid){
+.input-email:is(:focus, :valid), .input-password-set:is(:focus, :valid),
+.input-password-confirm:is(:focus, :valid){
     border: 2px solid #C39A7E;
     border-radius: 4px;
     outline: none;
 }
 
 .subscribeBox{
-    position: relative;
-    /*margin-right: 5px;*/
-    top: 20px;
+    position: absolute;
+    right: 8px;
+    top: 290px;
 }
 
 .signup-wrapper a{
@@ -156,4 +138,8 @@
 .signup-wrapper .btn{
     margin-top: 30px;
     margin-bottom: 10px;
+}
+
+.subscribeBox-label{
+    margin-top: 10px;
 }
