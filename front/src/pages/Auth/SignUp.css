@@ -12,13 +12,17 @@
 
 @media screen and (min-width: 960px){
     .signup-wrapper{
-        margin-top: 80px;
+        margin-top: 50px;
+        margin-bottom: 60px;
     }
     .input-group-signup label, .signup-subtitle, .signup-wrapper span{
         font-size : 16px;
     }
     .signup-title, .signup-wrapper .btn{
         font-size : 20px;
+    }
+    .subscribeBox-label{
+        margin-left: 6%;
     }
 }
 
@@ -31,6 +35,10 @@
     }
     .signup-title, .signup-wrapper .btn{
         font-size : 17px;
+    }
+    .subscribeBox-label{
+       padding-top:2.5px;
+       padding-left: 6%;
     }
 
 }
@@ -66,6 +74,7 @@
     border-right: none;
     margin-bottom: 20px;
     height: 35px;
+    z-index: 100;
 }
 
 .input-label-name{
@@ -123,12 +132,15 @@
     border: 2px solid #C39A7E;
     border-radius: 4px;
     outline: none;
+    z-index: 0;
 }
 
-.subscribeBox{
+#subscribeBox{
     position: absolute;
-    right: 8px;
-    top: 290px;
+    margin-top: 292px;
+}
+.subscribeBox-label{
+    margin-left: 6%;
 }
 
 .signup-wrapper a{
