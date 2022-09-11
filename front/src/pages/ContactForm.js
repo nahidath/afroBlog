@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function ContactForm(){
 
     const form = useRef();
-
+    console.log(form.current);
     const sendEmail = (e) => {
         e.preventDefault();
         emailjs.sendForm('service_ck55iw9', 'template_yafwsxd', form.current, '4efi92eRP81rtkqUk')
@@ -34,38 +34,19 @@ export default function ContactForm(){
                 Avez-vous quelque chose à nous faire part ? Un commentaire ou une idée à partager ? Vous pouvez nous le faire savoir grâce au formulaire ci-dessous :
             </div>
             <div className="formContact">
-                <Form horizontal onSubmit={sendEmail} ref={form}>
-                    <Form.Group>
-                        <Col componentClass={Form.Label} sm={2}>
-                            Nom
-                        </Col>
-                        <Col sm={10} className="inputLabel">
-                            <Form.Control
-                                autoFocus
-                                type="text"
-                                name="from_name"
-                            />
-                        </Col>
-                    </Form.Group>
-                    <Form.Group>
-                        <Col componentClass={Form.Label} sm={2}>
-                            Email
-                        </Col>
-                        <Col sm={10}>
-                            <Form.Control
-                                autoFocus
-                                type="email"
-                                name="email"
-                            />
-                        </Col>
-                    </Form.Group>
-                    <div className="commentArea">
-                        <label>Remarques, suggestions</label>
-                        <textarea className="txtcontact" placeholder="Ecrivez ici..." name="message"></textarea>
+                <form onSubmit={sendEmail} ref={form}>
+                    <div className="input-group-contact">
+                        <input type="text" className="inputName" id="name" name="from_name"/>
+                        <label htmlFor="name" className="inputLabelName">Nom</label>
+                        <input type="email" className="inputEmail" id="email" name="email" />
+                        <label htmlFor="email" className="inputLabelEmail">Email</label>
+                        <div className="commentArea">
+                            <label className="rmqLabel">Remarques, suggestions</label>
+                            <textarea className="txtcontact" placeholder="Ecrivez ici..." name="message"></textarea>
+                        </div>
                         <Button type="submit" variant="dark" className="btn-submitCom">Envoyer</Button>
-
                     </div>
-                </Form>
+                </form>
             </div>
         </div>
     );

@@ -152,6 +152,10 @@ a {
     background-color: var(--background-color);
 }
 
+.inputLabelName, .inputLabelEmail, .rmqLabel, .inputName, .inputEmail, .txtcontact{
+    background-color: var(--background-color);
+}
+
 /* Custom Dark Mode Toggle Element */
 .toggle-theme-wrapper {
     display: flex;
