@@ -17,7 +17,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
 }
 
 .inputLabelName{
@@ -31,7 +31,7 @@
 
 .inputLabelEmail{
     position: absolute;
-    top:60px;
+    top:70px;
     left: 0;
     transform: translate(10px,-14px);
     padding-left : 5px;
@@ -40,7 +40,7 @@
 
 .rmqLabel{
     position: absolute;
-    top:151px;
+    top:137px;
     left: 0;
     transform: translate(10px,-14px);
     padding-left : 5px;
@@ -79,4 +79,8 @@
     resize: none;
     overflow-y: auto;
     padding-top:18px;
+}
+
+.btn-submitContact{
+    width: 80px;
 }
