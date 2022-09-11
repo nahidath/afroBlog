@@ -13,14 +13,64 @@
     margin-top: 2.5%;
 }
 
+.input-group-contact{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.inputLabelName{
+    position: absolute;
+    top:0;
+    left: 0;
+    transform: translate(10px,-14px);
+    padding-left : 5px;
+    padding-right : 5px;
+}
+
+.inputLabelEmail{
+    position: absolute;
+    top:60px;
+    left: 0;
+    transform: translate(10px,-14px);
+    padding-left : 5px;
+    padding-right : 5px;
+}
+
+.rmqLabel{
+    position: absolute;
+    top:151px;
+    left: 0;
+    transform: translate(10px,-14px);
+    padding-left : 5px;
+    padding-right : 5px;
+}
+
+.inputName, .inputEmail, .txtcontact{
+    border-radius: 4px;
+    outline: none;
+    width : 80%;
+    height: 38px;
+}
+.inputName:focus+.inputLabelName, .inputEmail:focus+.inputLabelEmail, .txtcontact:focus+.rmqLabel{
+    color: #ca9b52 !important;
+}
+
+.inputName:focus, .inputEmail:focus, .txtcontact:focus{
+    border: 2px solid #C39A7E;
+    outline: none !important;
+}
+
 .formContact{
-    margin-top:2.5%;
+    margin-top:5%;
 }
 
 .commentArea{
-    display:flex;
-    flex-direction: column;
-    margin-left:2%;
+    margin-top: 5%;
+    /*display:flex;*/
+    /*flex-direction: column;*/
+    /*margin-left:2%;*/
 }
 
 .txtcontact{
@@ -28,4 +78,5 @@
     height : 200px;
     resize: none;
     overflow-y: auto;
+    padding-top:18px;
 }
