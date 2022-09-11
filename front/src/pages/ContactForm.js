@@ -40,11 +40,9 @@ export default function ContactForm(){
                         <label htmlFor="name" className="inputLabelName">Nom</label>
                         <input type="email" className="inputEmail" id="email" name="email" />
                         <label htmlFor="email" className="inputLabelEmail">Email</label>
-                        <div className="commentArea">
-                            <label className="rmqLabel">Remarques, suggestions</label>
-                            <textarea className="txtcontact" placeholder="Ecrivez ici..." name="message"></textarea>
-                        </div>
-                        <Button type="submit" variant="dark" className="btn-submitCom">Envoyer</Button>
+                        <textarea className="txtcontact" placeholder="Ecrivez ici..." name="message"></textarea>
+                        <label className="rmqLabel">Remarques, suggestions</label>
+                        <Button type="submit" variant="dark" className="btn-submitContact">Envoyer</Button>
                     </div>
                 </form>
             </div>
