@@ -121,7 +121,7 @@
 .input-email:focus+.input-label-email-set,
 .input-password-set:focus+.input-label-password-set,
 .input-password-confirm:focus+.input-label-password-confirm{
-    transform: translate(10px , -14px) scale(.8);
+    transform: translate(10px , -14px) scale(.85);
     color: #ca9b52;
     padding-inline: 5px;
 }
