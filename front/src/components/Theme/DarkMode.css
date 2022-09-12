@@ -68,7 +68,7 @@ h1, .subHeaderTitle{
     background-color: var(--navBar-color)!important;
     color: var(--font-color);
 }
-.bs-search, .tabsCustom .nav-link, #navBar .nav-link, .about-content h1 {
+.bs-search, .tabsCustom .nav-link, #navBar .nav-link, .about-wrapper h1 {
     color: var(--font-color);
 }
 

@@ -1,22 +1,36 @@
 .about-wrapper{
     display: flex;
     justify-content: center;
-    width: 60%;
+    flex-direction: column;
+    width: 50%;
     padding-bottom: 40px;
+    margin-top: 2%;
+}
+
+.about-wrapper h1{
+    font-size: 35px;
 }
 
 .aboutPic{
     display: flex;
     justify-content: center;
+    margin-bottom : 20px;
+}
+
+.aboutPic img{
+    width: 474px;
+    height: 645px;
+    border : 5px groove white;
+    /*box-shadow: 1px 1px 5px rgb(0 0 0 / 10%);*/
 }
 
 .about-content p{
     text-align: justify;
 }
 
-.about-content h1{
+#aboutSign{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
     font-weight: bold;
-    font-size : 30px;
-    text-align: center;
-    padding: 0 0 25px 0 ;
 }
