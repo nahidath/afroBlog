@@ -1,7 +1,7 @@
 /* 1 */
 :root {
     --font-color: black;
-    --background-color: white;
+    --background-color: rgb(245, 245, 245);
     --link-color: cornflowerblue;
     --nav-link-active-color:#993333;
     --bg-footer : #B25D3E;
@@ -131,7 +131,7 @@ a {
     color: var(--share-toogle);
 }
 
-.login-wrapper .btn, .signup-wrapper .btn{
+.login-wrapper .btn, .signup-wrapper .btn, .btn-submitContact{
     background-color: var(--bg-footer) !important;
     border-color: var(--bg-footer) !important;
 }
@@ -154,6 +154,10 @@ a {
 
 .inputLabelName, .inputLabelEmail, .rmqLabel, .inputName, .inputEmail, .txtcontact{
     background-color: var(--background-color);
+}
+
+.inputName, .inputEmail, .txtcontact{
+    border: var(--nav-link-hover);
 }
 
 /* Custom Dark Mode Toggle Element */
