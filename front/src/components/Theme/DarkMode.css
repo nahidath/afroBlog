@@ -72,7 +72,7 @@ h1, .subHeaderTitle{
     color: var(--font-color);
 }
 
-.nav-tabs, .btn, .article hr, #home hr{
+.nav-tabs, .btn, .article hr, #home hr, .edit-profile-zone hr{
     border-color: var(--font-color);
 }
 
@@ -131,7 +131,7 @@ a {
     color: var(--share-toogle);
 }
 
-.login-wrapper .btn, .signup-wrapper .btn, .btn-submitContact{
+.login-wrapper .btn, .signup-wrapper .btn, .btn-submitContact, .edit-profile-zone .btn{
     background-color: var(--bg-footer) !important;
     border-color: var(--bg-footer) !important;
 }

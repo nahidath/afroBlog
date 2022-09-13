@@ -47,6 +47,14 @@
     font-weight: bold;
 }
 
+.edit-profile-zone .form-check{
+    margin-left: 15px;
+}
+
+#subscribeBoxProfile{
+    margin-top: 7px;
+}
+
 .fav-zone .card{
     border: none
 }
