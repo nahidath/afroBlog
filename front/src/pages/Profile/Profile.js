@@ -217,7 +217,7 @@ export default function Profile(props) {
                     <Form.Group>
                         <Form.Check
                             type='checkbox'
-                            id="subscribeBox"
+                            id="subscribeBoxProfile"
                             label="S'abonner à la newsletter"
                             onChange={(e) =>setIsSubscribe(e.target.checked)}
                             checked={isSubscribe}
