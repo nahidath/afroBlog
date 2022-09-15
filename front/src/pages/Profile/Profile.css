@@ -51,6 +51,10 @@
     margin-left: 15px;
 }
 
+.edit-profile-zone .form-group .col{
+    margin-bottom: 10px;
+}
+
 #subscribeBoxProfile{
     margin-top: 7px;
 }
@@ -85,4 +89,18 @@
     display: flex;
     flex-flow: row wrap;
     gap:15px;
+}
+
+.fav-zone-art .card{
+    width: 210px;
+    min-height: 100px;
+}
+
+.fav-zone-art .card-img-top{
+    transition: transform .2s; /* Animation */
+    cursor: pointer;
+}
+
+.fav-zone-art .card-img-top:hover{
+    transform: scale(1.1);
 }
