@@ -40,11 +40,12 @@
 }
 
 .welcome-text{
-    position: relative;
+    position: absolute;
     margin-left: 175px;
-    bottom : 70px;
+    margin-top : -71px;
     font-size: 30px;
     font-weight: bold;
+
 }
 
 .edit-profile-zone .form-check{
@@ -93,7 +94,7 @@
 
 .fav-zone-art .card{
     width: 210px;
-    min-height: 100px;
+    height: 350px;
 }
 
 .fav-zone-art .card-img-top{
@@ -103,4 +104,31 @@
 
 .fav-zone-art .card-img-top:hover{
     transform: scale(1.1);
+}
+
+.fav-zone-art .card-title {
+    font-size : 18px;
+}
+
+.fav-zone-art .card-text {
+    font-size: 15px;
+}
+
+.fav-zone-art .card-subtitle{
+    font-size: 12px;
+}
+
+@media screen and (max-width: 1142px){
+    .fav-zone-art .card{
+        width: 200px ;
+        min-height: 100px;
+    }
+    .welcome-text{
+        font-size:3vw;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        hyphens: auto;
+        width: 30vw;
+        margin-left: 22vw;
+    }
 }
