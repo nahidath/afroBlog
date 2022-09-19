@@ -18,6 +18,8 @@ export default function  SignUp() {
     const [firstName,setFirstName] = useState("");
     const [confPwd, setConfPwd] = useState("");
     const [checked, setChecked] = useState(false);
+    const [isEmpty,setEmpty] = useState(true);
+
     //
     // useEffect(() => {
     //     stayFocus();
@@ -105,6 +107,20 @@ export default function  SignUp() {
     //     }
     // }
 
+    const stayFocus = () =>{
+        const ipt = document.getElementsByClassName("input-name-set");
+        const lbl = document.getElementById("et");
+        if(ipt.length != 0){
+            console.log(ipt.length);
+            setEmpty(false);
+        }
+        if(isEmpty ==  false){
+            lbl.style.transform = "translate(10px , -14px)";
+            lbl.style.backgroundColor = "inherit";
+        }
+
+    }
+
 
     return (
         <div className="signup-wrapper">
@@ -116,8 +132,8 @@ export default function  SignUp() {
             </div>
             <form onSubmit={handleSubmit}>
                 <div className="input-group-signup">
-                    <input type="text" className="input-name-set" id="name" required onChange={(e) => setName(e.target.value)}/>
-                    <label htmlFor="name" className="input-label-name">Nom</label>
+                    <input type="text" className="input-name-set" id="name" required onChange={(e) => setName(e.target.value)} onInput={stayFocus}/>
+                    <label htmlFor="name" className="input-label-name" id="et">Nom</label>
                     <input type="text" className="input-prenom" id="prenom" required onChange={(e) => setFirstName(e.target.value)}/>
                     <label htmlFor="prenom" className="input-label-prenom">Prénom</label>
 
