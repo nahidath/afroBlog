@@ -107,9 +107,9 @@ export default function  SignUp() {
     //     }
     // }
 
-    const stayFocus = () =>{
-        const ipt = document.getElementsByClassName("input-name-set");
-        const lbl = document.getElementById("et");
+    const stayFocus = (inputClass, labelID) =>{
+        const ipt = document.getElementsByClassName(inputClass);
+        const lbl = document.getElementById(labelID);
         if(ipt.length != 0){
             console.log(ipt.length);
             setEmpty(false);
@@ -132,22 +132,22 @@ export default function  SignUp() {
             </div>
             <form onSubmit={handleSubmit}>
                 <div className="input-group-signup">
-                    <input type="text" className="input-name-set" id="name" required onChange={(e) => setName(e.target.value)} onInput={stayFocus}/>
-                    <label htmlFor="name" className="input-label-name" id="et">Nom</label>
-                    <input type="text" className="input-prenom" id="prenom" required onChange={(e) => setFirstName(e.target.value)}/>
-                    <label htmlFor="prenom" className="input-label-prenom">Prénom</label>
+                    <input type="text" className="input-name-set" id="name" required onChange={(e) => setName(e.target.value)} onInput={()=>stayFocus("input-name-set", "nom")}/>
+                    <label htmlFor="name" className="input-label-name" id="nom">Nom</label>
+                    <input type="text" className="input-prenom" id="prenom" required onChange={(e) => setFirstName(e.target.value)} onInput={()=>stayFocus("input-prenom", "prenomL")}/>
+                    <label htmlFor="prenom" className="input-label-prenom" id="prenomL">Prénom</label>
 
                     <input type="email" className="input-email" id="email" required
-                           onChange={(e) => setEmail(e.target.value)}/>
-                    <label htmlFor="email" className="input-label-email-set">Email</label>
+                           onChange={(e) => setEmail(e.target.value)} onInput={()=>stayFocus("input-email", "emailL")}/>
+                    <label htmlFor="email" className="input-label-email-set" id="emailL">Email</label>
 
                     <input type="password" className="input-password-set" id="password-set" required
-                           onChange={(e) => setPassword(e.target.value)}/>
-                    <label htmlFor="password" className="input-label-password-set">Mot de passe</label>
+                           onChange={(e) => setPassword(e.target.value)} onInput={()=>stayFocus("input-password-set", "pwd")}/>
+                    <label htmlFor="password" className="input-label-password-set" id="pwd">Mot de passe</label>
 
                     <input type="password" className="input-password-confirm" id="password-confirm" required
-                           onChange={(e) => setConfPwd(e.target.value)}/>
-                    <label htmlFor="password" className="input-label-password-confirm">Confirmez votre mot de passe</label>
+                           onChange={(e) => setConfPwd(e.target.value)} onInput={()=>stayFocus("input-password-confirm", "pwdC")} />
+                    <label htmlFor="password" className="input-label-password-confirm" id="pwdC">Confirmez votre mot de passe</label>
 
                     <input type="checkbox" className="subscribeBox" id="subscribeBox" onChange={(e) =>setChecked(e.target.checked)} />
                     <label htmlFor="checkbox" className="subscribeBox-label">S'abonner à la newsletter</label>
