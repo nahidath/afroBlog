@@ -107,17 +107,22 @@ export default function  SignUp() {
     //     }
     // }
 
-    const stayFocus = (inputClass, labelID) =>{
-        const ipt = document.getElementsByClassName(inputClass);
+    const stayFocus = (inputID, labelID) =>{
+        const ipt = document.getElementById(inputID);
         const lbl = document.getElementById(labelID);
-        if(ipt.length != 0){
-            console.log(ipt.length);
+        console.log(ipt.length);
+        if(ipt.value != ''){
+            console.log(ipt.value);
             setEmpty(false);
         }
         if(isEmpty ==  false){
             lbl.style.transform = "translate(10px , -14px)";
             lbl.style.backgroundColor = "inherit";
+        }else {
+            lbl.style.transform = "translate(10px , 10px)";
         }
+
+
 
     }
 
@@ -132,9 +137,9 @@ export default function  SignUp() {
             </div>
             <form onSubmit={handleSubmit}>
                 <div className="input-group-signup">
-                    <input type="text" className="input-name-set" id="name" required onChange={(e) => setName(e.target.value)} onInput={()=>stayFocus("input-name-set", "nom")}/>
+                    <input type="text" className="input-name-set" id="name" required onChange={(e) => setName(e.target.value)} onKeyUp={()=>stayFocus("name", "nom")}/>
                     <label htmlFor="name" className="input-label-name" id="nom">Nom</label>
-                    <input type="text" className="input-prenom" id="prenom" required onChange={(e) => setFirstName(e.target.value)} onInput={()=>stayFocus("input-prenom", "prenomL")}/>
+                    <input type="text" className="input-prenom" id="prenom" required onChange={(e) => setFirstName(e.target.value)} onInput={()=>stayFocus("prenom", "prenomL")}/>
                     <label htmlFor="prenom" className="input-label-prenom" id="prenomL">Prénom</label>
 
                     <input type="email" className="input-email" id="email" required
