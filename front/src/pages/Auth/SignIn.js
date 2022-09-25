@@ -13,7 +13,6 @@ export default function SignIn(props) {
     const history = useHistory();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [isEmpty,setEmpty] = useState(true);
 
     const validateForm = () => {
         return email.length > 0 && password.length > 0;
@@ -39,16 +38,16 @@ export default function SignIn(props) {
         })
     };
 
-    const stayFocus = () =>{
-        const ipt = document.getElementsByClassName("input-name");
-        const lbl = document.getElementsByClassName("input-label-email");
-        if(ipt.value.length != 0){
-            setEmpty(false);
-        }
-        if(isEmpty ==  false){
-            lbl.style.display = "none";
-        }
+    const stayFocus = (inputID, labelID) =>{
 
+        const ipt = document.getElementById(inputID);
+        const lbl = document.getElementById(labelID);
+        if(ipt.value.length >= 1){
+            lbl.style.transform = "translate(10px , -14px) scale(.85)";
+        }
+        if(ipt.value.length === 0){
+            lbl.style.removeProperty('transform');
+        }
     }
 
     return (
@@ -61,10 +60,10 @@ export default function SignIn(props) {
             </div>
             <form onSubmit={handleSubmit}>
                 <div className="input-group">
-                    <input type="email" className="input-name" id="name" required onChange={(e) => setEmail(e.target.value)} onInput={stayFocus}/>
-                    <label htmlFor="name" className="input-label-email">Email</label>
-                    <input type="password" className="input-password" id="password" required onChange={(e) => setPassword(e.target.value)}/>
-                    <label htmlFor="password" className="input-label-password">Mot de passe</label>
+                    <input type="email" className="email-input" id="name" required onChange={(e) => setEmail(e.target.value)} onInput={()=>stayFocus("name", "email-label")}/>
+                    <label htmlFor="name" className="input-label-email" id="email-label">Email</label>
+                    <input type="password" className="password-input" id="password" required onChange={(e) => setPassword(e.target.value)} onInput={()=>stayFocus("password", "password-label")}/>
+                    <label htmlFor="password" className="input-label-password" id="password-label">Mot de passe</label>
                 </div>
                 <Button block size="lg" type="submit" disabled={!validateForm()}>
                     Login

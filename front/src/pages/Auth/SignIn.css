@@ -30,7 +30,7 @@
     gap: 30px;
 
 }
-.input-name, .input-password{
+.email-input, .password-input{
     padding: 10px;
     font: inherit;
     background-color: transparent;
@@ -55,17 +55,17 @@
     transition: transform .25s;
 }
 
-.input-name:focus+.input-label-email,
-.input-name:valid+.input-label-email,
-.input-password:focus+.input-label-password,
-.input-password:valid+.input-label-password{
+.email-input:focus+.input-label-email,
+.email-input:valid+.input-label-email,
+.password-input:focus+.input-label-password,
+.password-input:valid+.input-label-password{
     transform: translate(10px , -14px) scale(.8);
     color: #ca9b52;
     padding-inline: 5px;
 }
 
-.input-name:is(:focus, :valid),
-.input-password:is(:focus, :valid){
+.email-input:is(:focus, :valid),
+.password-input:is(:focus, :valid){
     border: 2px solid #C39A7E;
     border-radius: 4px;
     outline: none;
