@@ -20,7 +20,8 @@
 /* 2 */
 [data-theme="dark"] {
     --font-color: #eee;
-    --background-color: #1A1C20;
+    /*--background-color: #1A1C20;*/
+    --background-color: #252525;
     --link-color: lightblue;
     --art-bg-color: white;
     --input-color: #333333;
@@ -30,7 +31,7 @@
     --btn-color-hover:#ca9b52;
     --border-color-cadre: 2px solid #ca9b52 ;
     --share-toogle : #ca9b52;
-    --navbar-bg-color : #0A0B0C;
+    --navbar-bg-color : #111111;
     --navbar-toogle-img: url(../../../public/menu-logo-white.png) no-repeat center;
     --nav-link-hover: 1px solid white;
     --outline-input: 2px solid #fff;
@@ -136,14 +137,14 @@ a {
     border-color: var(--bg-footer) !important;
 }
 
-.input-name, .input-password{
+.email-input, .password-input{
     border-bottom: var(--outline-input);
 }
 
-.input-name:focus+.input-label-email,
-.input-name:valid+.input-label-email,
-.input-password:focus+.input-label-password,
-.input-password:valid+.input-label-password,
+.email-input:focus+.input-label-email,
+.email-input:valid+.input-label-email,
+.password-input:focus+.input-label-password,
+.password-input:valid+.input-label-password,
 .input-name-set:focus+.input-label-name,
 .input-prenom:focus+.input-label-prenom,
 .input-email:focus+.input-label-email-set,
@@ -151,6 +152,10 @@ a {
 .input-password-confirm:focus+.input-label-password-confirm{
     background-color: var(--background-color);
 }
+.input-label-email-set,.input-label-password-set,.input-label-name,.input-label-prenom,.input-label-password-confirm{
+    background-color: var(--background-color);
+}
+
 
 .inputLabelName, .inputLabelEmail, .rmqLabel, .inputName, .inputEmail, .txtcontact{
     background-color: var(--background-color);

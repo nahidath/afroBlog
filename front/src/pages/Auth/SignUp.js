@@ -18,12 +18,10 @@ export default function  SignUp() {
     const [firstName,setFirstName] = useState("");
     const [confPwd, setConfPwd] = useState("");
     const [checked, setChecked] = useState(false);
-    const [isEmpty,setEmpty] = useState(true);
 
-    //
-    // useEffect(() => {
-    //     stayFocus();
-    // },[]);
+    const validateForm = () => {
+        return email.length > 0 && password.length > 0 && name.length > 0 && firstName.length > 0 && confPwd.length > 0;
+    }
 
     const handleSignUp = () => {
         history.push({ pathname:'/sign-in'});
@@ -94,36 +92,16 @@ export default function  SignUp() {
         }
     }
 
-    // const stayFocus = () =>{
-    //     const inputName = document.getElementsByClassName("input-name-set");
-    //     const inputPrenom = document.getElementsByClassName("input-prenom");
-    //     const inputEmail = document.getElementsByClassName("input-email");
-    //     const inputPwd = document.getElementsByClassName("input-password-set");
-    //     const inputConfirmPwd =  document.getElementsByClassName("input-password-confirm");
-    //
-    //     if(inputName.value!=""){
-    //         const labelN = document.getElementsByClassName("input-label-name");
-    //         labelN.style.transhtmlForm= "translate(10px , -14px)";
-    //     }
-    // }
-
     const stayFocus = (inputID, labelID) =>{
+
         const ipt = document.getElementById(inputID);
         const lbl = document.getElementById(labelID);
-        console.log(ipt.length);
-        if(ipt.value != ''){
-            console.log(ipt.value);
-            setEmpty(false);
+        if(ipt.value.length >= 1){
+            lbl.style.transform = "translate(10px , -14px) scale(.85)";
         }
-        if(isEmpty ==  false){
-            lbl.style.transform = "translate(10px , -14px)";
-            lbl.style.backgroundColor = "inherit";
-        }else {
-            lbl.style.transform = "translate(10px , 10px)";
+        if(ipt.value.length === 0){
+            lbl.style.removeProperty('transform');
         }
-
-
-
     }
 
 
@@ -137,28 +115,28 @@ export default function  SignUp() {
             </div>
             <form onSubmit={handleSubmit}>
                 <div className="input-group-signup">
-                    <input type="text" className="input-name-set" id="name" required onChange={(e) => setName(e.target.value)} onKeyUp={()=>stayFocus("name", "nom")}/>
+                    <input type="text" className="input-name-set" id="name" required onChange={(e) => setName(e.target.value)} onInput={()=>stayFocus("name", "nom")}/>
                     <label htmlFor="name" className="input-label-name" id="nom">Nom</label>
                     <input type="text" className="input-prenom" id="prenom" required onChange={(e) => setFirstName(e.target.value)} onInput={()=>stayFocus("prenom", "prenomL")}/>
                     <label htmlFor="prenom" className="input-label-prenom" id="prenomL">Prénom</label>
 
                     <input type="email" className="input-email" id="email" required
-                           onChange={(e) => setEmail(e.target.value)} onInput={()=>stayFocus("input-email", "emailL")}/>
+                           onChange={(e) => setEmail(e.target.value)} onInput={()=>stayFocus("email", "emailL")}/>
                     <label htmlFor="email" className="input-label-email-set" id="emailL">Email</label>
 
                     <input type="password" className="input-password-set" id="password-set" required
-                           onChange={(e) => setPassword(e.target.value)} onInput={()=>stayFocus("input-password-set", "pwd")}/>
+                           onChange={(e) => setPassword(e.target.value)} onInput={()=>stayFocus("password-set", "pwd")}/>
                     <label htmlFor="password" className="input-label-password-set" id="pwd">Mot de passe</label>
 
                     <input type="password" className="input-password-confirm" id="password-confirm" required
-                           onChange={(e) => setConfPwd(e.target.value)} onInput={()=>stayFocus("input-password-confirm", "pwdC")} />
+                           onChange={(e) => setConfPwd(e.target.value)} onInput={()=>stayFocus("password-confirm", "pwdC")} />
                     <label htmlFor="password" className="input-label-password-confirm" id="pwdC">Confirmez votre mot de passe</label>
 
                     <input type="checkbox" className="subscribeBox" id="subscribeBox" onChange={(e) =>setChecked(e.target.checked)} />
                     <label htmlFor="checkbox" className="subscribeBox-label">S'abonner à la newsletter</label>
 
                 </div>
-                <Button block size="lg" type="submit" onClick={handleSubmit}>
+                <Button block size="lg" type="submit" onClick={handleSubmit} disabled={!validateForm()}>
                     Sign up
                 </Button>
             </form>
