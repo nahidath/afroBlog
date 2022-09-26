@@ -1,11 +1,10 @@
-import { Tab, Tabs} from "react-bootstrap";
+import {Tab, Tabs} from "react-bootstrap";
 import React, {useEffect, useState} from "react";
-import './Makeup.css';
+import './Skin.css';
 import axios from "axios";
+import Miniature from "../Articles/Miniatures/Miniature";
 
-import Miniature from "./Articles/Miniatures/Miniature";
-
-export default function Makeup(){
+export default function Skin(){
     const [key, setKey] = useState('all');
 
     const [dataArt, setDataArt] = useState([]);
@@ -16,7 +15,7 @@ export default function Makeup(){
 
     const displayArticlesBySubCat = (subCat) => {
         axios.get('http://localhost:5000/articles/category',{
-            params : {category : 'makeup', subCategory : subCat}
+            params : {category : 'skin', subCategory : subCat}
         }).then(resp => {
             const dA = resp.data.data;
             setDataArt(dA);
@@ -28,13 +27,13 @@ export default function Makeup(){
 
     return (
         <>
-            <div id="banner" className="makeupBanner">
+            <div id="banner" className="skinBanner">
                 <div id="textBanner">
-                    <h1>Makeup</h1>
+                    <h1>Skin</h1>
                 </div>
             </div>
             <div className="textTitle">
-                Makeup lovers, you've come to the right place. Here you'll find the hottest makeup trends from the runways (and Instagram), breakdowns of red carpet looks begging to be your Friday night makeup inspo, plus makeup tips and tricks from the world's biggest makeup artists.
+                We know skincare isn't one-size-fits-all. That's why we've tapped the top dermatologists, estheticians and skincare experts to share right products you should be using for your skin type. From reviews to treatments, consider this section to help you achieve your glowy-skin goals.
             </div>
             <div className="tabFilter">
                 <Tabs
@@ -48,22 +47,27 @@ export default function Makeup(){
                             <Miniature elt={elt} idx={index}/>
                         )}
                     </Tab>
-                    <Tab eventKey="face" title="Teint">
+                    <Tab eventKey="skincare" title="Soin de la peau">
                         {dataArt.map((elt, index) =>
                             <Miniature elt={elt} idx={index}/>
                         )}
                     </Tab>
-                    <Tab eventKey="eyes" title="Yeux">
+                    <Tab eventKey="oily" title="Peaux grasses">
                         {dataArt.map((elt, index) =>
                             <Miniature elt={elt} idx={index}/>
                         )}
                     </Tab>
-                    <Tab eventKey="lips" title="Lèvres">
+                    <Tab eventKey="dry" title="Peaux sèches">
                         {dataArt.map((elt, index) =>
                             <Miniature elt={elt} idx={index}/>
                         )}
                     </Tab>
-                    <Tab eventKey="brows" title="Sourcils">
+                    <Tab eventKey="acne" title="Peaux acnéiques">
+                        {dataArt.map((elt, index) =>
+                            <Miniature elt={elt} idx={index}/>
+                        )}
+                    </Tab>
+                    <Tab eventKey="more" title="Plus +">
                         {dataArt.map((elt, index) =>
                             <Miniature elt={elt} idx={index}/>
                         )}

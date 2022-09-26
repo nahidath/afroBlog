@@ -1,7 +1,7 @@
 import { Tab, Tabs} from "react-bootstrap";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import Miniature from "./Articles/Miniatures/Miniature";
+import Miniature from "../Articles/Miniatures/Miniature";
 
 export default function Hair(){
     const [key, setKey] = useState('all');

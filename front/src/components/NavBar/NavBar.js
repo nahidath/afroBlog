@@ -7,11 +7,11 @@ import { React, useEffect, useRef, useState } from "react";
 // Import style
 import "./NavBar.css";
 import DarkMode from "../Theme/DarkMode";
-import {IconButton} from "@mui/material";
+import {Divider, IconButton} from "@mui/material";
 import { ImSearch } from "react-icons/im";
 import {toast} from "react-toastify";
 import axios from "axios";
-import SearchPage from "../../pages/SearchPage";
+import SearchPage from "../Search/SearchPage";
 
 
 const a = 100/230;
@@ -46,6 +46,8 @@ export default function NavBar (props) {
     const [top, setTop] = useState(initialTop.toString() + "px");
     const [positionNav, setPositionNav] = useState("absolute");
     const [expanded, setExpanded] = useState(false);
+    let today = new Date();
+
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
         window.addEventListener('resize', handleResize);
@@ -142,7 +144,15 @@ export default function NavBar (props) {
                                             onClick={(e) => {setResearchDisplay(!isResearchDisplay); handleSearch(e);}}  size="medium"><ImSearch className="bs-search"/></IconButton>
                             </Form>
                             {
-                                (props.user.name) ? <NavDropdown title={props.user.name} id="navbarScrollingDropdown" className="signupLink">
+                                (props.user.name) ? <NavDropdown align="end" title={<div className="profilePic-nav">
+                                    <img className="thumbnail-image"
+                                         // src={props.user.image}
+                                        src="/love-test.png"
+                                         // alt="user pic"
+                                    />
+                                </div>} id="navbarScrollingDropdown" className="signupLink">
+                                    <NavDropdown.ItemText>{(today.getHours() >=12) ? "Bonjour " + props.user.name : "Bonsoir" + props.user.name }</NavDropdown.ItemText>
+                                    <Divider variant="middle" />
                                     <NavDropdown.Item onClick={goToProfile}>Profile</NavDropdown.Item>
                                     <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
                                 </NavDropdown>:<Nav.Link className="signupLink" onClick={() => {handleSignIn(); setExpanded(false)}}>
