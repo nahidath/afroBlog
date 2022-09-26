@@ -13,11 +13,11 @@ import NavBar from './components/NavBar/NavBar';
 import Profile from "./pages/Profile/Profile";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
-import ContactForm from "./pages/ContactForm";
+import ContactForm from "./pages/Footer section/ContactForm";
 
-import SearchPage from "./pages/SearchPage";
-import CGU from "./pages/CGU";
-import About from "./pages/About";
+import SearchPage from "./components/Search/SearchPage";
+import CGU from "./pages/Footer section/CGU";
+import About from "./pages/Footer section/About";
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
