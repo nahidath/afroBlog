@@ -144,14 +144,16 @@ export default function NavBar (props) {
                                             onClick={(e) => {setResearchDisplay(!isResearchDisplay); handleSearch(e);}}  size="medium"><ImSearch className="bs-search"/></IconButton>
                             </Form>
                             {
-                                (props.user.name) ? <NavDropdown align="end" title={<div className="profilePic-nav">
+                                (props.user.name) ? <NavDropdown alignRight='true'
+                                     title={<div className="profilePic-nav">
                                     <img className="thumbnail-image"
                                          // src={props.user.image}
                                         src="/love-test.png"
                                          // alt="user pic"
                                     />
-                                </div>} id="navbarScrollingDropdown" className="signupLink">
-                                    <NavDropdown.ItemText>{(today.getHours() >=12) ? "Bonjour " + props.user.name : "Bonsoir" + props.user.name }</NavDropdown.ItemText>
+                                </div>}
+                                    id="navbarScrollingDropdown" className="signupLink">
+                                    <NavDropdown.ItemText>{(today.getHours()<16) ? "Bonjour " + props.user.name : "Bonsoir " + props.user.name }</NavDropdown.ItemText>
                                     <Divider variant="middle" />
                                     <NavDropdown.Item onClick={goToProfile}>Profile</NavDropdown.Item>
                                     <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
