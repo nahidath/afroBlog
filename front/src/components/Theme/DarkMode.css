@@ -73,7 +73,7 @@ h1, .subHeaderTitle{
     color: var(--font-color);
 }
 
-.nav-tabs, .btn, .article hr, #home hr, .edit-profile-zone hr{
+.nav-tabs, .btn, .article hr, #home hr, .edit-profile-zone hr, .signupLink .MuiDivider-root{
     border-color: var(--font-color);
 }
 
@@ -163,6 +163,14 @@ a {
 
 .inputName, .inputEmail, .txtcontact{
     border: var(--nav-link-hover);
+}
+
+.signupLink .dropdown-menu-right{
+    background-color:var(--background-color);
+}
+.signupLink .dropdown-item, .signupLink .dropdown-item-text{
+    color: var(--font-color);
+
 }
 
 /* Custom Dark Mode Toggle Element */

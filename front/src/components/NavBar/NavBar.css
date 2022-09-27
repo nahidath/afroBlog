@@ -97,27 +97,24 @@
     margin-left : 20px;
 }
 
-.profilePic-nav{
-    position : absolute;
-    right : 2px;
-    bottom : 4px;
-}
-
 .thumbnail-image{
     border-radius: 50%;
     width: 32px;
     height: 32px;
 }
 
-.signupLink .dropdown-menu{
+.signupLink .dropdown-menu-right{
     top: 49px;
-    left: -5.7em;
     border: 1px solid #ccc;
 }
 
-/*#navbarScrollingDropdown .dropdown-toogle::after{*/
-/*    position: absolute;*/
-/*}*/
+.signupLink .dropdown-toggle::after{
+    display: none;
+}
+
+.signupLink .dropdown-toggle{
+    padding:initial;
+}
 
 /*@media screen and (min-width: 960px) and (max-width: 1120px) {*/
 /*    #navBar .navbar{*/
