@@ -174,7 +174,7 @@ export default function Profile(props) {
                 Edit your profile
                 <hr/>
                 <Form>
-                    <FormGroup controlId="changeName">
+                    <FormGroup>
                         <Col>
                             Name
                         </Col>
@@ -188,7 +188,7 @@ export default function Profile(props) {
                         </Col>
                     </FormGroup>
 
-                    <FormGroup controlId="changeFirstName">
+                    <FormGroup>
                         <Col>
                             Firstname
                         </Col>
@@ -201,7 +201,7 @@ export default function Profile(props) {
                             />
                         </Col>
                     </FormGroup>
-                    <FormGroup controlId="getNewPassword">
+                    <FormGroup>
                         <Col>
                             Password
                         </Col>
@@ -245,7 +245,7 @@ export default function Profile(props) {
                                 <Col xs={1} md={4}>
                                     <Card style={{width: '210px', height:'350px'}}>
                                         <BsTrash className='delete-icon' onClick={() => deleteFav(elt._id)}/>
-                                        <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}}/>
+                                        <Card.Img variant="top" src="/love-test.png" style={{height:'210px'}} onClick={() => handleGoArticle(elt._id)}/>
                                         {/*<Card.Img variant="top" src={['./articles', props.article.id, props.article.image].join('/')} />*/}
                                         <Card.Body>
                                             <Card.Title><a href={elt._id} onClick={() => handleGoArticle(elt._id)}>{elt.title}</a></Card.Title>
