@@ -167,7 +167,7 @@ export default function Profile(props) {
                     </Button>
                 </div>
                 <div className="welcome-text">
-                    Welcome {props.user.name}
+                    Welcome to your profile, {props.user.name}
                 </div>
             </div>
             <div className="edit-profile-zone">
