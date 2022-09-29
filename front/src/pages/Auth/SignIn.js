@@ -24,7 +24,6 @@ export default function SignIn(props) {
             email: email,
             password: password
         }).then((res) => {
-            console.log(res.data)
             if (res.data["status"] === "fail") {
                 toast.error(res.data["message"], {
                     theme: "colored",
@@ -39,32 +38,37 @@ export default function SignIn(props) {
         })
     };
 
+    const stayFocus = (inputID, labelID) =>{
+
+        const ipt = document.getElementById(inputID);
+        const lbl = document.getElementById(labelID);
+        if(ipt.value.length >= 1){
+            lbl.style.transform = "translate(10px , -14px) scale(.85)";
+        }
+        if(ipt.value.length === 0){
+            lbl.style.removeProperty('transform');
+        }
+    }
+
     return (
         <div className="login-wrapper">
-            <Form onSubmit={handleSubmit}>
-                <Form.Group size="lg" controlId="email">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
-                        autoFocus
-                        type="email"
-                        value={email}
-                        name="email"
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </Form.Group>
-                <Form.Group size="lg" controlId="password">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        value={password}
-                        name="password"
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </Form.Group>
+            <div className="login-title">
+                CONNEXION
+            </div>
+            <div className="login-subtitle">
+                Veuillez indiquer votre email et mot de passe :
+            </div>
+            <form onSubmit={handleSubmit}>
+                <div className="input-group">
+                    <input type="email" className="email-input" id="name" required onChange={(e) => setEmail(e.target.value)} onInput={()=>stayFocus("name", "email-label")}/>
+                    <label htmlFor="name" className="input-label-email" id="email-label">Email</label>
+                    <input type="password" className="password-input" id="password" required onChange={(e) => setPassword(e.target.value)} onInput={()=>stayFocus("password", "password-label")}/>
+                    <label htmlFor="password" className="input-label-password" id="password-label">Mot de passe</label>
+                </div>
                 <Button block size="lg" type="submit" disabled={!validateForm()}>
                     Login
                 </Button>
-            </Form>
+            </form>
             Pas de compte ? <a href="sign-up">Inscris-toi!</a>
         </div>
     );

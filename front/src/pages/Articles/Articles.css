@@ -1,14 +1,22 @@
-#articles {
+.pageSection{
     width: 1080px;
-    min-height: 1000px;
-    background-color: rgb(255, 255, 255, .4);
+    height: 100%;
 }
 
-.textTitle{
-    width: 800px;
-    height:66px;
-    margin-bottom: 60px;
-    padding-top: 30px;
+@media screen and (min-width: 960px) {
+    .textTitle {
+        width : 800px;
+    }
+    #banner{
+        margin-top : 15px;
+    }
+}
+
+@media screen  and (max-width: 1120px) {
+   .pageSection{width: 90%;}
+    #banner {
+        margin-top: 30px;
+    }
 }
 
 .tabsCustom{
@@ -23,19 +31,16 @@
     background-color:transparent !important;
     color: #993333 !important;
     border-bottom: 3px solid #993333 !important;
+    border-top: none !important;
+    border-right: none !important;
+    border-left: none !important;
 }
 
 .tabsCustom .nav-link:hover {
     color: #993333 !important;
-    border-top: 1px solid black !important;
-    border-left: 1px solid black !important;
-    border-right: 1px solid black !important;
 }
 
 #banner{
-    background: url("../../../public/hairBanner.png") no-repeat;
-    height:280px;
-    width:1080px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -43,19 +48,28 @@
     text-align: center;
 }
 
+.hairBanner {
+    background: url("../../../public/hairBanner.png") no-repeat !important;
+    height: 280px;
+}
+
 #textBanner{
+    position: absolute;
     padding-left: 200px;
     font-family: "MV Boli";
 }
 
 .textTitle{
-    /*padding-bottom: 50px;*/
-    padding : 15px 0 50px 5px;
+    height:66px;
+    padding : 30px 0 80px 5px;
     font-family:"Renner*",Helvetica,sans-serif !important;
     font-size:1rem;
     line-height: 22px;
     letter-spacing: .7px;
     font-weight:bold;
+    text-align: center;
+    margin-left: 13%;
+    font-style: italic;
 }
 
 .tabFilter .card-title{
@@ -74,6 +88,7 @@
     width: 210px;
     min-height: 100px;
     border : none !important;
+    margin-bottom: 10px;
 }
 
 .tabFilter .card-text{
@@ -83,10 +98,13 @@
 .tabFilter .card-body {
     padding : 1.25rem 0 0 0 !important;
     text-align: justify;
+    height: 200px;
 }
 
 .tabFilter .card-img-top{
     transition: transform .2s; /* Animation */
+    cursor: pointer;
+
 }
 
 .tabFilter .card-img-top:hover{
@@ -101,17 +119,22 @@
 }
 
 .tabFilter .dropdown-share{
-    bottom: 246px !important;
+    position:absolute !important;
     margin-left: 133px !important;
+}
+
+.tabFilter .dropdown-toggle:hover{
+    color: black !important;
+}
+
+.tabFilter .dropdown-menu{
+    margin-left: 30px !important;
 }
 
 .tabFilter .btn{
     width: 107px;
 }
 
-/*.tabFilter .dropdown-share .dropdown-menu{*/
-/*    background-color: transparent !important;*/
-/*    border: none;*/
-/*    min-width: 0.5rem !important;*/
-/*    transform: translate3d(0px, -26.6px, 0px) !important;*/
-/*}*/
+.tabFilter {
+    margin-top: 25px;
+}

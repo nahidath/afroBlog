@@ -1,8 +1,8 @@
 import React from 'react';
 import './Articles.css';
-import Hair from "../Hair";
-import Makeup from "../Makeup";
-import Skin from "../Skin";
+import Hair from "../Sections/Hair";
+import Makeup from "../Sections/Makeup";
+import Skin from "../Sections/Skin";
 
 
 

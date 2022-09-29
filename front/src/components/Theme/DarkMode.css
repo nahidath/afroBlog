@@ -1,21 +1,26 @@
 /* 1 */
 :root {
     --font-color: black;
-    --background-color: white;
+    --background-color: #F9F7F6;
     --link-color: cornflowerblue;
     --nav-link-active-color:#993333;
     --bg-footer : #B25D3E;
     --input-color: white;
     --btn-color-hover:black;
-    --navBar-color : white;
+    --navBar-color : #F8F9FA;
     --border-color-cadre : 2px solid #B25D3E;
     --share-toogle : #B25D3E;
+    --navbar-bg-color : #FCFBFA;
+    --navbar-toogle-img : url(../../../public/menu-logo-black.png) no-repeat center;
+    --nav-link-hover: 1px solid black;
+    --outline-input: 2px solid #B7B7B7;
+
 }
 
 /* 2 */
 [data-theme="dark"] {
     --font-color: #eee;
-    --background-color: #222222;
+    --background-color: #282828;
     --link-color: lightblue;
     --art-bg-color: white;
     --input-color: #333333;
@@ -25,13 +30,25 @@
     --btn-color-hover:#ca9b52;
     --border-color-cadre: 2px solid #ca9b52 ;
     --share-toogle : #ca9b52;
+    --navbar-bg-color : #121212;
+    --navbar-toogle-img: url(../../../public/menu-logo-white.png) no-repeat center;
+    --nav-link-hover: 1px solid white;
+    --outline-input: 2px solid #fff;
+
 }
 
 /* 3 */
-body, #home, .card-body,.article, .search-page, .section-central, .navbar{
+body, #home, .card-body,.article, .search-page, .section-central{
     background-color: var(--background-color);
     color: var(--font-color);
 }
+
+#navBar .navbar {
+    background-color: var(--navbar-bg-color) !important;
+    color: var(--font-color);
+}
+
+
 .categoryArt a,.cgu-content h1 {
     color: var(--font-color);
 }
@@ -51,12 +68,20 @@ h1, .subHeaderTitle{
     background-color: var(--navBar-color)!important;
     color: var(--font-color);
 }
-.bs-search, .tabsCustom .nav-link, #navBar .nav-link, .about-content h1 {
+.bs-search, .tabsCustom .nav-link, #navBar .nav-link, .about-wrapper h1 {
     color: var(--font-color);
 }
 
-.nav-tabs, .btn, .navbar-light .navbar-toggler, .article hr{
+.nav-tabs, .btn, .article hr, #home hr, .edit-profile-zone hr, .signupLink .MuiDivider-root{
     border-color: var(--font-color);
+}
+
+.navbar-toggler{
+    border-color: var(--font-color) !important;
+}
+
+.navbar-toggler-icon{
+    background: var(--navbar-toogle-img) !important;
 }
 
 input, textarea{
@@ -79,6 +104,9 @@ input, textarea{
 
 .tabsCustom .nav-link:hover{
     color: var(--nav-link-active-color)!important;
+    border-top: var(--nav-link-hover) !important;
+    border-left: var(--nav-link-hover) !important;
+    border-right: var(--nav-link-hover) !important;
 
 }
 
@@ -103,12 +131,54 @@ a {
     color: var(--share-toogle);
 }
 
+.login-wrapper .btn, .signup-wrapper .btn, .btn-submitContact, .edit-profile-zone .btn{
+    background-color: var(--bg-footer) !important;
+    border-color: var(--bg-footer) !important;
+}
+
+.email-input, .password-input{
+    border-bottom: var(--outline-input);
+}
+
+.email-input:focus+.input-label-email,
+.email-input:valid+.input-label-email,
+.password-input:focus+.input-label-password,
+.password-input:valid+.input-label-password,
+.input-name-set:focus+.input-label-name,
+.input-prenom:focus+.input-label-prenom,
+.input-email:focus+.input-label-email-set,
+.input-password-set:focus+.input-label-password-set,
+.input-password-confirm:focus+.input-label-password-confirm{
+    background-color: var(--background-color);
+}
+.input-label-email-set,.input-label-password-set,.input-label-name,.input-label-prenom,.input-label-password-confirm{
+    background-color: var(--background-color);
+}
+
+
+.inputLabelName, .inputLabelEmail, .rmqLabel, .inputName, .inputEmail, .txtcontact{
+    background-color: var(--background-color);
+}
+
+.inputName, .inputEmail, .txtcontact{
+    border: var(--nav-link-hover);
+}
+
+.signupLink .dropdown-menu-right{
+    background-color:var(--background-color);
+}
+.signupLink .dropdown-item, .signupLink .dropdown-item-text{
+    color: var(--font-color);
+
+}
+
 /* Custom Dark Mode Toggle Element */
 .toggle-theme-wrapper {
     display: flex;
     flex-direction: row;
     gap: 4px;
     margin-top: 5px;
+    margin-left: 40px;
 }
 
 .toggle-theme-wrapper span {

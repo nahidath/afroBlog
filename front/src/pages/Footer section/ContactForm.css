@@ -1,0 +1,85 @@
+.contact-wrapper{
+    width: 50%;
+    height: auto;
+    border: 1px solid #b7b7b7;
+    padding: 2rem;
+    margin: 40px 0 40px 0;
+    background-color: white;
+    box-shadow: 0 6px 6px rgba(0,0,0, 0.2);
+    border-radius: 10px;
+
+}
+
+.contactText{
+    margin-top: 2.5%;
+}
+
+.input-group-contact{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.inputLabelName{
+    position: absolute;
+    top:0;
+    left: 0;
+    transform: translate(10px,-14px);
+    padding-left : 5px;
+    padding-right : 5px;
+}
+
+.inputLabelEmail{
+    position: absolute;
+    top:70px;
+    left: 0;
+    transform: translate(10px,-14px);
+    padding-left : 5px;
+    padding-right : 5px;
+}
+
+.rmqLabel{
+    position: absolute;
+    top:137px;
+    left: 0;
+    transform: translate(10px,-14px);
+    padding-left : 5px;
+    padding-right : 5px;
+}
+
+.inputName, .inputEmail, .txtcontact{
+    border-radius: 4px;
+    outline: none;
+    width : 80%;
+    height: 38px;
+}
+
+.inputName:focus+.inputLabelName, .inputEmail:focus+.inputLabelEmail, .txtcontact:focus+.rmqLabel{
+    color: #C39A7E !important;
+}
+
+.inputName:focus, .inputEmail:focus, .txtcontact:focus{
+    border: 2px solid #C39A7E;
+    outline: none !important;
+}
+
+.formContact{
+    margin-top:5%;
+}
+
+.commentArea{
+    margin-top: 5%;
+}
+
+.txtcontact{
+    width: 80%;
+    height : 200px;
+    resize: none;
+    overflow-y: auto;
+    padding-top:18px;
+}
+
+.btn-submitContact{
+    width: 80px;
+}

@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 
 import './SignUp.css';
-import {Button, Col, Form} from "react-bootstrap";
+import {Button, Col, htmlForm} from "react-bootstrap";
 import {useHistory} from "react-router-dom";
 import {toast} from "react-toastify";
 import emailjs from "@emailjs/browser";
@@ -18,6 +18,10 @@ export default function  SignUp() {
     const [firstName,setFirstName] = useState("");
     const [confPwd, setConfPwd] = useState("");
     const [checked, setChecked] = useState(false);
+
+    const validateForm = () => {
+        return email.length > 0 && password.length > 0 && name.length > 0 && firstName.length > 0 && confPwd.length > 0;
+    }
 
     const handleSignUp = () => {
         history.push({ pathname:'/sign-in'});
@@ -88,92 +92,54 @@ export default function  SignUp() {
         }
     }
 
+    const stayFocus = (inputID, labelID) =>{
+
+        const ipt = document.getElementById(inputID);
+        const lbl = document.getElementById(labelID);
+        if(ipt.value.length >= 1){
+            lbl.style.transform = "translate(10px , -14px) scale(.85)";
+        }
+        if(ipt.value.length === 0){
+            lbl.style.removeProperty('transform');
+        }
+    }
+
 
     return (
         <div className="signup-wrapper">
-            <Form horizontal onSubmit={handleSubmit} className="signup-form">
-                <Form.Group controlId="name">
-                    <Col componentClass={Form.Label} sm={2} className="label">
-                        Nom
-                    </Col>
-                    <Col sm={10} className="inputLabel">
-                        <Form.Control
-                            autoFocus
-                            type="text"
-                            name="name"
-                            onChange={(e) => setName(e.target.value)}
-                            // placeholder="Nom"
-                        />
-                    </Col>
-                </Form.Group>
-                <Form.Group controlId="firstName">
-                    <Col componentClass={Form.Label} sm={2} className="label">
-                        Prénom
-                    </Col>
-                    <Col sm={10} className="inputLabel">
-                        <Form.Control
-                            autoFocus
-                            type="text"
-                            name="firstName"
-                            onChange={(e) => setFirstName(e.target.value)}
-                            // placeholder="Prénom"
-                        />
-                    </Col>
-                </Form.Group>
-                <Form.Group controlId="email">
-                    <Col componentClass={Form.Label} sm={2} className="label">
-                        Email
-                    </Col>
-                    <Col sm={10} className="inputLabel">
-                        <Form.Control
-                            autoFocus
-                            type="email"
-                            name="email"
-                            onChange={(e) => setEmail(e.target.value)}
-                            // placeholder="Email"
-                        />
-                    </Col>
-                </Form.Group>
-                <Form.Group controlId="password">
-                    <Col componentClass={Form.Label} className="label">
-                        Mot de passe
-                    </Col>
-                    <Col sm={10} className="inputLabel">
-                        <Form.Control
-                            type="password"
-                            name="password"
-                            onChange={(e) => setPassword(e.target.value)}
-                            // placeholder="Mot de passe"
-                        />
-                    </Col>
-                </Form.Group>
-                <Form.Group  controlId="confPwd">
-                    <Col componentClass={Form.Label} className="label">
-                        Confirmez votre mot de passe
-                    </Col>
-                    <Col sm={10} className="inputLabel">
-                        <Form.Control
-                            type="password"
-                            name="confPwd"
-                            onChange={(e) => setConfPwd(e.target.value)}
-                            // placeholder="Confirmez votre mot de passe"
-                        />
-                    </Col>
-                </Form.Group>
-                <Form.Group>
-                    <Form.Check
-                        type='checkbox'
-                        id="subscribeBox"
-                        label="S'abonner à la newsletter"
-                        onChange={(e) =>setChecked(e.target.checked)}
-                    />
-                </Form.Group>
-                <Form.Group>
-                    <Col smOffset={2} sm={10}>
-                        <Button block size="lg" type="submit" onClick={handleSubmit}>Sign Up</Button>
-                    </Col>
-                </Form.Group>
-            </Form>
+            <div className="signup-title">
+                INSCRIPTION
+            </div>
+            <div className="signup-subtitle">
+                Veuillez remplir les champs suivants :
+            </div>
+            <form onSubmit={handleSubmit}>
+                <div className="input-group-signup">
+                    <input type="text" className="input-name-set" id="name" required onChange={(e) => setName(e.target.value)} onInput={()=>stayFocus("name", "nom")}/>
+                    <label htmlFor="name" className="input-label-name" id="nom">Nom</label>
+                    <input type="text" className="input-prenom" id="prenom" required onChange={(e) => setFirstName(e.target.value)} onInput={()=>stayFocus("prenom", "prenomL")}/>
+                    <label htmlFor="prenom" className="input-label-prenom" id="prenomL">Prénom</label>
+
+                    <input type="email" className="input-email" id="email" required
+                           onChange={(e) => setEmail(e.target.value)} onInput={()=>stayFocus("email", "emailL")}/>
+                    <label htmlFor="email" className="input-label-email-set" id="emailL">Email</label>
+
+                    <input type="password" className="input-password-set" id="password-set" required
+                           onChange={(e) => setPassword(e.target.value)} onInput={()=>stayFocus("password-set", "pwd")}/>
+                    <label htmlFor="password" className="input-label-password-set" id="pwd">Mot de passe</label>
+
+                    <input type="password" className="input-password-confirm" id="password-confirm" required
+                           onChange={(e) => setConfPwd(e.target.value)} onInput={()=>stayFocus("password-confirm", "pwdC")} />
+                    <label htmlFor="password" className="input-label-password-confirm" id="pwdC">Confirmez votre mot de passe</label>
+
+                    <input type="checkbox" className="subscribeBox" id="subscribeBox" onChange={(e) =>setChecked(e.target.checked)} />
+                    <label htmlFor="checkbox" className="subscribeBox-label">S'abonner à la newsletter</label>
+
+                </div>
+                <Button block size="lg" type="submit" onClick={handleSubmit} disabled={!validateForm()}>
+                    Sign up
+                </Button>
+            </form>
             <span>Déjà inscrit ? <a href="sign-in">Connecte-toi!</a></span>
         </div>
     );
