@@ -1,7 +1,7 @@
 /* 1 */
 :root {
     --font-color: black;
-    --background-color: rgb(245, 245, 245);
+    --background-color: #F9F7F6;
     --link-color: cornflowerblue;
     --nav-link-active-color:#993333;
     --bg-footer : #B25D3E;
@@ -10,7 +10,7 @@
     --navBar-color : #F8F9FA;
     --border-color-cadre : 2px solid #B25D3E;
     --share-toogle : #B25D3E;
-    --navbar-bg-color : white;
+    --navbar-bg-color : #FCFBFA;
     --navbar-toogle-img : url(../../../public/menu-logo-black.png) no-repeat center;
     --nav-link-hover: 1px solid black;
     --outline-input: 2px solid #B7B7B7;
@@ -20,8 +20,7 @@
 /* 2 */
 [data-theme="dark"] {
     --font-color: #eee;
-    /*--background-color: #1A1C20;*/
-    --background-color: #252525;
+    --background-color: #282828;
     --link-color: lightblue;
     --art-bg-color: white;
     --input-color: #333333;
@@ -31,7 +30,7 @@
     --btn-color-hover:#ca9b52;
     --border-color-cadre: 2px solid #ca9b52 ;
     --share-toogle : #ca9b52;
-    --navbar-bg-color : #111111;
+    --navbar-bg-color : #121212;
     --navbar-toogle-img: url(../../../public/menu-logo-white.png) no-repeat center;
     --nav-link-hover: 1px solid white;
     --outline-input: 2px solid #fff;
