@@ -7,7 +7,7 @@
   "builds": [
     { "src": "back/server.js",
       "use": "@vercel/node",
-      "config": { "includeFiles": ["backend/build/**"]}
+      "config": { "includeFiles": ["backend/**"]}
     },
     {
       "src": "front/build/**",
